@@ -45,6 +45,9 @@
             border-radius: 8px;
             box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
             transition: transform 0.2s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
         .card:hover { transform: translateY(-4px); }
         .card h3 { margin-top: 0; color: var(--primary); }
@@ -63,6 +66,7 @@
             text-decoration: none;
             border-radius: 4px;
             margin-top: 1rem;
+            text-align: center;
         }
     </style>
 </head>
@@ -76,20 +80,24 @@
 <div class="container">
     <section>
         <h2>About</h2>
-        <p>Fogarty Holdings LLC is a New York-based technology and educational holding company. We specialize in developing utility-focused mobile applications, comprehensive IT certification resources, and innovative digital legacy solutions.</p>
+        <p>Fogarty Holdings LLC is a New York-based technology and educational holding company. We specialize in developing utility-focused mobile applications, comprehensive IT certification resources, and innovative digital infrastructure solutions.</p>
     </section>
 
     <div class="grid">
         <div class="card">
-            <h3>Digital Legacy Vault</h3>
-            <p>A privacy-first iOS application designed to secure and manage sensitive digital assets for future generations.</p>
-            <a href="#" class="btn">View App Store</a>
+            <div>
+                <h3>Certflash: CompTIA Study Cards</h3>
+                <p>An intuitive study tool featuring comprehensive flashcards designed to help IT professionals master CompTIA certification exams.</p>
+            </div>
+            <a href="https://apps.apple.com/us/app/certflash-comptia-study-cards/id6761732835" class="btn" target="_blank">View on App Store</a>
         </div>
 
         <div class="card">
-            <h3>IT Study Hub</h3>
-            <p>Our flagship educational platform (itstudyhub.org) providing Tier 1 and Tier 2 support professionals with certification prep and hands-on lab guides.</p>
-            <a href="https://itstudyhub.org" class="btn">Visit Site</a>
+            <div>
+                <h3>IT Study Hub</h3>
+                <p>Our flagship educational platform (itstudyhub.org) providing Tier 1 and Tier 2 support professionals with certification prep and hands-on lab guides.</p>
+            </div>
+            <a href="https://itstudyhub.org" class="btn" target="_blank">Visit Site</a>
         </div>
     </div>
 
