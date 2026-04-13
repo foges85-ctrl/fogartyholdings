@@ -1,19 +1,16 @@
-import os
-
-# Define the HTML content for the "Coming Soon" page
-html_content = """<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fogarty Holdings</title>
     <style>
-        /* Professional & Modern Minimalist Aesthetic */
+        /* Modern Aesthetic Reset */
         :root {
-            --bg-color: #0f172a; /* Deep Slate */
+            --bg-color: #0f172a; 
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
-            --accent: #38bdf8; /* Soft Sky Blue */
+            --accent: #38bdf8;
         }
 
         * {
@@ -31,23 +28,27 @@ html_content = """<!DOCTYPE html>
             align-items: center;
             height: 100vh;
             overflow: hidden;
+            position: relative;
         }
 
+        /* Centered Content Box */
         .container {
             text-align: center;
             padding: 2rem;
+            z-index: 1;
             animation: fadeIn 1.2s ease-out;
         }
 
         h1 {
             font-size: 2.5rem;
             font-weight: 300;
-            letter-spacing: 0.1rem;
+            letter-spacing: 0.15rem;
             margin-bottom: 0.5rem;
+            text-transform: uppercase;
         }
 
         .divider {
-            width: 40px;
+            width: 50px;
             height: 2px;
             background-color: var(--accent);
             margin: 1.5rem auto;
@@ -57,14 +58,16 @@ html_content = """<!DOCTYPE html>
             font-size: 1.1rem;
             color: var(--text-muted);
             letter-spacing: 0.05rem;
+            font-weight: 300;
         }
 
+        /* Smooth Entry Animation */
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+            from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Subtle Background Gradient for Depth */
+        /* Subtle Background Depth */
         body::before {
             content: "";
             position: absolute;
@@ -72,8 +75,8 @@ html_content = """<!DOCTYPE html>
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at center, rgba(56, 189, 248, 0.05) 0%, rgba(15, 23, 42, 0) 70%);
-            z-index: -1;
+            background: radial-gradient(circle at center, rgba(56, 189, 248, 0.08) 0%, rgba(15, 23, 42, 0) 75%);
+            z-index: 0;
         }
     </style>
 </head>
@@ -87,11 +90,3 @@ html_content = """<!DOCTYPE html>
 
 </body>
 </html>
-"""
-
-# Save the file
-file_path = 'index.html'
-with open(file_path, 'w') as f:
-    f.write(html_content)
-
-print(f"File created successfully at {file_path}")
