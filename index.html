@@ -1,0 +1,97 @@
+import os
+
+# Define the HTML content for the "Coming Soon" page
+html_content = """<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fogarty Holdings</title>
+    <style>
+        /* Professional & Modern Minimalist Aesthetic */
+        :root {
+            --bg-color: #0f172a; /* Deep Slate */
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent: #38bdf8; /* Soft Sky Blue */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            padding: 2rem;
+            animation: fadeIn 1.2s ease-out;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            letter-spacing: 0.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .divider {
+            width: 40px;
+            height: 2px;
+            background-color: var(--accent);
+            margin: 1.5rem auto;
+        }
+
+        p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            letter-spacing: 0.05rem;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Subtle Background Gradient for Depth */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(56, 189, 248, 0.05) 0%, rgba(15, 23, 42, 0) 70%);
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Fogarty Holdings</h1>
+        <div class="divider"></div>
+        <p>Something new is in development.</p>
+    </div>
+
+</body>
+</html>
+"""
+
+# Save the file
+file_path = 'index.html'
+with open(file_path, 'w') as f:
+    f.write(html_content)
+
+print(f"File created successfully at {file_path}")
