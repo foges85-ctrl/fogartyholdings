@@ -230,7 +230,7 @@
     /* ── VENTURES GRID ── */
     .ventures-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
       gap: 1.5px;
       background: var(--border);
       border: 1px solid var(--border);
@@ -261,8 +261,9 @@
       border: 1px solid;
       width: fit-content;
     }
-    .tag-app { color: var(--accent2); border-color: rgba(126,184,247,0.3); background: rgba(126,184,247,0.07); }
+    .tag-app      { color: var(--accent2); border-color: rgba(126,184,247,0.3); background: rgba(126,184,247,0.07); }
     .tag-platform { color: #90c8ff; border-color: rgba(144,200,255,0.3); background: rgba(144,200,255,0.07); }
+    .tag-vault    { color: #a78bfa; border-color: rgba(167,139,250,0.3); background: rgba(167,139,250,0.07); }
 
     .venture-icon {
       font-size: 2rem;
@@ -420,6 +421,9 @@
     }
 
     /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .ventures-grid { grid-template-columns: 1fr 1fr; }
+    }
     @media (max-width: 700px) {
       nav { padding: 1rem 1.5rem; }
       .hero { padding: 7rem 1.5rem 3rem; }
@@ -450,6 +454,7 @@
     <div class="hero-cta">
       <a href="https://itstudyhub.org" class="btn-primary" target="_blank">↗ IT Study Hub</a>
       <a href="https://apps.apple.com/us/app/certflash-comptia-study-cards/id6761732835" class="btn-ghost" target="_blank">↗ CertFlash on App Store</a>
+      <a href="https://apps.apple.com/us/app/digital-legacy-vault/id6762098328" class="btn-ghost" target="_blank">↗ Digital Legacy Vault</a>
     </div>
   </div>
 
@@ -467,6 +472,14 @@
         <div class="venture-name">CertFlash</div>
         <p class="venture-desc">CompTIA Study Cards — an intuitive flashcard app designed to help IT professionals master A+, Network+, Security+, and more certification exams.</p>
         <a href="https://apps.apple.com/us/app/certflash-comptia-study-cards/id6761732835" class="venture-link" target="_blank">View on App Store →</a>
+      </div>
+
+      <div class="venture-card">
+        <span class="venture-tag tag-vault">iOS App</span>
+        <div class="venture-icon">🔐</div>
+        <div class="venture-name">Digital Legacy Vault</div>
+        <p class="venture-desc">Securely store and organize your most important digital information — passwords, accounts, documents, and final wishes — so loved ones are never left searching.</p>
+        <a href="https://apps.apple.com/us/app/digital-legacy-vault/id6762098328" class="venture-link" target="_blank">View on App Store →</a>
       </div>
 
       <div class="venture-card">
@@ -520,4 +533,15 @@
       entries.forEach(e => {
         if (e.isIntersecting) {
           e.target.classList.add('visible');
-          obser
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach((el, i) => {
+      el.style.transitionDelay = `${i * 0.07}s`;
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
