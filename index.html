@@ -79,6 +79,16 @@
       text-transform: uppercase;
     }
 
+    .hero-logo {
+      display: block;
+      max-width: 260px;
+      width: 100%;
+      height: auto;
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards 0.05s;
+    }
+
     .nav-pill {
       font-family: var(--mono);
       font-size: 0.7rem;
@@ -446,7 +456,9 @@
     <div class="nav-pill">New York State ✦ Est. 2026</div>
   </nav>
 
+  <!-- HERO -->
   <div class="hero">
+    <img src="homepagelogo.jpg" alt="Fogarty Holdings LLC" class="hero-logo">
     <div class="hero-eyebrow">Parent Organization</div>
     <h1 class="hero-title">Fogarty<br><span>Holdings</span> LLC</h1>
     <p class="hero-desc">A New York-based technology and educational holding company — building utility-focused mobile applications, IT certification resources, and digital infrastructure.</p>
@@ -459,6 +471,7 @@
 
   <hr class="divider">
 
+  <!-- VENTURES -->
   <section>
     <div class="section-label reveal">Ventures</div>
     <h2 class="section-title reveal">Our Portfolio</h2>
@@ -507,6 +520,7 @@
 
   <hr class="divider">
 
+  <!-- CONTACT -->
   <section>
     <div class="section-label reveal">Contact</div>
     <h2 class="section-title reveal">Get in Touch</h2>
@@ -515,7 +529,7 @@
         <h3>Let's Work Together</h3>
         <p>Open to software development partnerships, licensing inquiries, and collaboration opportunities.</p>
       </div>
-      <a href="mailto:contact@itstudyhub.org" class="contact-email">contact@itstudyhub.org</a>
+      <a href="/cdn-cgi/l/email-protection#bdded2d3c9dcdec9fdd4c9cec9c8d9c4d5c8df93d2cfda" class="contact-email"><span class="__cf_email__" data-cfemail="9af9f5f4eefbf9eedaf3eee9eeeffee3f2eff8b4f5e8fd">[email&#160;protected]</span></a>
     </div>
   </section>
 
@@ -524,7 +538,7 @@
     <div class="footer-right">Registered in New York State.</div>
   </footer>
 
-  <script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     // Scroll reveal
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(e => {
