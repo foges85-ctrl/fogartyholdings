@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MS0H78HR74"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-MS0H78HR74');
+</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="canonical" href="https://itstudyhub.org/best-study-resources.html">
+
+<title>Best CompTIA Study Resources 2026 — A+, Network+ and Security+</title>
+<meta name="description" content="Find the right study materials for wherever you are in your CompTIA journey — honest comparisons of books, practice exams, and free resources for A+,…">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --navy:    #0a1628;
+  --navy2:   #0f2040;
+  --teal:    #00c2a8;
+  --teal2:   #00a892;
+  --blue:    #1a6cff;
+  --slate:   #8a9bb5;
+  --light:   #f0f4fa;
+  --lighter: #f8fafd;
+  --white:   #ffffff;
+  --border:  #e2e8f4;
+  --text:    #1c2a3e;
+  --muted:   #5c6f87;
+  --card-shadow: 0 4px 24px rgba(10,22,40,.08);
+  --card-shadow-hover: 0 12px 40px rgba(10,22,40,.14);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--lighter); color: var(--text);
+  line-height: 1.65; -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+
+/* ── NAVBAR ── */
+.navbar {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255,255,255,0.94);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-inner {
+  max-width: 1100px; margin: 0 auto; padding: 0 28px;
+  height: 68px; display: flex; align-items: center;
+  justify-content: space-between; gap: 16px;
+}
+.logo-link {
+  display: flex; align-items: center; gap: 10px;
+  font-family: 'Outfit', sans-serif; font-weight: 800;
+  font-size: 17px; color: var(--navy); letter-spacing: -0.3px; flex-shrink: 0;
+}
+.logo-img { height: 52px; width: auto; }
+.nav-links { display: flex; align-items: center; gap: 4px; }
+.nav-links a {
+  font-size: 14px; font-weight: 600; padding: 8px 14px;
+  border-radius: 8px; color: var(--muted);
+  transition: color 0.15s, background 0.15s;
+}
+.nav-links a:hover { color: var(--navy); background: var(--light); }
+.nav-links a.active { color: var(--navy); background: var(--light); }
+.nav-links a.nav-cta {
+  background: var(--navy); color: var(--white) !important;
+  padding: 8px 18px; border-radius: 8px; margin-left: 6px;
+  transition: background 0.15s, transform 0.1s;
+}
+.nav-links a.nav-cta:hover { background: var(--navy2); transform: translateY(-1px); }
+.nav-links a.nav-cta.active { background: var(--teal2); }
+@media (max-width: 768px) {
+  .nav-inner { padding: 0 16px; height: 60px; }
+  .logo-img { height: 44px; }
+  .logo-link span { font-size: 15px; }
+  .nav-links { overflow-x: auto; flex-wrap: nowrap; }
+  .nav-links a { white-space: nowrap; font-size: 13px; padding: 6px 10px; }
+  .nav-links a.nav-cta { padding: 6px 14px; }
+}
+
+/* ── PAGE HERO ── */
+.page-hero {
+  background: var(--navy); position: relative;
+  overflow: hidden; padding: 60px 28px 70px;
+}
+.page-hero::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 50% 100% at 90% 50%, rgba(0,194,168,0.1) 0%, transparent 70%),
+    radial-gradient(ellipse 30% 60% at 5% 90%, rgba(26,108,255,0.12) 0%, transparent 60%);
+  pointer-events: none;
+}
+.page-hero::after {
+  content: ''; position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 48px 48px; pointer-events: none;
+}
+.page-hero-inner {
+  max-width: 1100px; margin: 0 auto;
+  position: relative; z-index: 1;
+  animation: fadeUp 0.6s ease both;
+}
+.breadcrumb {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 13px; color: rgba(255,255,255,0.4);
+  margin-bottom: 20px; font-family: 'DM Mono', monospace;
+}
+.breadcrumb a { color: rgba(255,255,255,0.5); transition: color 0.15s; }
+.breadcrumb a:hover { color: var(--teal); }
+.breadcrumb span { color: rgba(255,255,255,0.25); }
+.page-hero-badge {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: rgba(0,194,168,0.15); border: 1px solid rgba(0,194,168,0.3);
+  color: var(--teal); font-size: 12px; font-weight: 600;
+  letter-spacing: 0.8px; text-transform: uppercase;
+  padding: 5px 12px; border-radius: 100px; margin-bottom: 18px;
+}
+.page-hero h1 {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(26px, 4vw, 42px); font-weight: 800;
+  color: var(--white); line-height: 1.15;
+  letter-spacing: -0.8px; margin-bottom: 14px;
+}
+.page-hero h1 span { color: var(--teal); }
+.page-hero-sub {
+  font-size: 16px; color: rgba(255,255,255,0.6);
+  max-width: 620px; line-height: 1.7;
+}
+
+/* ── MAIN ── */
+.main { max-width: 900px; margin: 0 auto; padding: 56px 28px 80px; }
+@media (max-width: 768px) { .main { padding: 36px 16px 60px; } }
+
+/* ── WHICH CERT SECTION ── */
+.which-cert {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 16px; padding: 32px; margin-bottom: 52px;
+  box-shadow: var(--card-shadow);
+}
+.which-cert-title {
+  font-family: 'Outfit', sans-serif; font-size: 19px; font-weight: 800;
+  color: var(--navy); margin-bottom: 8px; letter-spacing: -0.2px;
+}
+.which-cert-sub {
+  font-size: 14px; color: var(--muted); line-height: 1.7; margin-bottom: 24px;
+}
+.cert-compare {
+  display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px;
+}
+@media (max-width: 580px) { .cert-compare { grid-template-columns: 1fr; } }
+.cert-card {
+  border-radius: 12px; padding: 20px 22px;
+  border: 2px solid transparent;
+  transition: border-color 0.15s, transform 0.15s;
+}
+.cert-card:hover { transform: translateY(-2px); }
+.cert-card-aplus {
+  background: linear-gradient(135deg, rgba(0,194,168,0.05), rgba(0,194,168,0.02));
+  border-color: rgba(0,194,168,0.25);
+}
+.cert-card-netplus {
+  background: linear-gradient(135deg, rgba(26,108,255,0.05), rgba(26,108,255,0.02));
+  border-color: rgba(26,108,255,0.25);
+}
+.cert-card-secplus {
+  background: linear-gradient(135deg, rgba(124,58,237,0.05), rgba(124,58,237,0.02));
+  border-color: rgba(124,58,237,0.25);
+}
+.cert-card-label {
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.7px; margin-bottom: 6px;
+}
+.cert-card-aplus .cert-card-label { color: var(--teal2); }
+.cert-card-netplus .cert-card-label { color: var(--blue); }
+.cert-card-secplus .cert-card-label { color: #7c3aed; }
+.cert-card-name {
+  font-family: 'Outfit', sans-serif; font-size: 17px; font-weight: 800;
+  color: var(--navy); margin-bottom: 8px;
+}
+.cert-card-desc { font-size: 13.5px; color: var(--muted); line-height: 1.65; margin-bottom: 14px; }
+.cert-card-facts { display: flex; flex-direction: column; gap: 5px; margin-bottom: 16px; }
+.cert-fact {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 12.5px; color: var(--text);
+}
+.cert-fact-label {
+  font-family: 'DM Mono', monospace; font-size: 10px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.5px; color: var(--slate);
+  min-width: 70px;
+}
+.cert-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 10px 18px; border-radius: 9px;
+  font-size: 13.5px; font-weight: 700;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.cert-btn:hover { transform: translateY(-1px); }
+.cert-btn-aplus {
+  background: var(--teal); color: var(--navy);
+  box-shadow: 0 4px 14px rgba(0,194,168,0.3);
+}
+.cert-btn-netplus {
+  background: var(--blue); color: var(--white);
+  box-shadow: 0 4px 14px rgba(26,108,255,0.3);
+}
+.cert-btn-secplus {
+  background: #7c3aed; color: var(--white);
+  box-shadow: 0 4px 14px rgba(124,58,237,0.3);
+}
+
+/* ── SECTION DIVIDER ── */
+.section-header {
+  display: flex; align-items: center; gap: 16px; margin-bottom: 24px;
+}
+.section-line {
+  flex: 1; height: 1px; background: var(--border);
+}
+.section-heading {
+  font-family: 'Outfit', sans-serif; font-size: 22px; font-weight: 800;
+  color: var(--navy); letter-spacing: -0.3px; white-space: nowrap;
+}
+.section-heading span { color: var(--teal2); }
+.section-heading.blue span { color: var(--blue); }
+
+/* ── RESOURCE PREVIEW CARDS ── */
+.resource-preview {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 16px; overflow: hidden;
+  box-shadow: var(--card-shadow); margin-bottom: 20px;
+}
+.resource-preview-header {
+  padding: 22px 26px 20px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px; flex-wrap: wrap;
+}
+.resource-preview-label {
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.8px; text-transform: uppercase;
+  color: var(--teal2); margin-bottom: 6px;
+}
+.resource-preview-label.blue { color: var(--blue); }
+.resource-preview-header h3 {
+  font-family: 'Outfit', sans-serif; font-size: 17px; font-weight: 800;
+  color: var(--navy); margin-bottom: 3px; letter-spacing: -0.2px;
+}
+.resource-preview-header p { font-size: 13.5px; color: var(--muted); }
+.resource-preview-body {
+  padding: 18px 26px; display: flex;
+  align-items: center; justify-content: space-between;
+  gap: 16px; flex-wrap: wrap;
+}
+.resource-preview-points {
+  display: flex; flex-direction: column; gap: 6px; flex: 1;
+}
+.preview-point {
+  display: flex; align-items: flex-start; gap: 8px;
+  font-size: 13.5px; color: var(--text);
+}
+.preview-point::before {
+  content: '✓';
+  display: flex; align-items: center; justify-content: center;
+  width: 18px; height: 18px; min-width: 18px;
+  background: rgba(0,194,168,0.12); color: var(--teal2);
+  border-radius: 50%; font-size: 10px; font-weight: 700; margin-top: 1px;
+}
+.resource-preview-cta { flex-shrink: 0; }
+
+/* ── VIEW ALL BUTTON ── */
+.view-all-btn {
+  display: flex; align-items: center; justify-content: center;
+  gap: 8px; width: 100%;
+  background: var(--lighter); border: 1px solid var(--border);
+  border-radius: 12px; padding: 16px 24px; margin-bottom: 52px;
+  font-size: 15px; font-weight: 700; color: var(--navy);
+  transition: background 0.15s, border-color 0.15s, transform 0.15s;
+}
+.view-all-btn:hover {
+  background: var(--white); border-color: rgba(0,194,168,0.35);
+  color: var(--teal2); transform: translateY(-1px);
+}
+.view-all-btn.blue:hover { border-color: rgba(26,108,255,0.35); color: var(--blue); }
+
+/* ── BUTTONS ── */
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 11px 20px; border-radius: 10px; font-size: 14px; font-weight: 600;
+  transition: transform 0.15s, box-shadow 0.15s; cursor: pointer;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn-teal {
+  background: var(--teal); color: var(--navy);
+  box-shadow: 0 5px 16px rgba(0,194,168,0.3);
+}
+.btn-blue {
+  background: var(--blue); color: var(--white);
+  box-shadow: 0 5px 16px rgba(26,108,255,0.3);
+}
+.btn-outline {
+  background: var(--white); color: var(--navy);
+  border: 2px solid var(--border);
+}
+.btn-outline:hover { border-color: var(--teal2); color: var(--teal2); }
+
+/* ── FREE GUIDES STRIP ── */
+.guides-strip {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 16px; padding: 28px 32px; margin-bottom: 0;
+  box-shadow: var(--card-shadow);
+}
+.guides-strip-title {
+  font-family: 'Outfit', sans-serif; font-size: 17px; font-weight: 800;
+  color: var(--navy); margin-bottom: 6px;
+}
+.guides-strip-sub { font-size: 14px; color: var(--muted); margin-bottom: 20px; }
+.guides-grid {
+  display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px;
+}
+@media (max-width: 680px) { .guides-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 440px) { .guides-grid { grid-template-columns: 1fr; } }
+.guide-link {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--lighter); border: 1px solid var(--border);
+  border-radius: 9px; padding: 11px 14px;
+  font-size: 13px; font-weight: 600; color: var(--navy);
+  transition: border-color 0.15s, transform 0.15s, background 0.15s;
+}
+.guide-link:hover {
+  border-color: rgba(0,194,168,0.35); background: var(--white);
+  transform: translateY(-1px); color: var(--teal2);
+}
+
+/* ── FOOTER ── */
+.footer { background: var(--navy); color: rgba(255,255,255,0.5); padding: 40px 28px; }
+.footer-inner {
+  max-width: 1100px; margin: 0 auto;
+  display: flex; align-items: flex-start; justify-content: space-between;
+  gap: 32px; flex-wrap: wrap;
+}
+.footer-brand { display: flex; flex-direction: column; gap: 8px; }
+.footer-logo { font-family: 'Outfit', sans-serif; font-size: 16px; font-weight: 800; color: var(--white); }
+.footer-tagline { font-size: 13px; max-width: 280px; line-height: 1.6; }
+.footer-links { display: flex; flex-direction: column; gap: 8px; }
+.footer-links-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.7px; color: rgba(255,255,255,0.35); margin-bottom: 4px; }
+.footer-links a { font-size: 13px; color: rgba(255,255,255,0.55); transition: color 0.15s; }
+.footer-links a:hover { color: var(--teal); }
+.footer-bottom {
+  max-width: 1100px; margin: 28px auto 0; padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.08); font-size: 12px;
+  display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+}
+@media (max-width: 600px) { .footer { padding: 36px 16px; } .footer-bottom { flex-direction: column; } }
+
+/* ── DIVIDER ── */
+.divider { border: none; border-top: 1px solid var(--border); margin: 0 0 48px; }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.footer-email { color:rgba(255,255,255,0.4); }
+.footer-pp { color:rgba(255,255,255,0.4); }
+
+/* ── CERTFLASH APP BANNER ── */
+.app-banner {
+  background: linear-gradient(90deg, #0d1f3c 0%, #0a2a50 100%);
+  border-bottom: 1px solid rgba(0,194,168,0.25);
+  padding: 9px 48px 9px 28px;
+  text-align: center;
+  position: relative;
+  z-index: 101;
+}
+.app-banner-inner {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.app-banner-text {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.82);
+  letter-spacing: 0.1px;
+}
+.app-banner-text strong { color: var(--teal); font-weight: 700; }
+.app-banner-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--teal);
+  color: var(--navy) !important;
+  font-size: 12.5px;
+  font-weight: 700;
+  padding: 5px 15px;
+  border-radius: 100px;
+  white-space: nowrap;
+  transition: background 0.15s, transform 0.1s;
+}
+.app-banner-cta:hover { background: #00a896; color: var(--navy) !important; transform: translateY(-1px); }
+.app-banner-close {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.35);
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 4px 6px;
+  transition: color 0.15s;
+}
+.app-banner-close:hover { color: rgba(255,255,255,0.75); }
+@media (max-width: 600px) {
+  .app-banner { padding: 8px 40px 8px 16px; }
+  .app-banner-text { font-size: 12.5px; }
+}
+</style>
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647"
+     crossorigin="anonymous"></script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "IT Study Hub",
+      "item": "https://itstudyhub.org/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Best CompTIA Study Resources 2026 — A+, Network+ and",
+      "item": "https://itstudyhub.org/best-study-resources.html"
+    }
+  ]
+}
+</script>
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="IT Study Hub">
+  <meta property="og:url" content="https://itstudyhub.org/best-study-resources.html">
+  <meta property="og:title" content="Best CompTIA Study Resources 2026 — A+, Network+ and">
+  <meta property="og:description" content="Find the right study materials for wherever you are in your CompTIA journey — honest comparisons of books, practice exams, and free resources for A+,…">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<!-- CERTFLASH APP BANNER -->
+<div class="app-banner" id="certflashBanner">
+  <div class="app-banner-inner">
+    <span class="app-banner-text">📱 New iOS App — <strong>CertFlash</strong>: CompTIA flashcards built for exam day.</span>
+    <a href="https://apps.apple.com/us/app/certflash-comptia-study-cards/id6761732835"
+       class="app-banner-cta" target="_blank" rel="noopener noreferrer">
+      Get it on the App Store ↗
+    </a>
+  </div>
+  <button class="app-banner-close" aria-label="Dismiss"
+    onclick="document.getElementById('certflashBanner').style.display='none'">×</button>
+</div>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo-link">
+      <img src="favicon-512x512.png" alt="IT Study Hub Logo" class="logo-img">
+      <span>IT Study Hub</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="networking-roadmap.html">Networking Roadmap</a>
+      <a href="networking.html">Networking Guide</a>
+      <a href="home-lab.html">Home Lab</a>
+      <a href="best-study-resources.html" class="nav-cta active">Best Study Resources</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span>›</span>
+      <span>Best Study Resources</span>
+    </nav>
+    <div class="page-hero-badge">2026 Comparison Guide</div>
+    <h1>Best CompTIA <span>Study Resources</span></h1>
+    <p class="page-hero-sub">Whether you're starting with A+ or pushing on to Network+, this page covers the study guides, practice exams, and free resources worth your time — and helps you figure out which certification to tackle first.</p>
+  </div>
+</section>
+
+<!-- MAIN -->
+<main class="main">
+
+  <!-- WHICH CERT SECTION -->
+  <div class="which-cert">
+    <div class="which-cert-title">Not sure which certification to study for?</div>
+    <div class="which-cert-sub">A+, Network+, and Security+ serve different purposes and different stages of an IT career. A+ and Network+ build the foundation — Security+ is where you move into cybersecurity. Here's a quick comparison to help you decide where to start.</div>
+    <div class="cert-compare">
+      <div class="cert-card cert-card-aplus">
+        <div class="cert-card-label">Start Here</div>
+        <div class="cert-card-name">CompTIA A+</div>
+        <div class="cert-card-desc">The entry-level IT certification. Covers hardware, operating systems, networking basics, and troubleshooting. Recommended as the first certification for anyone new to IT.</div>
+        <div class="cert-card-facts">
+          <div class="cert-fact"><span class="cert-fact-label">Exam code</span> 220-1201 &amp; 220-1202</div>
+          <div class="cert-fact"><span class="cert-fact-label">Difficulty</span> Beginner–Intermediate</div>
+          <div class="cert-fact"><span class="cert-fact-label">Best for</span> Help desk, IT support roles</div>
+          <div class="cert-fact"><span class="cert-fact-label">Prerequisite</span> None</div>
+        </div>
+        <a href="best-a-plus.html" class="cert-btn cert-btn-aplus">A+ Study Resources →</a>
+      </div>
+      <div class="cert-card cert-card-netplus">
+        <div class="cert-card-label">Level Up</div>
+        <div class="cert-card-name">CompTIA Network+</div>
+        <div class="cert-card-desc">A deeper networking certification covering subnetting, routing, network security, and cloud networking. More respected than A+ for networking and infrastructure roles.</div>
+        <div class="cert-card-facts">
+          <div class="cert-fact"><span class="cert-fact-label">Exam code</span> N10-009</div>
+          <div class="cert-fact"><span class="cert-fact-label">Difficulty</span> Intermediate</div>
+          <div class="cert-fact"><span class="cert-fact-label">Best for</span> Network admin, IT infrastructure</div>
+          <div class="cert-fact"><span class="cert-fact-label">Prerequisite</span> A+ recommended</div>
+        </div>
+        <a href="best-network-plus.html" class="cert-btn cert-btn-netplus">Network+ Study Resources →</a>
+      </div>
+      <div class="cert-card cert-card-secplus">
+        <div class="cert-card-label">Go Deeper</div>
+        <div class="cert-card-name">CompTIA Security+</div>
+        <div class="cert-card-desc">The most widely recognised entry-level cybersecurity certification. Covers threats, attacks, cryptography, identity management, and governance. The starting point for a security career.</div>
+        <div class="cert-card-facts">
+          <div class="cert-fact"><span class="cert-fact-label">Exam code</span> SY0-701</div>
+          <div class="cert-fact"><span class="cert-fact-label">Difficulty</span> Intermediate–Advanced</div>
+          <div class="cert-fact"><span class="cert-fact-label">Best for</span> Security analyst, SOC roles</div>
+          <div class="cert-fact"><span class="cert-fact-label">Prerequisite</span> Network+ recommended</div>
+        </div>
+        <a href="best-security-plus.html" class="cert-btn cert-btn-secplus">Security+ Study Resources →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- A+ SECTION -->
+  <div class="section-header">
+    <div class="section-heading">CompTIA <span>A+</span> Resources</div>
+    <div class="section-line"></div>
+  </div>
+
+  <!-- A+ Study Guide -->
+  <div class="resource-preview">
+    <div class="resource-preview-header">
+      <div>
+        <div class="resource-preview-label">📘 Best Overall Study Guide</div>
+        <h3>CompTIA A+ 220-1201 &amp; 220-1202 Study Guide</h3>
+        <p>by Walker Bridge &nbsp;·&nbsp; #1 Best Seller &nbsp;·&nbsp; 4.7 ★ &nbsp;·&nbsp; ~$30 paperback</p>
+      </div>
+      <a href="https://amzn.to/4aF0y7U" class="btn btn-teal" target="_blank" rel="nofollow sponsored">See on Amazon →</a>
+    </div>
+    <div class="resource-preview-body">
+      <div class="resource-preview-points">
+        <div class="preview-point">Covers both Core 1 (220-1201) and Core 2 (220-1202) in one volume</div>
+        <div class="preview-point">#1 Best Seller in Computer Hardware Peripherals — 4.7 stars</div>
+        <div class="preview-point">Scenario-based approach, includes question banks and Exam AI Trainer Pro access</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- A+ Practice Exams -->
+  <div class="resource-preview">
+    <div class="resource-preview-header">
+      <div>
+        <div class="resource-preview-label">🧪 Best Practice Exams</div>
+        <h3>Dion Training A+ Practice Exams</h3>
+        <p>by Jason Dion &nbsp;·&nbsp; Closest wording to the real exam &nbsp;·&nbsp; ~$30–40</p>
+      </div>
+      <a href="https://www.diontraining.com?sca_ref=10655873.Dd2aexbSGx&sca_crp=MjMzMDIz" class="btn btn-teal" target="_blank" rel="nofollow sponsored">View Exams →</a>
+    </div>
+    <div class="resource-preview-body">
+      <div class="resource-preview-points">
+        <div class="preview-point">Question style mirrors the real A+ exam more closely than any other provider</div>
+        <div class="preview-point">Detailed explanations for every answer — includes why wrong answers are wrong</div>
+        <div class="preview-point">Performance tracking identifies your weakest domains</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- A+ Free -->
+  <div class="resource-preview">
+    <div class="resource-preview-header">
+      <div>
+        <div class="resource-preview-label">🎥 Best Free Option</div>
+        <h3>Professor Messer Free A+ Course</h3>
+        <p>by Professor Messer &nbsp;·&nbsp; Full video course &nbsp;·&nbsp; Free</p>
+      </div>
+      <a href="https://www.professormesser.com/free-a-plus-training/a-plus-videos/professor-messers-free-comptia-a-certification-training-course/" class="btn btn-outline" target="_blank" rel="nofollow">Access Free →</a>
+    </div>
+    <div class="resource-preview-body">
+      <div class="resource-preview-points">
+        <div class="preview-point">100% free — covers all A+ exam objectives in structured video format</div>
+        <div class="preview-point">Updated for the current 220-1201/1202 exam versions</div>
+        <div class="preview-point">Best free starting point if budget is tight</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- A+ Udemy -->
+  <div class="resource-preview">
+    <div class="resource-preview-header">
+      <div>
+        <div class="resource-preview-label">🎓 Best Paid Video Course</div>
+        <h3>Jason Dion A+ Course on Udemy</h3>
+        <p>by Jason Dion &nbsp;·&nbsp; 220-1201 &amp; 220-1202 video course &nbsp;·&nbsp; ~$15–20 on sale</p>
+      </div>
+      <a href="https://trk.udemy.com/9VAQnj" class="btn btn-teal" target="_blank" rel="nofollow sponsored">View on Udemy →</a>
+    </div>
+    <div class="resource-preview-body">
+      <div class="resource-preview-points">
+        <div class="preview-point">Covers both Core 1 &amp; Core 2 — frequently on sale for $15–20</div>
+        <div class="preview-point">Video format is ideal for hardware and troubleshooting topics</div>
+        <div class="preview-point">Affiliate link — I may earn a small commission at no extra cost to you.</div>
+      </div>
+    </div>
+  </div>
+
+  <a href="best-a-plus.html" class="view-all-btn">
+    See Full A+ Resource Guide with Pros, Cons &amp; Decision Guide →
+  </a>
+
+  <!-- NETWORK+ SECTION -->
+  <div class="section-header">
+    <div class="section-heading blue">CompTIA <span>Network+</span> Resources</div>
+    <div class="section-line"></div>
+  </div>
+
+  <!-- Network+ Study Guide -->
+  <div class="resource-preview">
+    <div class="resource-preview-header">
+      <div>
+        <div class="resource-preview-label blue">📘 Best Overall Study Guide</div>
+        <h3>CompTIA Network+ Study Guide: Exam N10-009 (Sybex)</h3>
+        <p>by Todd Lammle &amp; Jon Buhagiar &nbsp;·&nbsp; Includes 10% exam voucher coupon &nbsp;·&nbsp; ~$40–50</p>
+      </div>
+      <a href="https://amzn.to/3OYXdJt" class="btn btn-blue" target="_blank" rel="nofollow sponsored">See on Amazon →</a>
+    </div>
+    <div class="resource-preview-body">
+      <div class="resource-preview-points">
+        <div class="preview-point">Covers full N10-009 exam objectives — subnetting, routing, security, cloud networking</div>
+        <div class="preview-point">Includes coupon for 10% off your Network+ exam voucher (~$37 savings)</div>
+        <div class="preview-point">Written by Todd Lammle — one of the most respected names in networking certification prep</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Network+ Practice Exams -->
+  <div class="resource-preview">
+    <div class="resource-preview-header">
+      <div>
+        <div class="resource-preview-label blue">🧪 Best Practice Exams</div>
+        <h3>Dion Training Network+ Practice Exams</h3>
+        <p>by Jason Dion &nbsp;·&nbsp; Exam-realistic N10-009 questions &nbsp;·&nbsp; ~$30–40</p>
+      </div>
+      <a href="https://www.diontraining.com?sca_ref=10655873.Dd2aexbSGx&sca_crp=MjMzMDIz" class="btn btn-blue" target="_blank" rel="nofollow sponsored">View Exams →</a>
+    </div>
+    <div class="resource-preview-body">
+      <div class="resource-preview-points">
+        <div class="preview-point">Covers all Network+ domains — concepts, infrastructure, security, troubleshooting</div>
+        <div class="preview-point">Scenario questions closely mirror the real N10-009 exam difficulty</div>
+        <div class="preview-point">Recommended by Network+ passers on r/CompTIA</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Network+ Free -->
+  <div class="resource-preview">
+    <div class="resource-preview-header">
+      <div>
+        <div class="resource-preview-label blue">🎥 Best Free Option</div>
+        <h3>Professor Messer Free Network+ Course</h3>
+        <p>by Professor Messer &nbsp;·&nbsp; Full N10-009 video course &nbsp;·&nbsp; Free</p>
+      </div>
+      <a href="https://www.professormesser.com/network-plus/n10-009/n10-009-video/n10-009-training-course/" class="btn btn-outline" target="_blank" rel="nofollow">Access Free →</a>
+    </div>
+    <div class="resource-preview-body">
+      <div class="resource-preview-points">
+        <div class="preview-point">100% free — covers all N10-009 objectives in organized video format</div>
+        <div class="preview-point">Visual format is well-suited to networking concepts like routing and subnetting</div>
+        <div class="preview-point">Updated for the current Network+ exam version</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Network+ Udemy -->
+  <div class="resource-preview">
+    <div class="resource-preview-header">
+      <div>
+        <div class="resource-preview-label blue">🎓 Best Paid Video Course</div>
+        <h3>Jason Dion Network+ Course on Udemy</h3>
+        <p>by Jason Dion &nbsp;·&nbsp; N10-009 video course &nbsp;·&nbsp; ~$15–20 on sale</p>
+      </div>
+      <a href="https://trk.udemy.com/9VAQnj" class="btn btn-blue" target="_blank" rel="nofollow sponsored">View on Udemy →</a>
+    </div>
+    <div class="resource-preview-body">
+      <div class="resource-preview-points">
+        <div class="preview-point">Covers all N10-009 domains — great for visual learners studying routing and subnetting</div>
+        <div class="preview-point">Frequently discounted to $15–20 on Udemy</div>
+        <div class="preview-point">Affiliate link — I may earn a small commission at no extra cost to you.</div>
+      </div>
+    </div>
+  </div>
+
+  <a href="best-network-plus.html" class="view-all-btn blue">
+    See Full Network+ Resource Guide with Pros, Cons &amp; Decision Guide →
+  </a>
+
+  <hr class="divider">
+
+  <!-- SECURITY+ SECTION -->
+  <div class="section-header">
+    <div class="section-heading" style="color:var(--navy);">CompTIA <span style="color:#7c3aed;">Security+</span> Resources</div>
+    <div class="section-line"></div>
+  </div>
+
+  <!-- Security+ Study Guide -->
+  <div class="resource-preview">
+    <div class="resource-preview-header">
+      <div>
+        <div class="resource-preview-label" style="color:#7c3aed;">📘 Best Overall Study Guide</div>
+        <h3>CompTIA Security+ Certification Kit: Exam SY0-701 (Sybex), 7th Edition</h3>
+        <p>by Mike Chapple &amp; David Seidl &nbsp;·&nbsp; Complete kit including practice test access &nbsp;·&nbsp; ~$50–60</p>
+      </div>
+      <a href="https://amzn.to/4tWW19B" class="btn" style="background:#7c3aed;color:#fff;box-shadow:0 5px 16px rgba(124,58,237,0.3);" target="_blank" rel="nofollow sponsored">See on Amazon →</a>
+    </div>
+    <div class="resource-preview-body">
+      <div class="resource-preview-points">
+        <div class="preview-point">Covers all SY0-701 domains — threats, cryptography, identity, architecture, operations</div>
+        <div class="preview-point">7th edition fully updated for the current exam — written by two of the most trusted Security+ authors</div>
+        <div class="preview-point">Includes performance-based question (PBQ) practice — the hardest question type on the exam</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Security+ Practice Exams -->
+  <div class="resource-preview">
+    <div class="resource-preview-header">
+      <div>
+        <div class="resource-preview-label" style="color:#7c3aed;">🧪 Best Practice Exams</div>
+        <h3>Dion Training Security+ Practice Exams</h3>
+        <p>by Jason Dion &nbsp;·&nbsp; Scenario-based SY0-701 questions &nbsp;·&nbsp; ~$30–40</p>
+      </div>
+      <a href="https://www.diontraining.com?sca_ref=10655873.Dd2aexbSGx&sca_crp=MjMzMDIz" class="btn" style="background:#7c3aed;color:#fff;box-shadow:0 5px 16px rgba(124,58,237,0.3);" target="_blank" rel="nofollow sponsored">View Exams →</a>
+    </div>
+    <div class="resource-preview-body">
+      <div class="resource-preview-points">
+        <div class="preview-point">Scenario-based questions mirror the real SY0-701 format — tests judgment, not just memorization</div>
+        <div class="preview-point">Includes PBQ practice — consistently cited by passers as the most exam-realistic option</div>
+        <div class="preview-point">Detailed explanations for every answer including why wrong answers are wrong</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Security+ Free -->
+  <div class="resource-preview">
+    <div class="resource-preview-header">
+      <div>
+        <div class="resource-preview-label" style="color:#7c3aed;">🎥 Best Free Option</div>
+        <h3>Professor Messer Free Security+ Course</h3>
+        <p>by Professor Messer &nbsp;·&nbsp; Full SY0-701 video course &nbsp;·&nbsp; Free</p>
+      </div>
+      <a href="https://www.professormesser.com/security-plus/sy0-701/sy0-701-video/sy0-701-comptia-security-plus-course/" class="btn btn-outline" target="_blank" rel="nofollow">Access Free →</a>
+    </div>
+    <div class="resource-preview-body">
+      <div class="resource-preview-points">
+        <div class="preview-point">100% free — covers all SY0-701 objectives in structured video format</div>
+        <div class="preview-point">Especially effective for visual concepts like cryptography and network architecture</div>
+        <div class="preview-point">Updated for the current Security+ exam version</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Security+ Udemy -->
+  <div class="resource-preview">
+    <div class="resource-preview-header">
+      <div>
+        <div class="resource-preview-label" style="color:#7c3aed;">🎓 Best Paid Video Course</div>
+        <h3>Jason Dion Security+ Course on Udemy</h3>
+        <p>by Jason Dion &nbsp;·&nbsp; SY0-701 video course &nbsp;·&nbsp; ~$15–20 on sale</p>
+      </div>
+      <a href="https://trk.udemy.com/9VAQnj" class="btn" style="background:#7c3aed;color:#fff;box-shadow:0 5px 16px rgba(124,58,237,0.3);" target="_blank" rel="nofollow sponsored">View on Udemy →</a>
+    </div>
+    <div class="resource-preview-body">
+      <div class="resource-preview-points">
+        <div class="preview-point">Covers all SY0-701 domains — one of the highest-rated Security+ courses on Udemy</div>
+        <div class="preview-point">Frequently discounted to $15–20 and pairs well with Dion's standalone practice exams</div>
+        <div class="preview-point">Affiliate link — I may earn a small commission at no extra cost to you.</div>
+      </div>
+    </div>
+  </div>
+
+  <a href="best-security-plus.html" class="view-all-btn" style="margin-bottom:52px;">
+    See Full Security+ Resource Guide with Pros, Cons &amp; Decision Guide →
+  </a>
+
+  <hr class="divider">
+
+  <!-- FREE GUIDES STRIP -->
+  <div class="guides-strip">
+    <div class="guides-strip-title">Free study guides — no sign-up required</div>
+    <div class="guides-strip-sub">These articles cover the networking concepts that appear most on both the A+ and Network+ exams.</div>
+    <div class="guides-grid">
+      <a href="osi-model.html" class="guide-link">→ OSI Model</a>
+      <a href="tcp-vs-udp.html" class="guide-link">→ TCP vs UDP</a>
+      <a href="ports.html" class="guide-link">→ Port Numbers</a>
+      <a href="subnet-mask.html" class="guide-link">→ Subnet Mask</a>
+      <a href="firewall-basics.html" class="guide-link">→ Firewall Basics</a>
+      <a href="router-vs-switch.html" class="guide-link">→ Router vs Switch</a>
+      <a href="dhcp.html" class="guide-link">→ What Is DHCP?</a>
+      <a href="dns.html" class="guide-link">→ What Is DNS?</a>
+      <a href="network-troubleshooting-commands.html" class="guide-link">→ Troubleshooting Commands</a>
+      <a href="aplus-vs-network-plus.html" class="guide-link">→ A+ vs Network+</a>
+    </div>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">IT Study Hub</div>
+      <div class="footer-tagline">Practical CompTIA A+ and Networking resources for real-world IT success.</div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Pages</div>
+      <a href="index.html">Home</a>
+      <a href="networking-roadmap.html">Networking Roadmap</a>
+      <a href="networking.html">Networking Guide</a>
+      <a href="best-study-resources.html">Best Study Resources</a>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Topics</div>
+      <a href="osi-model.html">OSI Model</a>
+      <a href="tcp-vs-udp.html">TCP vs UDP</a>
+      <a href="subnet-mask.html">Subnet Mask</a>
+      <a href="ports.html">Port Numbers</a>
+      <a href="firewall-basics.html">Firewall Basics</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 <a href="https://fogartyholdings.com" target="_blank" rel="noopener" style="color:inherit;">Fogarty Holdings LLC</a>. All rights reserved.</span>
+    <span class="footer-email"><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#105;&#116;&#115;&#116;&#117;&#100;&#121;&#104;&#117;&#98;&#46;&#111;&#114;&#103;" class="footer-pp">contact&#64;itstudyhub&#46;org</a> &nbsp;&middot;&nbsp; <a href="privacy-policy.html" class="footer-pp">Privacy Policy</a> &nbsp;&middot;&nbsp; Disclosure: Some links on this site may be affiliate links. I may earn a small commission at no extra cost to you.</span>
+  </div>
+</footer>
+
+</body>
+</html>

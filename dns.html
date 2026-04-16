@@ -1,0 +1,1218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MS0H78HR74"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-MS0H78HR74');
+</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="canonical" href="https://itstudyhub.org/dns.html">
+
+<title>How DNS Works — Domain Name System Explained for CompTIA A+</title>
+<meta name="description" content="DNS translates names to IPs — but how does it actually work? Learn the full DNS resolution process, record types, DNSSEC, nslookup troubleshooting, and…">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --navy:    #0a1628;
+  --navy2:   #0f2040;
+  --teal:    #00c2a8;
+  --teal2:   #00a892;
+  --blue:    #1a6cff;
+  --slate:   #8a9bb5;
+  --light:   #f0f4fa;
+  --lighter: #f8fafd;
+  --white:   #ffffff;
+  --border:  #e2e8f4;
+  --text:    #1c2a3e;
+  --muted:   #5c6f87;
+  --card-shadow: 0 4px 24px rgba(10,22,40,.08);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--lighter);
+  color: var(--text);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--teal2); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ── NAVBAR ── */
+.navbar {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255,255,255,0.94);
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-inner {
+  max-width: 1100px; margin: 0 auto; padding: 0 28px;
+  height: 68px; display: flex; align-items: center;
+  justify-content: space-between; gap: 16px;
+}
+.logo-link {
+  display: flex; align-items: center; gap: 10px;
+  font-family: 'Outfit', sans-serif; font-weight: 800;
+  font-size: 17px; color: var(--navy); letter-spacing: -0.3px;
+  flex-shrink: 0; text-decoration: none;
+}
+.logo-img { height: 52px; width: auto; }
+.nav-links { display: flex; align-items: center; gap: 4px; }
+.nav-links a {
+  font-size: 14px; font-weight: 600; padding: 8px 14px;
+  border-radius: 8px; color: var(--muted);
+  transition: color 0.15s, background 0.15s; text-decoration: none;
+}
+.nav-links a:hover { color: var(--navy); background: var(--light); }
+.nav-links a.nav-cta {
+  background: var(--navy); color: var(--white) !important;
+  padding: 8px 18px; border-radius: 8px; margin-left: 6px;
+  transition: background 0.15s, transform 0.1s;
+}
+.nav-links a.nav-cta:hover { background: var(--navy2); transform: translateY(-1px); }
+
+@media (max-width: 768px) {
+  .nav-inner { padding: 0 16px; height: 60px; }
+  .logo-img { height: 44px; }
+  .logo-link span { font-size: 15px; }
+  .nav-links { overflow-x: auto; -webkit-overflow-scrolling: touch; flex-wrap: nowrap; }
+  .nav-links a { white-space: nowrap; font-size: 13px; padding: 6px 10px; }
+  .nav-links a.nav-cta { padding: 6px 14px; }
+}
+
+/* ── PAGE HERO ── */
+.page-hero {
+  background: var(--navy); position: relative;
+  overflow: hidden; padding: 52px 28px 60px;
+}
+.page-hero::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 50% 100% at 90% 50%, rgba(0,194,168,0.1) 0%, transparent 70%),
+    radial-gradient(ellipse 30% 60% at 5% 90%, rgba(26,108,255,0.12) 0%, transparent 60%);
+  pointer-events: none;
+}
+.page-hero::after {
+  content: ''; position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 48px 48px; pointer-events: none;
+}
+.page-hero-inner {
+  max-width: 860px; margin: 0 auto;
+  position: relative; z-index: 1;
+}
+.breadcrumb {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 13px; color: rgba(255,255,255,0.4);
+  margin-bottom: 18px; font-family: 'DM Mono', monospace;
+}
+.breadcrumb a { color: rgba(255,255,255,0.5); transition: color 0.15s; text-decoration: none; }
+.breadcrumb a:hover { color: var(--teal); }
+.breadcrumb span { color: rgba(255,255,255,0.25); }
+.page-hero-badge {
+  display: inline-flex; align-items: center;
+  background: rgba(0,194,168,0.15); border: 1px solid rgba(0,194,168,0.3);
+  color: var(--teal); font-size: 12px; font-weight: 600;
+  letter-spacing: 0.8px; text-transform: uppercase;
+  padding: 5px 12px; border-radius: 100px; margin-bottom: 16px;
+}
+.page-hero h1 {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(24px, 4vw, 38px); font-weight: 800;
+  color: var(--white); line-height: 1.18;
+  letter-spacing: -0.5px; margin-bottom: 12px;
+}
+.page-hero h1 span { color: var(--teal); }
+.page-hero-sub {
+  font-size: 15px; color: rgba(255,255,255,0.6);
+  max-width: 560px; line-height: 1.7;
+}
+
+/* ── ARTICLE LAYOUT ── */
+.article-wrap {
+  max-width: 860px; margin: 0 auto;
+  padding: 52px 28px 80px;
+}
+@media (max-width: 768px) { .article-wrap { padding: 32px 16px 60px; } }
+
+.article-body h2 {
+  font-family: 'Outfit', sans-serif; font-size: 20px;
+  font-weight: 800; color: var(--navy); letter-spacing: -0.3px;
+  margin: 40px 0 14px;
+}
+.article-body h2:first-child { margin-top: 0; }
+.article-body p {
+  font-size: 15px; color: var(--text); line-height: 1.75; margin-bottom: 14px;
+}
+.article-body strong { color: var(--navy); font-weight: 700; }
+.divider { border: none; border-top: 1px solid var(--border); margin: 36px 0; }
+
+/* ── PHONEBOOK ANALOGY ── */
+.phonebook-box {
+  background: var(--navy);
+  border-radius: 14px;
+  padding: 22px 26px;
+  margin-bottom: 28px;
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  position: relative;
+  overflow: hidden;
+}
+.phonebook-box::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 100% 50%, rgba(0,194,168,0.1) 0%, transparent 60%);
+  pointer-events: none;
+}
+.phonebook-sides {
+  display: flex; align-items: center; gap: 16px; flex: 1; flex-wrap: wrap;
+}
+.phonebook-side {
+  flex: 1; min-width: 120px;
+}
+.phonebook-side-label {
+  font-family: 'DM Mono', monospace; font-size: 10px;
+  font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase;
+  color: rgba(255,255,255,0.35); margin-bottom: 4px;
+}
+.phonebook-side-value {
+  font-family: 'DM Mono', monospace;
+  font-size: 16px; font-weight: 500;
+}
+.phonebook-side-value.human { color: var(--white); }
+.phonebook-side-value.machine { color: var(--teal); }
+
+.phonebook-arrow {
+  font-size: 20px; color: rgba(255,255,255,0.2); flex-shrink: 0;
+}
+.phonebook-label {
+  font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.4);
+  font-style: italic; flex-shrink: 0; min-width: 70px; text-align: right;
+}
+
+/* ── DNS RESOLUTION FLOW ── */
+.dns-flow {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: var(--card-shadow);
+  margin-bottom: 24px;
+}
+.dns-step {
+  display: flex; align-items: flex-start; gap: 16px;
+  padding: 15px 20px; background: var(--white);
+  border-bottom: 1px solid var(--border);
+}
+.dns-step:last-child { border-bottom: none; }
+.dns-step-num {
+  display: flex; align-items: center; justify-content: center;
+  width: 26px; height: 26px; border-radius: 50%;
+  background: var(--navy); color: var(--white);
+  font-family: 'DM Mono', monospace; font-size: 12px;
+  font-weight: 500; flex-shrink: 0; margin-top: 2px;
+}
+.dns-step-content { flex: 1; }
+.dns-step-title { font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 2px; }
+.dns-step-desc { font-size: 13px; color: var(--muted); line-height: 1.5; }
+.dns-step-desc code {
+  font-family: 'DM Mono', monospace; font-size: 12px;
+  background: var(--light); color: var(--navy);
+  padding: 1px 6px; border-radius: 4px; border: 1px solid var(--border);
+}
+
+/* ── DNS SERVER CARDS ── */
+.dns-servers {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 12px; margin-bottom: 24px;
+}
+@media (max-width: 560px) { .dns-servers { grid-template-columns: 1fr; } }
+
+.dns-server-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 12px; padding: 16px 18px;
+  box-shadow: var(--card-shadow);
+  display: flex; align-items: center; gap: 14px;
+}
+.dns-server-ip {
+  font-family: 'DM Mono', monospace; font-size: 18px;
+  font-weight: 500; color: var(--navy); flex-shrink: 0; min-width: 70px;
+}
+.dns-server-info { flex: 1; }
+.dns-server-name { font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 2px; }
+.dns-server-desc { font-size: 12px; color: var(--muted); }
+
+/* ── SYMPTOM CARDS ── */
+.symptom-list {
+  display: flex; flex-direction: column; gap: 10px;
+  margin-bottom: 24px;
+}
+.symptom-item {
+  display: flex; align-items: flex-start; gap: 12px;
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 10px; padding: 13px 16px;
+  box-shadow: var(--card-shadow);
+}
+.symptom-item::before {
+  content: '⚠';
+  color: #f97316; font-size: 13px; flex-shrink: 0; margin-top: 2px;
+}
+.symptom-item-text { flex: 1; font-size: 14px; color: var(--text); line-height: 1.55; }
+.symptom-item-text strong { color: var(--navy); }
+
+/* ── FIX STEPS ── */
+.fix-steps { display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+.fix-step {
+  display: flex; align-items: flex-start; gap: 14px;
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 12px; padding: 16px 18px; box-shadow: var(--card-shadow);
+}
+.fix-step-num {
+  display: flex; align-items: center; justify-content: center;
+  width: 28px; height: 28px; border-radius: 50%;
+  background: var(--teal); color: var(--navy);
+  font-family: 'DM Mono', monospace; font-size: 13px;
+  font-weight: 700; flex-shrink: 0; margin-top: 1px;
+}
+.fix-step-title { font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 3px; }
+.fix-step-detail { font-size: 13px; color: var(--muted); line-height: 1.55; }
+.fix-step-detail code {
+  font-family: 'DM Mono', monospace; font-size: 12px;
+  background: var(--light); color: var(--navy);
+  padding: 2px 6px; border-radius: 4px; border: 1px solid var(--border);
+}
+
+/* ── EXAM TIP ── */
+.exam-tip {
+  background: linear-gradient(135deg, #fffbeb, #fef9e0);
+  border: 1px solid #f0d060; border-left: 4px solid #f0c000;
+  border-radius: 12px; padding: 20px 22px; margin: 4px 0 28px;
+}
+.exam-tip-label {
+  font-family: 'DM Mono', monospace; font-size: 11px;
+  font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase;
+  color: #b08000; margin-bottom: 10px;
+}
+.exam-tip p { font-size: 14px; color: #5a4000; margin-bottom: 8px; line-height: 1.65; }
+.exam-tip p:last-child { margin-bottom: 0; }
+.exam-tip strong { color: #3a2800; }
+
+/* ── DNS + DHCP TOGETHER ── */
+.together-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 14px; margin-bottom: 28px;
+}
+@media (max-width: 560px) { .together-grid { grid-template-columns: 1fr; } }
+
+.together-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 12px; padding: 18px 20px; box-shadow: var(--card-shadow);
+}
+.together-card.dhcp { border-top: 3px solid var(--teal); }
+.together-card.dns  { border-top: 3px solid var(--blue); }
+.together-label {
+  font-family: 'DM Mono', monospace; font-size: 11px;
+  font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.together-card.dhcp .together-label { color: var(--teal2); }
+.together-card.dns  .together-label { color: var(--blue); }
+.together-title {
+  font-family: 'Outfit', sans-serif; font-size: 15px;
+  font-weight: 700; color: var(--navy); margin-bottom: 6px;
+}
+.together-card p { font-size: 13.5px; color: var(--muted); line-height: 1.6; }
+
+/* ── SUMMARY LIST ── */
+.summary-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+.summary-item {
+  display: flex; align-items: flex-start; gap: 12px;
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 10px; padding: 13px 16px;
+  font-size: 14px; color: var(--text); box-shadow: var(--card-shadow);
+}
+.summary-item::before {
+  content: '✓';
+  display: flex; align-items: center; justify-content: center;
+  width: 20px; height: 20px;
+  background: rgba(0,194,168,0.12); color: var(--teal2);
+  border-radius: 50%; font-size: 11px; font-weight: 700;
+  flex-shrink: 0; margin-top: 1px;
+}
+
+/* ── AFFILIATE BOX ── */
+.affiliate-box {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%);
+  border-radius: 16px; padding: 28px 32px;
+  margin-bottom: 36px; position: relative; overflow: hidden;
+}
+.affiliate-box::before {
+  content: ''; position: absolute; top: -40px; right: -40px;
+  width: 180px; height: 180px;
+  background: radial-gradient(circle, rgba(0,194,168,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+.affiliate-tag {
+  font-family: 'DM Mono', monospace; font-size: 11px;
+  font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+  color: var(--teal); margin-bottom: 8px;
+}
+.affiliate-box h2 {
+  font-family: 'Outfit', sans-serif; font-size: 18px;
+  font-weight: 700; color: var(--white); margin-bottom: 6px;
+}
+.affiliate-box p { color: rgba(255,255,255,0.6); font-size: 14px; margin-bottom: 18px; }
+.affiliate-buttons { display: flex; gap: 10px; flex-wrap: wrap; }
+.aff-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 11px 18px; border-radius: 9px; font-size: 14px;
+  font-weight: 600; transition: transform 0.15s, filter 0.15s;
+  white-space: nowrap; text-decoration: none;
+}
+.aff-btn:hover { transform: translateY(-2px); filter: brightness(1.05); text-decoration: none; }
+.aff-btn-primary { background: var(--teal); color: var(--navy); }
+.aff-btn-secondary { background: rgba(255,255,255,0.1); color: var(--white); border: 1px solid rgba(255,255,255,0.15); }
+
+/* ── RELATED ARTICLES ── */
+.related-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 10px; margin-bottom: 36px;
+}
+@media (max-width: 560px) { .related-grid { grid-template-columns: 1fr; } }
+
+.related-link {
+  display: flex; align-items: center; gap: 10px;
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 10px; padding: 13px 16px; font-size: 14px;
+  font-weight: 600; color: var(--navy); text-decoration: none;
+  transition: border-color 0.15s, transform 0.15s, color 0.15s;
+  box-shadow: var(--card-shadow);
+}
+.related-link:hover {
+  border-color: rgba(0,194,168,0.3); color: var(--teal2);
+  transform: translateY(-2px); text-decoration: none;
+}
+.related-link::before { content: '→'; color: var(--teal2); font-size: 13px; flex-shrink: 0; }
+
+/* ── CTA BOX ── */
+.cta-box {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%);
+  border-radius: 16px; padding: 32px;
+  display: flex; align-items: center;
+  justify-content: space-between; gap: 20px;
+  flex-wrap: wrap; position: relative; overflow: hidden;
+}
+.cta-box::before {
+  content: ''; position: absolute; top: -40px; right: -40px;
+  width: 180px; height: 180px;
+  background: radial-gradient(circle, rgba(0,194,168,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+.cta-box-text h3 {
+  font-family: 'Outfit', sans-serif; font-size: 18px;
+  font-weight: 800; color: var(--white); margin-bottom: 4px;
+}
+.cta-box-text p { font-size: 14px; color: rgba(255,255,255,0.6); }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 12px 22px; border-radius: 10px; font-size: 14px;
+  font-weight: 600; transition: transform 0.15s, box-shadow 0.15s;
+  white-space: nowrap; flex-shrink: 0; text-decoration: none;
+}
+.btn:hover { transform: translateY(-2px); text-decoration: none; }
+.btn-teal { background: var(--teal); color: var(--navy); box-shadow: 0 6px 20px rgba(0,194,168,0.3); }
+.btn-teal:hover { box-shadow: 0 10px 28px rgba(0,194,168,0.4); }
+
+/* ── FOOTER ── */
+.footer { background: var(--navy); color: rgba(255,255,255,0.5); padding: 40px 28px; }
+.footer-inner {
+  max-width: 1100px; margin: 0 auto;
+  display: flex; align-items: flex-start;
+  justify-content: space-between; gap: 32px; flex-wrap: wrap;
+}
+.footer-brand { display: flex; flex-direction: column; gap: 8px; }
+.footer-logo { font-family: 'Outfit', sans-serif; font-size: 16px; font-weight: 800; color: var(--white); }
+.footer-tagline { font-size: 13px; max-width: 280px; line-height: 1.6; }
+.footer-links { display: flex; flex-direction: column; gap: 8px; }
+.footer-links-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.7px; color: rgba(255,255,255,0.35); margin-bottom: 4px; }
+.footer-links a { font-size: 13px; color: rgba(255,255,255,0.55); transition: color 0.15s; text-decoration: none; }
+.footer-links a:hover { color: var(--teal); }
+.footer-bottom {
+  max-width: 1100px; margin: 28px auto 0;
+  padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.08);
+  font-size: 12px; display: flex;
+  justify-content: space-between; flex-wrap: wrap; gap: 8px;
+}
+
+@media (max-width: 600px) {
+  .footer { padding: 36px 16px; }
+  .footer-bottom { flex-direction: column; }
+  .cta-box { flex-direction: column; align-items: flex-start; }
+  .phonebook-box { flex-direction: column; }
+}
+
+/* ── DNS RECORD TYPES TABLE ── */
+.record-tag {
+  display: inline-block; padding: 2px 8px; border-radius: 6px;
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
+  background: rgba(26,108,255,0.1); color: var(--blue);
+  border: 1px solid rgba(26,108,255,0.2);
+}
+
+/* ── DNS HIERARCHY ── */
+.hierarchy-stack {
+  display: flex; flex-direction: column; gap: 6px; margin-bottom: 28px;
+}
+.hierarchy-level {
+  display: grid; grid-template-columns: 140px 1fr;
+  align-items: center; gap: 14px;
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 10px; padding: 12px 16px;
+  box-shadow: 0 2px 8px rgba(10,22,40,0.05);
+}
+.hierarchy-label {
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
+  color: var(--white); background: var(--navy);
+  border-radius: 6px; padding: 4px 10px; text-align: center; white-space: nowrap;
+}
+.hierarchy-desc { font-size: 13.5px; color: var(--text); line-height: 1.5; }
+.hierarchy-desc strong { color: var(--navy); }
+@media (max-width: 480px) {
+  .hierarchy-level { grid-template-columns: 1fr; }
+}
+
+/* ── CODE BLOCK (dns page) ── */
+.dns-code-block {
+  background: var(--navy); border-radius: 12px; overflow: hidden;
+  margin-bottom: 28px; border: 1px solid rgba(255,255,255,0.08);
+}
+.dns-code-label {
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.7px; text-transform: uppercase; color: var(--teal);
+  padding: 10px 18px 8px; border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.dns-code-block pre {
+  font-family: 'DM Mono', monospace; font-size: 13px;
+  color: rgba(255,255,255,0.85); line-height: 1.8;
+  padding: 14px 18px; overflow-x: auto; margin: 0;
+}
+.dns-code-hl { color: #7eb3ff; font-weight: 700; }
+.dns-code-teal { color: var(--teal); font-weight: 700; }
+.dns-code-comment { color: rgba(255,255,255,0.35); }
+
+/* ── CALLOUT ── */
+.dns-callout {
+  background: rgba(26,108,255,0.04); border: 1px solid rgba(26,108,255,0.2);
+  border-left: 4px solid var(--blue);
+  border-radius: 12px; padding: 16px 20px; margin-bottom: 28px;
+}
+.dns-callout-label {
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.8px; text-transform: uppercase; color: var(--blue); margin-bottom: 8px;
+}
+.dns-callout p { font-size: 14px; color: var(--text); line-height: 1.7; margin-bottom: 6px; }
+.dns-callout p:last-child { margin-bottom: 0; }
+.dns-callout strong { color: var(--navy); }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.page-hero-inner { animation: fadeUp 0.6s ease both; }
+
+.footer-email { color:rgba(255,255,255,0.4); }
+.footer-pp { color:rgba(255,255,255,0.4); }
+
+/* ── CERTFLASH APP BANNER ── */
+.app-banner {
+  background: linear-gradient(90deg, #0d1f3c 0%, #0a2a50 100%);
+  border-bottom: 1px solid rgba(0,194,168,0.25);
+  padding: 9px 48px 9px 28px;
+  text-align: center;
+  position: relative;
+  z-index: 101;
+}
+.app-banner-inner {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.app-banner-text {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.82);
+  letter-spacing: 0.1px;
+}
+.app-banner-text strong { color: var(--teal); font-weight: 700; }
+.app-banner-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--teal);
+  color: var(--navy) !important;
+  font-size: 12.5px;
+  font-weight: 700;
+  padding: 5px 15px;
+  border-radius: 100px;
+  white-space: nowrap;
+  transition: background 0.15s, transform 0.1s;
+}
+.app-banner-cta:hover { background: #00a896; color: var(--navy) !important; transform: translateY(-1px); }
+.app-banner-close {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.35);
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 4px 6px;
+  transition: color 0.15s;
+}
+.app-banner-close:hover { color: rgba(255,255,255,0.75); }
+@media (max-width: 600px) {
+  .app-banner { padding: 8px 40px 8px 16px; }
+  .app-banner-text { font-size: 12.5px; }
+}
+</style>
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647"
+     crossorigin="anonymous"></script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How Does DNS Work? (Step-by-Step)",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "This entire process typically happens in milliseconds:"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What Is a DNS Server?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A DNS server is a system that stores and provides domain name → IP address mappings. Most home routers automatically assign a DNS server via DHCP. Common public DNS servers you'll see on the A+ exam:"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Common DNS Problems (A+ Exam Clues)",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "DNS failures produce a specific, recognizable pattern — websites fail even though the connection itself works: If you can ping 8.8.8.8 but NOT google.com — it's a DNS problem. The internet connection itself works (you can reach an IP), but name resolution is broken. This specific scenario appears frequently in A+ troubleshooting questions."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "DNS and DHCP — How They Work Together",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "These two protocols are closely linked and are often tested together on the A+ exam: Gives your device an IP address, subnet mask, gateway, and DNS server — automatically. Translates domain names into IP addresses so your browser knows where to connect."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "DNS Record Types",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "DNS record types are heavily tested on Network+. Each record type stores a different kind of information about a domain. Know every type below — the exam will describe a scenario and ask which record type is needed. A record = hostname to IPv4. AAAA record = hostname to IPv6. PTR record = IP to hostname (reverse — the opposite of A/AAAA). CNAME = alias to another name, never directly to an IP. The MX record is the one to check whenever an email delivery scenario appears. The TXT record is what SPF, DKIM, and DMARC email security policies use."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "DNS Hierarchy",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "DNS is a distributed, hierarchical system — no single server knows every domain. Resolution works by walking down the hierarchy from the top until an authoritative answer is found. Recursive query: Your device asks the resolver — the resolver does all the work and returns a final answer. Most client-to-resolver queries are recursive. Iterative query: The resolver asks a root server — the root server says \"ask this TLD server\" — the resolver asks the TLD server — and so on. Resolver-to-server queries are iterative."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "nslookup — The DNS Troubleshooting Tool",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "nslookup is the primary tool for DNS diagnostics and is tested on both A+ and Network+. It queries DNS servers directly and shows what records are returned — letting you pinpoint exactly where DNS resolution is failing. # Basic lookup — find the IP for a hostname nslookup google.com # Query a specific DNS server (bypass your default) nslookup google.com 8.8.8.8 # Look up a specific record type nslookup -type=MX gmail.com → Find mail servers nslookup -type=TXT example.com → Find SPF/DKIM records nslookup -type=NS example.com → Find authoritative name servers # Reverse lookup — find hostname …"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Test Your Networking Knowledge",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Practice exams and structured review make DNS troubleshooting scenarios automatic."
+      }
+    }
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "IT Study Hub",
+      "item": "https://itstudyhub.org/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "How DNS Works — Domain Name System Explained for CompTIA A+",
+      "item": "https://itstudyhub.org/dns.html"
+    }
+  ]
+}
+</script>
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="IT Study Hub">
+  <meta property="og:url" content="https://itstudyhub.org/dns.html">
+  <meta property="og:title" content="How DNS Works — Domain Name System Explained for CompTIA A+">
+  <meta property="og:description" content="DNS translates names to IPs — but how does it actually work? Learn the full DNS resolution process, record types, DNSSEC, nslookup troubleshooting, and…">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<!-- CERTFLASH APP BANNER -->
+<div class="app-banner" id="certflashBanner">
+  <div class="app-banner-inner">
+    <span class="app-banner-text">📱 New iOS App — <strong>CertFlash</strong>: CompTIA flashcards built for exam day.</span>
+    <a href="https://apps.apple.com/us/app/certflash-comptia-study-cards/id6761732835"
+       class="app-banner-cta" target="_blank" rel="noopener noreferrer">
+      Get it on the App Store ↗
+    </a>
+  </div>
+  <button class="app-banner-close" aria-label="Dismiss"
+    onclick="document.getElementById('certflashBanner').style.display='none'">×</button>
+</div>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo-link">
+      <img src="favicon-512x512.png" alt="IT Study Hub Logo" class="logo-img">
+      <span>IT Study Hub</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="networking-roadmap.html">Networking Roadmap</a>
+      <a href="networking.html">Networking Guide</a>
+      <a href="home-lab.html">Home Lab</a>
+      <a href="best-study-resources.html" class="nav-cta">Best Study Resources</a>
+    </div>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span>›</span>
+      <a href="networking-roadmap.html">Networking Roadmap</a>
+      <span>›</span>
+      <span>DNS</span>
+    </nav>
+    <div class="page-hero-badge">CompTIA A+ · Network+ · Core Concept</div>
+    <h1>What Is <span>DNS?</span></h1>
+    <p class="page-hero-sub">
+      You type google.com — your computer connects in milliseconds. DNS is the invisible system that makes that happen. Here's how it works, every record type, and every DNS concept tested on CompTIA A+ and Network+.
+    </p>
+  </div>
+</section>
+
+<!-- ARTICLE -->
+<div class="article-wrap">
+  <div class="article-body">
+
+    <p><strong>DNS</strong> stands for <strong>Domain Name System</strong>. It translates human-friendly domain names into the IP addresses that computers use to communicate. Without DNS, you'd need to memorize a number like <code style="font-family:'DM Mono',monospace;font-size:13px;background:var(--light);padding:2px 7px;border-radius:5px;border:1px solid var(--border)">142.250.72.14</code> just to visit Google.</p>
+
+    <p><strong>Simple definition: DNS is the internet's phonebook.</strong></p>
+
+    <!-- PHONEBOOK ANALOGY -->
+    <div class="phonebook-box">
+      <div class="phonebook-sides">
+        <div class="phonebook-side">
+          <div class="phonebook-side-label">You type</div>
+          <div class="phonebook-side-value human">google.com</div>
+        </div>
+        <div class="phonebook-arrow">→</div>
+        <div class="phonebook-side">
+          <div class="phonebook-side-label">DNS finds</div>
+          <div class="phonebook-side-value machine">142.250.72.14</div>
+        </div>
+        <div class="phonebook-arrow">→</div>
+        <div class="phonebook-side">
+          <div class="phonebook-side-label">Browser connects to</div>
+          <div class="phonebook-side-value machine">Google's server</div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <h2>How Does DNS Work? (Step-by-Step)</h2>
+    <p>This entire process typically happens in milliseconds:</p>
+
+    <div class="dns-flow">
+      <div class="dns-step">
+        <div class="dns-step-num">1</div>
+        <div class="dns-step-content">
+          <div class="dns-step-title">You type a domain name</div>
+          <div class="dns-step-desc">You enter <code>google.com</code> into your browser</div>
+        </div>
+      </div>
+      <div class="dns-step">
+        <div class="dns-step-num">2</div>
+        <div class="dns-step-content">
+          <div class="dns-step-title">Your computer checks its DNS cache</div>
+          <div class="dns-step-desc">If it's visited this site recently, the answer may already be stored locally — no lookup needed</div>
+        </div>
+      </div>
+      <div class="dns-step">
+        <div class="dns-step-num">3</div>
+        <div class="dns-step-content">
+          <div class="dns-step-title">Your computer asks a DNS server</div>
+          <div class="dns-step-desc">It queries your configured DNS server (usually your router or ISP): <code>"What is the IP for google.com?"</code></div>
+        </div>
+      </div>
+      <div class="dns-step">
+        <div class="dns-step-num">4</div>
+        <div class="dns-step-content">
+          <div class="dns-step-title">The DNS server responds with the IP</div>
+          <div class="dns-step-desc">The server returns the IP address: <code>142.250.72.14</code></div>
+        </div>
+      </div>
+      <div class="dns-step">
+        <div class="dns-step-num">5</div>
+        <div class="dns-step-content">
+          <div class="dns-step-title">Your browser connects to that IP</div>
+          <div class="dns-step-desc">The connection is made — Google loads in your browser</div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <h2>What Is a DNS Server?</h2>
+    <p>A DNS server is a system that stores and provides domain name → IP address mappings. Most home routers automatically assign a DNS server via DHCP. Common public DNS servers you'll see on the A+ exam:</p>
+
+    <div class="dns-servers">
+      <div class="dns-server-card">
+        <div class="dns-server-ip">8.8.8.8</div>
+        <div class="dns-server-info">
+          <div class="dns-server-name">Google DNS</div>
+          <div class="dns-server-desc">Fast, reliable, globally available</div>
+        </div>
+      </div>
+      <div class="dns-server-card">
+        <div class="dns-server-ip">8.8.4.4</div>
+        <div class="dns-server-info">
+          <div class="dns-server-name">Google DNS (Secondary)</div>
+          <div class="dns-server-desc">Backup DNS server from Google</div>
+        </div>
+      </div>
+      <div class="dns-server-card">
+        <div class="dns-server-ip">1.1.1.1</div>
+        <div class="dns-server-info">
+          <div class="dns-server-name">Cloudflare DNS</div>
+          <div class="dns-server-desc">Privacy-focused, one of the fastest</div>
+        </div>
+      </div>
+      <div class="dns-server-card">
+        <div class="dns-server-ip">1.0.0.1</div>
+        <div class="dns-server-info">
+          <div class="dns-server-name">Cloudflare DNS (Secondary)</div>
+          <div class="dns-server-desc">Backup DNS server from Cloudflare</div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <h2>Common DNS Problems (A+ Exam Clues)</h2>
+    <p>DNS failures produce a specific, recognizable pattern — websites fail even though the connection itself works:</p>
+
+    <div class="symptom-list">
+      <div class="symptom-item">
+        <div class="symptom-item-text"><strong>You can ping an IP address but not a website name</strong> — the connection works, but name resolution is broken</div>
+      </div>
+      <div class="symptom-item">
+        <div class="symptom-item-text"><strong>Websites won't load, but internet appears active</strong> — you have a working IP address but names don't resolve</div>
+      </div>
+      <div class="symptom-item">
+        <div class="symptom-item-text"><strong>"DNS server not responding" errors</strong> — your configured DNS server is unreachable or offline</div>
+      </div>
+    </div>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">⚡ CompTIA A+ Exam Tip — The Classic DNS Test</div>
+      <p><strong>If you can ping <code style="font-family:'DM Mono',monospace;font-size:12px;background:rgba(90,64,0,0.1);padding:2px 6px;border-radius:4px;">8.8.8.8</code> but NOT <code style="font-family:'DM Mono',monospace;font-size:12px;background:rgba(90,64,0,0.1);padding:2px 6px;border-radius:4px;">google.com</code> — it's a DNS problem.</strong></p>
+      <p>The internet connection itself works (you can reach an IP), but name resolution is broken. This specific scenario appears frequently in A+ troubleshooting questions.</p>
+    </div>
+
+    <hr class="divider">
+
+    <h2>How to Troubleshoot DNS Issues</h2>
+
+    <div class="fix-steps">
+      <div class="fix-step">
+        <div class="fix-step-num">1</div>
+        <div>
+          <div class="fix-step-title">Flush the DNS cache</div>
+          <div class="fix-step-detail">Clears stale or corrupted cached entries: <code>ipconfig /flushdns</code></div>
+        </div>
+      </div>
+      <div class="fix-step">
+        <div class="fix-step-num">2</div>
+        <div>
+          <div class="fix-step-title">Try a different DNS server</div>
+          <div class="fix-step-detail">Manually set DNS to <code>8.8.8.8</code> (Google) to bypass a broken ISP or router DNS</div>
+        </div>
+      </div>
+      <div class="fix-step">
+        <div class="fix-step-num">3</div>
+        <div>
+          <div class="fix-step-title">Restart your router</div>
+          <div class="fix-step-detail">Your router may be acting as a DNS forwarder — restarting it often clears DNS issues</div>
+        </div>
+      </div>
+      <div class="fix-step">
+        <div class="fix-step-num">4</div>
+        <div>
+          <div class="fix-step-title">Check DHCP settings</div>
+          <div class="fix-step-detail">DHCP assigns DNS servers automatically — if DHCP is misconfigured, DNS settings may be wrong or missing</div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <h2>DNS and DHCP — How They Work Together</h2>
+    <p>These two protocols are closely linked and are often tested together on the A+ exam:</p>
+
+    <div class="together-grid">
+      <div class="together-card dhcp">
+        <div class="together-label">DHCP</div>
+        <div class="together-title">Assigns your IP address</div>
+        <p>Gives your device an IP address, <a href="subnet-mask.html">subnet mask</a>, gateway, and DNS server — automatically.</p>
+      </div>
+      <div class="together-card dns">
+        <div class="together-label">DNS</div>
+        <div class="together-title">Resolves website names</div>
+        <p>Translates domain names into IP addresses so your browser knows where to connect.</p>
+      </div>
+    </div>
+
+    <p>Without DHCP, your device may not get an IP. Without DNS, your device can't resolve website names. Both need to work for normal internet access.</p>
+
+    <hr class="divider">
+
+    <h2>DNS Record Types</h2>
+    <p>DNS record types are heavily tested on Network+. Each record type stores a different kind of information about a domain. Know every type below — the exam will describe a scenario and ask which record type is needed.</p>
+
+    <div class="table-wrap" style="overflow-x:auto;border-radius:14px;border:1px solid var(--border);box-shadow:var(--card-shadow);margin-bottom:28px;">
+      <table style="width:100%;border-collapse:collapse;background:var(--white);min-width:400px;">
+        <thead>
+          <tr>
+            <th style="background:var(--navy);color:var(--white);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.7px;padding:14px 18px;text-align:left;font-family:'DM Mono',monospace;">Record</th>
+            <th style="background:var(--navy);color:rgba(255,255,255,0.7);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.7px;padding:14px 18px;text-align:left;font-family:'DM Mono',monospace;">Full name</th>
+            <th style="background:var(--navy);color:rgba(255,255,255,0.7);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.7px;padding:14px 18px;text-align:left;font-family:'DM Mono',monospace;">What it maps / stores</th>
+            <th style="background:var(--navy);color:rgba(255,255,255,0.7);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.7px;padding:14px 18px;text-align:left;font-family:'DM Mono',monospace;">Exam scenario</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding:13px 18px;border-bottom:1px solid var(--border);font-size:14px;vertical-align:top;"><span class="record-tag">A</span></td>
+            <td style="padding:13px 18px;border-bottom:1px solid var(--border);font-size:14px;vertical-align:top;font-weight:700;color:var(--navy);">Address</td>
+            <td style="padding:13px 18px;border-bottom:1px solid var(--border);font-size:14px;vertical-align:top;">Hostname → IPv4 address</td>
+            <td style="padding:13px 18px;border-bottom:1px solid var(--border);font-size:14px;vertical-align:top;color:var(--muted);">"What record maps a domain name to an IPv4 address?"</td>
+          </tr>
+          <tr style="background:#f9fbff;">
+            <td style="padding:13px 18px;border-bottom:1px solid var(--border);font-size:14px;vertical-align:top;"><span class="record-tag">AAAA</span></td>
+            <td style="padding:13px 18px;border-bottom:1px solid var(--border);font-size:14px;vertical-align:top;font-weight:700;color:var(--navy);">IPv6 Address</td>
+            <td style="padding:13px 18px;border-bottom:1px solid var(--border);font-size:14px;vertical-align:top;">Hostname → IPv6 address</td>
+            <td style="padding:13px 18px;border-bottom:1px solid var(--border);font-size:14px;vertical-align:top;color:var(--muted);">"Which record resolves a hostname to an IPv6 address?"</td>
+          </tr>
+          <tr>
+            <td style="padding:13px 18px;border-bottom:1px solid var(--border);font-size:14px;vertical-align:top;"><span class="record-tag">CNAME</span></td>
+            <td style="padding:13px 18px;border-bottom:1px solid var(--border);font-size:14px;vertical-align:top;font-weight:700;color:var(--navy);">Canonical Name</td>
+            <td style="padding:13px 18px;border-bottom:1px solid var(--border);font-size:14px;vertical-align:top;">Alias → another hostname (not an IP directly)</td>
+            <td style="padding:13px 18px;border-bottom:1px solid var(--border);font-size:14px;vertical-align:top;color:var(--muted);">"www.example.com pointing to example.com" — classic CNAME use</td>
+          </tr>
+          <tr style="background:#f9fbff;">
+            <td style="padding:13px 18px;border-bottom:1px solid var(--border);font-size:14px;vertical-align:top;"><span class="record-tag">MX</span></td>
+            <td style="padding:13px 18px;border-bottom:1px solid var(--border);font-size:14px;vertical-align:top;font-weight:700;color:var(--navy);">Mail Exchanger</td>
+            <td style="padding:13px 18px;border-bottom:1px solid var(--border);font-size:14px;vertical-align:top;">Domain → mail server responsible for receiving email</td>
+            <td style="padding:13px 18px;border-bottom:1px solid var(--border);font-size:14px;vertical-align:top;color:var(--muted);">"Email to @company.com isn't delivering — which record would you check?"</td>
+          </tr>
+          <tr>
+            <td style="padding:13px 18px;border-bottom:1px solid var(--border);font-size:14px;vertical-align:top;"><span class="record-tag">PTR</span></td>
+            <td style="padding:13px 18px;border-bottom:1px solid var(--border);font-size:14px;vertical-align:top;font-weight:700;color:var(--navy);">Pointer</td>
+            <td style="padding:13px 18px;border-bottom:1px solid var(--border);font-size:14px;vertical-align:top;">IP address → hostname (reverse lookup)</td>
+            <td style="padding:13px 18px;border-bottom:1px solid var(--border);font-size:14px;vertical-align:top;color:var(--muted);">"Which record is used for reverse DNS lookups?"</td>
+          </tr>
+          <tr style="background:#f9fbff;">
+            <td style="padding:13px 18px;border-bottom:1px solid var(--border);font-size:14px;vertical-align:top;"><span class="record-tag">NS</span></td>
+            <td style="padding:13px 18px;border-bottom:1px solid var(--border);font-size:14px;vertical-align:top;font-weight:700;color:var(--navy);">Name Server</td>
+            <td style="padding:13px 18px;border-bottom:1px solid var(--border);font-size:14px;vertical-align:top;">Identifies the authoritative name servers for a domain</td>
+            <td style="padding:13px 18px;border-bottom:1px solid var(--border);font-size:14px;vertical-align:top;color:var(--muted);">"Which DNS servers are authoritative for this domain?"</td>
+          </tr>
+          <tr>
+            <td style="padding:13px 18px;border-bottom:1px solid var(--border);font-size:14px;vertical-align:top;"><span class="record-tag">SOA</span></td>
+            <td style="padding:13px 18px;border-bottom:1px solid var(--border);font-size:14px;vertical-align:top;font-weight:700;color:var(--navy);">Start of Authority</td>
+            <td style="padding:13px 18px;border-bottom:1px solid var(--border);font-size:14px;vertical-align:top;">Zone metadata — primary NS, admin email, serial number, refresh/retry/expire timers</td>
+            <td style="padding:13px 18px;border-bottom:1px solid var(--border);font-size:14px;vertical-align:top;color:var(--muted);">"Which record contains zone transfer timing information?"</td>
+          </tr>
+          <tr style="background:#f9fbff;">
+            <td style="padding:13px 18px;border-bottom:1px solid var(--border);font-size:14px;vertical-align:top;"><span class="record-tag">TXT</span></td>
+            <td style="padding:13px 18px;border-bottom:1px solid var(--border);font-size:14px;vertical-align:top;font-weight:700;color:var(--navy);">Text</td>
+            <td style="padding:13px 18px;border-bottom:1px solid var(--border);font-size:14px;vertical-align:top;">Arbitrary text — used for SPF, DKIM, DMARC email authentication records</td>
+            <td style="padding:13px 18px;border-bottom:1px solid var(--border);font-size:14px;vertical-align:top;color:var(--muted);">"Which record type is used to publish SPF email sender policy?"</td>
+          </tr>
+          <tr>
+            <td style="padding:13px 18px;font-size:14px;vertical-align:top;"><span class="record-tag">SRV</span></td>
+            <td style="padding:13px 18px;font-size:14px;vertical-align:top;font-weight:700;color:var(--navy);">Service</td>
+            <td style="padding:13px 18px;font-size:14px;vertical-align:top;">Specifies hostname and port for specific services (SIP, XMPP, etc.)</td>
+            <td style="padding:13px 18px;font-size:14px;vertical-align:top;color:var(--muted);">Less commonly tested — know it exists and what it does</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">⚡ The most tested record type question</div>
+      <p><strong>A record</strong> = hostname to IPv4. <strong>AAAA record</strong> = hostname to IPv6. <strong>PTR record</strong> = IP to hostname (reverse — the opposite of A/AAAA). <strong>CNAME</strong> = alias to another name, never directly to an IP.</p>
+      <p>The <strong>MX record</strong> is the one to check whenever an email delivery scenario appears. The <strong>TXT record</strong> is what SPF, DKIM, and DMARC <a href="email-security.html">email security</a> policies use.</p>
+    </div>
+
+    <hr class="divider">
+
+    <h2>DNS Hierarchy</h2>
+    <p>DNS is a distributed, hierarchical system — no single server knows every domain. Resolution works by walking down the hierarchy from the top until an authoritative answer is found.</p>
+
+    <div class="hierarchy-stack">
+      <div class="hierarchy-level">
+        <div class="hierarchy-label">Root servers</div>
+        <div class="hierarchy-desc"><strong>13 sets of root servers</strong> (labelled A–M) sit at the top of the hierarchy. They don't know IP addresses — they know which TLD servers to ask next.</div>
+      </div>
+      <div class="hierarchy-level">
+        <div class="hierarchy-label">TLD servers</div>
+        <div class="hierarchy-desc"><strong>Top-Level Domain servers</strong> handle .com, .org, .net, .uk and so on. They know which authoritative name servers hold records for domains within their TLD.</div>
+      </div>
+      <div class="hierarchy-level">
+        <div class="hierarchy-label">Authoritative NS</div>
+        <div class="hierarchy-desc"><strong>Authoritative name servers</strong> hold the actual DNS records for a specific domain — A records, MX records, etc. This is the definitive answer.</div>
+      </div>
+      <div class="hierarchy-level">
+        <div class="hierarchy-label">Recursive resolver</div>
+        <div class="hierarchy-desc"><strong>Your ISP or configured DNS server</strong> (e.g. 8.8.8.8). Does the legwork — queries root → TLD → authoritative on your behalf, caches the result, returns the answer to you.</div>
+      </div>
+    </div>
+
+    <div class="dns-callout">
+      <div class="dns-callout-label">📌 Recursive vs iterative queries</div>
+      <p><strong>Recursive query:</strong> Your device asks the resolver — the resolver does all the work and returns a final answer. Most client-to-resolver queries are recursive.</p>
+      <p><strong>Iterative query:</strong> The resolver asks a root server — the root server says "ask this TLD server" — the resolver asks the TLD server — and so on. Resolver-to-server queries are iterative.</p>
+    </div>
+
+    <hr class="divider">
+
+    <h2>DNS Zones</h2>
+    <p>A DNS zone is an administrative portion of the DNS namespace — essentially the set of DNS records a particular name server is responsible for managing.</p>
+
+    <div class="dns-code-block">
+      <div class="dns-code-label">DNS zone types</div>
+      <pre><span class="dns-code-hl">Primary zone</span>      <span class="dns-code-comment">→ The read/write master copy of DNS records for a domain</span>
+                   <span class="dns-code-comment">   Changes are made here and replicated to secondary zones</span>
+
+<span class="dns-code-hl">Secondary zone</span>    <span class="dns-code-comment">→ Read-only copy of a primary zone — provides redundancy</span>
+                   <span class="dns-code-comment">   Updated via zone transfers from the primary</span>
+
+<span class="dns-code-hl">Stub zone</span>         <span class="dns-code-comment">→ Contains only NS records — used to find authoritative servers</span>
+                   <span class="dns-code-comment">   Lighter than a full secondary zone</span>
+
+<span class="dns-code-teal">Forward lookup zone</span> <span class="dns-code-comment">→ Resolves hostnames → IP addresses (standard direction)</span>
+<span class="dns-code-teal">Reverse lookup zone</span> <span class="dns-code-comment">→ Resolves IP addresses → hostnames (uses PTR records)</span></pre>
+    </div>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">⚡ Zone transfers — TCP port 53</div>
+      <p>When a secondary DNS server requests an updated copy of records from a primary, this is called a <strong>zone transfer</strong>. Zone transfers use <strong>TCP port 53</strong> (not UDP). Regular DNS queries use UDP port 53 — this distinction is tested.</p>
+      <p>Zone transfers should be restricted to authorised secondary servers only — unrestricted zone transfers are a security vulnerability that can expose your entire DNS record set.</p>
+    </div>
+
+    <hr class="divider">
+
+    <h2>DNSSEC</h2>
+    <p>DNSSEC (DNS Security Extensions) adds cryptographic signatures to DNS records to protect against <strong>DNS spoofing</strong> and <strong>cache poisoning</strong> attacks — where an attacker injects false DNS responses to redirect traffic to malicious servers.</p>
+
+    <p>Without DNSSEC, nothing stops a malicious DNS server from returning a forged IP address for a domain. DNSSEC lets resolvers verify that responses are authentic and haven't been tampered with, using a chain of trust from the root servers down to the authoritative name server.</p>
+
+    <div class="dns-callout">
+      <div class="dns-callout-label">🔒 DNSSEC exam points</div>
+      <p><strong>What it protects against:</strong> DNS cache poisoning / DNS spoofing — where attackers feed false DNS records to redirect users to malicious sites.</p>
+      <p><strong>How it works:</strong> Cryptographic signatures (using public key cryptography) are added to DNS records. Resolvers validate signatures using a chain of trust anchored at the root.</p>
+      <p><strong>What it does NOT do:</strong> DNSSEC does not encrypt DNS queries — it only authenticates them. DNS-over-HTTPS (DoH) and DNS-over-TLS (DoT) are what provide encryption.</p>
+    </div>
+
+    <hr class="divider">
+
+    <h2>nslookup — The DNS Troubleshooting Tool</h2>
+    <p>nslookup is the primary tool for DNS diagnostics and is tested on both A+ and Network+. It queries DNS servers directly and shows what records are returned — letting you pinpoint exactly where DNS resolution is failing.</p>
+
+    <div class="dns-code-block">
+      <div class="dns-code-label">nslookup — common uses</div>
+      <pre><span class="dns-code-comment"># Basic lookup — find the IP for a hostname</span>
+<span class="dns-code-hl">nslookup google.com</span>
+
+<span class="dns-code-comment"># Query a specific DNS server (bypass your default)</span>
+<span class="dns-code-hl">nslookup google.com 8.8.8.8</span>
+
+<span class="dns-code-comment"># Look up a specific record type</span>
+<span class="dns-code-hl">nslookup -type=MX gmail.com</span>       <span class="dns-code-comment">→ Find mail servers</span>
+<span class="dns-code-hl">nslookup -type=TXT example.com</span>    <span class="dns-code-comment">→ Find SPF/DKIM records</span>
+<span class="dns-code-hl">nslookup -type=NS example.com</span>     <span class="dns-code-comment">→ Find authoritative name servers</span>
+
+<span class="dns-code-comment"># Reverse lookup — find hostname for an IP</span>
+<span class="dns-code-hl">nslookup 8.8.8.8</span>                  <span class="dns-code-comment">→ Returns dns.google</span></pre>
+    </div>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">⚡ nslookup exam scenario</div>
+      <p>"A technician can ping 8.8.8.8 successfully but websites will not load. Which tool should they use to verify DNS resolution is working?" → <strong>nslookup</strong></p>
+      <p>"An administrator runs nslookup and gets a response from 192.168.1.1 but the IP returned for google.com is incorrect. What does this indicate?" → <strong>The local DNS server (192.168.1.1) has a corrupted or poisoned cache — try querying a known-good server like 8.8.8.8 directly.</strong></p>
+    </div>
+
+    <hr class="divider">
+
+    <h2>Final Summary</h2>
+
+    <div class="summary-list">
+      <div class="summary-item">DNS stands for <strong>Domain Name System</strong> — the internet's phonebook</div>
+      <div class="summary-item">It translates domain names like <strong>google.com</strong> into IP addresses computers can use</div>
+      <div class="summary-item">Common public DNS servers: <strong>8.8.8.8</strong> (Google) and <strong>1.1.1.1</strong> (Cloudflare)</div>
+      <div class="summary-item">If DNS fails: websites won't load but you can still ping IP addresses directly</div>
+      <div class="summary-item">Fix with <strong>ipconfig /flushdns</strong> or manually set DNS to <strong>8.8.8.8</strong></div>
+      <div class="summary-item">DNS record types: <strong>A</strong> (IPv4), <strong>AAAA</strong> (IPv6), <strong>CNAME</strong> (alias), <strong>MX</strong> (email), <strong>PTR</strong> (reverse), <strong>NS</strong> (name servers), <strong>TXT</strong> (SPF/DKIM)</div>
+      <div class="summary-item">DNS hierarchy: <strong>Root servers → TLD servers → Authoritative NS → Recursive resolver</strong></div>
+      <div class="summary-item">Zone transfers use <strong>TCP port 53</strong> — regular queries use <strong>UDP port 53</strong></div>
+      <div class="summary-item"><strong>DNSSEC</strong> adds cryptographic signatures to prevent DNS spoofing and cache poisoning</div>
+      <div class="summary-item">Use <strong>nslookup</strong> to test DNS resolution and query specific record types</div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- AFFILIATE BOX -->
+    <div class="affiliate-box">
+      <div class="affiliate-tag">📚 Recommended Study Tools</div>
+      <h2>Test Your Networking Knowledge</h2>
+      <p>Practice exams and structured review make DNS troubleshooting scenarios automatic.</p>
+      <div class="affiliate-buttons">
+        <a href="https://www.examcompass.com/comptia/a-plus-certification/free-a-plus-practice-tests"
+           class="aff-btn aff-btn-primary" target="_blank" rel="nofollow sponsored">
+          🧪 Take FREE Practice Exams
+        </a>
+        <a href="https://amzn.to/3OMI8uo"
+           class="aff-btn aff-btn-secondary" target="_blank" rel="nofollow sponsored">
+          📖 Bestselling A+ Study Guide
+        </a>
+      </div>
+    </div>
+
+    <h2>Related Networking Articles</h2>
+
+    <div class="related-grid">
+      <a href="best-a-plus.html" class="related-link">Best A+ Study Resources</a>
+      <a href="aplus-cheat-sheet.html" class="related-link">A+ Cheat Sheet</a>
+      <a href="network-plus-cheat-sheet.html" class="related-link">Network+ Cheat Sheet</a>
+      <a href="dhcp.html" class="related-link">What Is DHCP?</a>
+      <a href="network-troubleshooting-commands.html" class="related-link">Network Troubleshooting Commands</a>
+      <a href="ports.html" class="related-link">Common Port Numbers</a>
+      <a href="what-is-a-router.html" class="related-link">What is a Router?</a>
+      <a href="tcp-vs-udp.html" class="related-link">TCP vs UDP Explained</a>
+      <a href="osi-model.html" class="related-link">OSI Model Explained</a>
+      <a href="dns-record-types.html" class="related-link">DNS Record Types</a>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-box">
+      <div class="cta-box-text">
+        <h3>Preparing for the A+ Exam?</h3>
+        <p>See the books, practice exams, and free resources that actually work.</p>
+      </div>
+      <a href="best-a-plus.html" class="btn btn-teal">See Best Study Resources →</a>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">IT Study Hub</div>
+      <div class="footer-tagline">Practical CompTIA A+ and Networking resources for real-world IT success.</div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Pages</div>
+      <a href="index.html">Home</a>
+      <a href="networking-roadmap.html">Networking Roadmap</a>
+      <a href="networking.html">Networking Guide</a>
+      <a href="best-a-plus.html">Best Study Resources</a>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Topics</div>
+      <a href="osi-model.html">OSI Model</a>
+      <a href="tcp-vs-udp.html">TCP vs UDP</a>
+      <a href="dhcp.html">DHCP</a>
+      <a href="dns.html">DNS</a>
+      <a href="ports.html">Port Numbers</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 <a href="https://fogartyholdings.com" target="_blank" rel="noopener" style="color:inherit;">Fogarty Holdings LLC</a>. All rights reserved.</span>
+    <span class="footer-email"><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#105;&#116;&#115;&#116;&#117;&#100;&#121;&#104;&#117;&#98;&#46;&#111;&#114;&#103;" class="footer-pp">contact&#64;itstudyhub&#46;org</a> &nbsp;&middot;&nbsp; <a href="privacy-policy.html" class="footer-pp">Privacy Policy</a> &nbsp;&middot;&nbsp; Disclosure: Some links on this site may be affiliate links. I may earn a small commission at no extra cost to you.</span>
+  </div>
+</footer>
+
+</body>
+</html>
