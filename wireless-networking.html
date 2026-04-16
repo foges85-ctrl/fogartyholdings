@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MS0H78HR74"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-MS0H78HR74');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="canonical" href="https://itstudyhub.org/wireless-networking.html">
+<title>Wireless Networking — 802.11 Standards, WPA3 & Attacks</title>
+<meta name="description" content="802.11 a/b/g/n/ac/ax, 2.4GHz vs 5GHz, WPA2 vs WPA3, 802.1X auth, evil twin, rogue AP, and deauth attacks — complete Network+ and Security+ wireless coverage.">
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647" crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0a1628;--navy2:#0f2040;--teal:#00c2a8;--blue:#1a6cff;--purple:#7c3aed;--light:#f0f4fa;--lighter:#f8fafd;--white:#ffffff;--border:#e2e8f4;--text:#1c2a3e;--muted:#5c6f87;--card-shadow:0 4px 24px rgba(10,22,40,.08);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--lighter);color:var(--text);line-height:1.65;-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+.navbar{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 28px;height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.logo-link{display:flex;align-items:center;gap:10px;font-family:'Outfit',sans-serif;font-weight:800;font-size:17px;color:var(--navy);flex-shrink:0;}
+.logo-img{height:52px;width:auto;}
+.nav-links{display:flex;align-items:center;gap:4px;}
+.nav-links a{font-size:14px;font-weight:600;padding:8px 14px;border-radius:8px;color:var(--muted);transition:color .15s,background .15s;}
+.nav-links a:hover{color:var(--navy);background:var(--light);}
+.nav-links a.nav-cta{background:var(--navy);color:var(--white)!important;padding:8px 18px;border-radius:8px;margin-left:6px;}
+@media(max-width:768px){.nav-inner{padding:0 16px;height:60px;}.logo-img{height:44px;}.nav-links{overflow-x:auto;flex-wrap:nowrap;}.nav-links a{white-space:nowrap;font-size:13px;padding:6px 10px;}}
+.page-hero{background:var(--navy);position:relative;overflow:hidden;padding:60px 28px 70px;}
+.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 100% at 90% 50%,rgba(26,108,255,.15) 0%,transparent 70%),radial-gradient(ellipse 30% 60% at 5% 90%,rgba(0,194,168,.07) 0%,transparent 60%);pointer-events:none;}
+.page-hero::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;}
+.page-hero-inner{max-width:1100px;margin:0 auto;position:relative;z-index:1;animation:fadeUp .6s ease both;}
+.breadcrumb{display:flex;align-items:center;gap:6px;font-size:13px;color:rgba(255,255,255,.4);margin-bottom:20px;font-family:'DM Mono',monospace;}
+.breadcrumb a{color:rgba(255,255,255,.5);}.breadcrumb span{color:rgba(255,255,255,.25);}
+.page-hero-badge{display:inline-flex;align-items:center;background:rgba(26,108,255,.15);border:1px solid rgba(26,108,255,.35);color:#93c5fd;font-size:12px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;padding:5px 12px;border-radius:100px;margin-bottom:18px;}
+.page-hero h1{font-family:'Outfit',sans-serif;font-size:clamp(26px,4vw,44px);font-weight:800;color:var(--white);line-height:1.15;letter-spacing:-.8px;margin-bottom:14px;}
+.page-hero h1 span{color:#93c5fd;}
+.page-hero-sub{font-size:16px;color:rgba(255,255,255,.6);max-width:640px;line-height:1.7;}
+.article-wrap{max-width:900px;margin:0 auto;padding:52px 28px 80px;}
+@media(max-width:768px){.article-wrap{padding:36px 16px 60px;}}
+.article-body h2{font-family:'Outfit',sans-serif;font-size:22px;font-weight:800;color:var(--navy);letter-spacing:-.3px;margin:52px 0 16px;}
+.article-body h2:first-child{margin-top:0;}
+.article-body p{font-size:15px;color:var(--text);line-height:1.75;margin-bottom:16px;}
+.article-body strong{color:var(--navy);font-weight:700;}
+.quick-answer{background:var(--navy);border-radius:14px;padding:24px 26px;margin-bottom:40px;position:relative;overflow:hidden;}
+.quick-answer::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 100% 50%,rgba(26,108,255,.18) 0%,transparent 70%);pointer-events:none;}
+.quick-answer-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#93c5fd;margin-bottom:10px;position:relative;}
+.quick-answer-text{font-size:15px;color:rgba(255,255,255,.85);line-height:1.7;position:relative;}
+.quick-answer-text strong{color:var(--white);}
+.table-wrap{overflow-x:auto;border-radius:14px;border:1px solid var(--border);box-shadow:var(--card-shadow);margin-bottom:40px;}
+table{width:100%;border-collapse:collapse;background:var(--white);min-width:500px;}
+thead th{background:var(--navy);color:rgba(255,255,255,.7);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;padding:14px 18px;text-align:left;font-family:'DM Mono',monospace;}
+thead th:first-child{color:var(--white);}
+tbody td{padding:12px 18px;border-bottom:1px solid var(--border);font-size:14px;color:var(--text);vertical-align:top;line-height:1.55;}
+tbody tr:last-child td{border-bottom:none;}
+tbody tr:hover td{background:#eff6ff;}
+.td-term{font-weight:700;color:var(--navy);}
+.sec-compare{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:32px;}
+@media(max-width:620px){.sec-compare{grid-template-columns:1fr;}}
+.sec-card{background:var(--white);border:1px solid var(--border);border-radius:16px;overflow:hidden;box-shadow:var(--card-shadow);}
+.sec-header{padding:16px 22px 14px;}
+.sec-header.wpa2{background:linear-gradient(135deg,#0a3a6e,#1a6cff);}
+.sec-header.wpa3{background:linear-gradient(135deg,#0a4a30,#00c2a8);}
+.sec-header.dep{background:linear-gradient(135deg,#5a0a0a,#dc2626);}
+.sec-header-title{font-family:'Outfit',sans-serif;font-size:16px;font-weight:800;color:var(--white);margin-bottom:3px;}
+.sec-header-sub{font-size:12px;color:rgba(255,255,255,.65);}
+.sec-body{padding:16px 22px;}
+.sec-item{font-size:13px;color:var(--text);padding:6px 0;border-bottom:1px solid var(--border);line-height:1.6;}
+.sec-item:last-child{border-bottom:none;}
+.sec-item strong{color:var(--navy);}
+.tech-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:40px;}
+@media(max-width:600px){.tech-grid{grid-template-columns:1fr;}}
+.tech-card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:20px 22px;box-shadow:var(--card-shadow);}
+.tech-icon{font-size:22px;margin-bottom:10px;}
+.tech-name{font-family:'Outfit',sans-serif;font-size:16px;font-weight:800;color:var(--navy);margin-bottom:6px;}
+.tech-desc{font-size:13px;color:var(--text);line-height:1.65;}
+.tech-desc strong{color:var(--navy);}
+.tech-chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px;}
+.tech-chip{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;background:var(--light);border:1px solid var(--border);border-radius:6px;padding:3px 8px;color:var(--navy);}
+.attack-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:40px;}
+@media(max-width:600px){.attack-grid{grid-template-columns:1fr;}}
+.attack-card{background:var(--white);border:1px solid var(--border);border-radius:13px;padding:18px 20px;box-shadow:0 2px 8px rgba(10,22,40,.05);border-left:4px solid #ef4444;}
+.attack-card.orange{border-left-color:#f97316;}
+.attack-card.purple{border-left-color:var(--purple);}
+.attack-card.yellow{border-left-color:#eab308;}
+.attack-name{font-family:'Outfit',sans-serif;font-size:15px;font-weight:800;color:var(--navy);margin-bottom:6px;}
+.attack-desc{font-size:13px;color:var(--text);line-height:1.6;}
+.attack-desc strong{color:var(--navy);}
+.callout{background:rgba(26,108,255,.04);border:1px solid rgba(26,108,255,.2);border-left:4px solid var(--blue);border-radius:12px;padding:16px 20px;margin-bottom:40px;}
+.callout-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--blue);margin-bottom:8px;}
+.callout p{font-size:14px;color:var(--text);line-height:1.7;margin-bottom:6px;}
+.callout p:last-child{margin-bottom:0;}
+.callout strong{color:var(--navy);}
+.exam-tip{background:linear-gradient(135deg,#fffbeb,#fef9e0);border:1px solid #f0d060;border-left:4px solid #f0c000;border-radius:12px;padding:16px 20px;margin-bottom:28px;}
+.exam-tip-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#92620a;margin-bottom:8px;}
+.exam-tip p{font-size:14px;color:#3a2800;line-height:1.7;margin-bottom:6px;}
+.exam-tip p:last-child{margin-bottom:0;}
+.exam-tip strong{color:#1a1000;}
+.scenario-list{display:flex;flex-direction:column;gap:14px;margin-bottom:40px;}
+.scenario-item{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:16px 20px;font-size:14px;color:var(--text);line-height:1.65;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.scenario-item strong{color:var(--navy);}
+.cta-box{background:linear-gradient(135deg,var(--navy),var(--navy2));border-radius:16px;padding:32px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;position:relative;overflow:hidden;margin-bottom:40px;}
+.cta-box::before{content:'';position:absolute;top:-40px;right:-40px;width:180px;height:180px;background:radial-gradient(circle,rgba(26,108,255,.25) 0%,transparent 70%);pointer-events:none;}
+.cta-box-text h3{font-family:'Outfit',sans-serif;font-size:18px;font-weight:800;color:var(--white);margin-bottom:4px;}
+.cta-box-text p{font-size:14px;color:rgba(255,255,255,.6);}
+.btn-blue{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:10px;font-size:14px;font-weight:700;background:var(--blue);color:var(--white);box-shadow:0 6px 20px rgba(26,108,255,.3);transition:transform .15s,box-shadow .15s;white-space:nowrap;flex-shrink:0;}
+.btn-blue:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(26,108,255,.4);}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:36px;}
+@media(max-width:500px){.related-grid{grid-template-columns:1fr;}}
+.related-link{display:flex;align-items:center;gap:8px;background:var(--white);border:1px solid var(--border);border-radius:10px;padding:12px 16px;font-size:14px;font-weight:600;color:var(--navy);transition:border-color .15s,color .15s,transform .15s;box-shadow:0 2px 8px rgba(10,22,40,.05);}
+.related-link:hover{border-color:rgba(26,108,255,.3);color:var(--blue);transform:translateY(-1px);}
+.related-link::before{content:'→';color:var(--blue);font-size:13px;}
+.footer{background:var(--navy);color:rgba(255,255,255,.5);padding:40px 28px;}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:flex-start;justify-content:space-between;gap:32px;flex-wrap:wrap;}
+.footer-brand{display:flex;flex-direction:column;gap:8px;}
+.footer-logo{font-family:'Outfit',sans-serif;font-size:16px;font-weight:800;color:var(--white);}
+.footer-tagline{font-size:13px;max-width:280px;line-height:1.6;}
+.footer-links{display:flex;flex-direction:column;gap:8px;}
+.footer-links-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:rgba(255,255,255,.35);margin-bottom:4px;}
+.footer-links a{font-size:13px;color:rgba(255,255,255,.55);transition:color .15s;}
+.footer-links a:hover{color:var(--teal);}
+.footer-bottom{max-width:1100px;margin:28px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);font-size:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.footer-pp{color:rgba(255,255,255,.4);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+.app-banner{background:linear-gradient(90deg,#0d1f3c 0%,#0a2a50 100%);border-bottom:1px solid rgba(0,194,168,0.25);padding:9px 48px 9px 28px;text-align:center;position:relative;z-index:101;}
+.app-banner-inner{display:inline-flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:center;}
+.app-banner-text{font-size:13.5px;font-weight:500;color:rgba(255,255,255,0.82);}
+.app-banner-text strong{color:var(--teal);font-weight:700;}
+.app-banner-cta{display:inline-flex;align-items:center;gap:6px;background:var(--teal);color:var(--navy)!important;font-size:12.5px;font-weight:700;padding:5px 15px;border-radius:100px;white-space:nowrap;}
+.app-banner-close{position:absolute;right:14px;top:50%;transform:translateY(-50%);background:none;border:none;color:rgba(255,255,255,0.35);font-size:20px;line-height:1;cursor:pointer;padding:4px 6px;}
+@media(max-width:600px){.app-banner{padding:8px 40px 8px 16px;}}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"What is the difference between 2.4GHz and 5GHz Wi-Fi?","acceptedAnswer":{"@type":"Answer","text":"2.4GHz Wi-Fi has longer range and better wall penetration but is more congested and has only 3 non-overlapping channels (1, 6, 11). 5GHz has shorter range but is faster, less congested, and has 24+ non-overlapping channels. Use 2.4GHz for coverage; 5GHz for performance near the AP."}},
+{"@type":"Question","name":"What is the difference between WPA2 and WPA3?","acceptedAnswer":{"@type":"Answer","text":"WPA2 uses AES-CCMP with PSK authentication, which is vulnerable to offline dictionary attacks after capturing the 4-way handshake. WPA3 replaces PSK with SAE (Simultaneous Authentication of Equals), which provides forward secrecy and resists offline brute-force attacks. WPA3 also adds OWE for encrypting open networks."}},
+{"@type":"Question","name":"What is an evil twin attack?","acceptedAnswer":{"@type":"Answer","text":"An evil twin attack creates a rogue AP mimicking a legitimate SSID — often with stronger signal. Clients connect to the attacker's AP and all traffic is intercepted. Defence: 802.1X enterprise authentication, VPN on untrusted networks, and WIDS monitoring."}}
+]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"IT Study Hub","item":"https://itstudyhub.org/"},{"@type":"ListItem","position":2,"name":"Wireless Networking Explained","item":"https://itstudyhub.org/wireless-networking.html"}]}
+</script>
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="IT Study Hub">
+  <meta property="og:url" content="https://itstudyhub.org/wireless-networking.html">
+  <meta property="og:title" content="Wireless Networking Explained — 802.11 Standards, WPA3 & Wi-Fi Security | Network+">
+  <meta property="og:description" content="802.11 a/b/g/n/ac/ax standards, 2.4GHz vs 5GHz, WPA2 vs WPA3, 802.1X wireless auth, evil twin, rogue AP, deauthentication attacks — complete Network+ and Security+ coverage.">
+</head>
+<body>
+<div class="app-banner" id="certflashBanner">
+  <div class="app-banner-inner">
+    <span class="app-banner-text">📱 New iOS App — <strong>CertFlash</strong>: CompTIA flashcards built for exam day.</span>
+    <a href="https://apps.apple.com/us/app/certflash-comptia-study-cards/id6761732835" class="app-banner-cta" target="_blank" rel="noopener noreferrer">Get it on the App Store ↗</a>
+  </div>
+  <button class="app-banner-close" aria-label="Dismiss" onclick="document.getElementById('certflashBanner').style.display='none'">×</button>
+</div>
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo-link">
+      <img src="favicon-512x512.png" alt="IT Study Hub Logo" class="logo-img">
+      <span>IT Study Hub</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="network-plus-cheat-sheet.html">Network+ Cheat Sheet</a>
+      <a href="cryptography.html">Cryptography</a>
+      <a href="best-study-resources.html" class="nav-cta">Study Resources</a>
+    </div>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb">
+      <a href="index.html">Home</a><span>›</span>
+      <a href="networking.html">Networking</a><span>›</span>
+      <span>Wireless Networking</span>
+    </nav>
+    <div class="page-hero-badge">CompTIA Network+ · Security+ · Wi-Fi</div>
+    <h1>Wireless Networking <span>Explained</span></h1>
+    <p class="page-hero-sub">802.11 standards, 2.4GHz vs 5GHz, channels, WEP through WPA3, 802.1X enterprise auth, and wireless attacks — every Wi-Fi concept tested on CompTIA Network+ and Security+.</p>
+  </div>
+</section>
+
+<div class="article-wrap">
+  <div class="article-body">
+
+    <div class="quick-answer">
+      <div class="quick-answer-label">⚡ Quick Answer</div>
+      <div class="quick-answer-text">
+        Key 802.11 standards: <strong>802.11n (Wi-Fi 4)</strong> = 2.4/5GHz, 600 Mbps. <strong>802.11ac (Wi-Fi 5)</strong> = 5GHz only, 3.5 Gbps. <strong>802.11ax (Wi-Fi 6)</strong> = 2.4/5/6GHz, 9.6 Gbps. Security evolution: <strong>WEP</strong> = broken. <strong>WPA</strong> = legacy. <strong>WPA2</strong> = AES-CCMP, vulnerable to offline dictionary attacks. <strong>WPA3</strong> = SAE — current standard, resists offline attacks. Enterprise: <strong>802.1X + RADIUS</strong> for per-user auth. 2.4GHz = 3 non-overlapping channels (1, 6, 11), longer range. 5GHz = 24+ channels, faster, shorter range. Wireless attacks: evil twin, rogue AP, deauthentication, jamming.
+      </div>
+    </div>
+
+    <h2>802.11 Wireless Standards</h2>
+
+    <p>The 802.11 standard family defines how Wi-Fi works. Each revision improves speed, efficiency, or range. For the exam, know the frequency bands, maximum theoretical throughput, and Wi-Fi generation names.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Standard</th><th>Wi-Fi Gen</th><th>Frequency</th><th>Max Speed</th><th>Key Feature</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="td-term">802.11a</td><td>—</td><td>5 GHz only</td><td>54 Mbps</td><td>First 5GHz standard (1999); less interference, shorter range</td></tr>
+          <tr><td class="td-term">802.11b</td><td>—</td><td>2.4 GHz only</td><td>11 Mbps</td><td>First widely adopted standard; slowest; 2.4GHz congestion</td></tr>
+          <tr><td class="td-term">802.11g</td><td>—</td><td>2.4 GHz only</td><td>54 Mbps</td><td>Same speed as 'a' but on 2.4GHz; backward-compatible with 802.11b</td></tr>
+          <tr><td class="td-term">802.11n</td><td>Wi-Fi 4</td><td>2.4 + 5 GHz</td><td>600 Mbps</td><td>First dual-band standard; introduced MIMO (multiple antennas)</td></tr>
+          <tr><td class="td-term">802.11ac</td><td>Wi-Fi 5</td><td>5 GHz only</td><td>3.5 Gbps</td><td>MU-MIMO, wider channels (80/160MHz), beamforming</td></tr>
+          <tr><td class="td-term">802.11ax</td><td>Wi-Fi 6/6E</td><td>2.4 + 5 + 6 GHz</td><td>9.6 Gbps</td><td>OFDMA for dense environments; Wi-Fi 6E adds 6GHz band</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">🎯 Exam Tip — Three Speed Facts to Memorise</div>
+      <p><strong>802.11a and 802.11g are both 54 Mbps</strong> — same speed, different bands (a=5GHz, g=2.4GHz). This is a classic trick question.</p>
+      <p><strong>802.11ac is 5GHz only</strong> — it does not operate on 2.4GHz. If the scenario requires dual-band, the answer is 802.11n or 802.11ax.</p>
+      <p><strong>802.11ax = Wi-Fi 6</strong> — the answer to any "most current standard" question.</p>
+    </div>
+
+    <h2>2.4 GHz vs 5 GHz</h2>
+
+    <div class="tech-grid">
+      <div class="tech-card">
+        <div class="tech-icon">📡</div>
+        <div class="tech-name">2.4 GHz Band</div>
+        <div class="tech-desc"><strong>Longer range</strong> — lower frequency penetrates walls better. Only <strong>3 non-overlapping channels</strong> in the US: channels 1, 6, and 11. Highly congested — shared with Bluetooth, microwaves, baby monitors, and neighbouring networks. Lower maximum throughput. Best for: distant devices, IoT sensors, devices needing broad coverage.</div>
+        <div class="tech-chips"><span class="tech-chip">Channels 1/6/11 only</span><span class="tech-chip">Better range</span><span class="tech-chip">More congestion</span></div>
+      </div>
+      <div class="tech-card">
+        <div class="tech-icon">⚡</div>
+        <div class="tech-name">5 GHz Band</div>
+        <div class="tech-desc"><strong>Shorter range</strong> — higher frequency attenuates more through walls. <strong>24+ non-overlapping channels</strong> available (40, 80, and 160MHz channel widths). Much less congested. Higher throughput. Best for: devices near the AP, video streaming, gaming, high-bandwidth applications where speed matters more than coverage.</div>
+        <div class="tech-chips"><span class="tech-chip">24+ channels</span><span class="tech-chip">Higher speed</span><span class="tech-chip">Less interference</span></div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">📌 Channel Overlap — Why Only Channels 1, 6, 11</div>
+      <p>In the 2.4GHz band, channels are 22MHz wide but spaced only 5MHz apart — adjacent channels overlap heavily. Channels 1, 6, and 11 are the only three that don't overlap with each other. When deploying multiple APs in the same space, use only these three channels to avoid <strong>adjacent-channel interference</strong> (which garbles transmissions), even though it increases <strong>co-channel interference</strong> (which only slows devices, it doesn't corrupt data).</p>
+    </div>
+
+    <h2>Wi-Fi Security — WEP through WPA3</h2>
+
+    <div class="sec-compare">
+      <div class="sec-card">
+        <div class="sec-header dep">
+          <div class="sec-header-title">WEP — Completely Broken</div>
+          <div class="sec-header-sub">Wired Equivalent Privacy (1997)</div>
+        </div>
+        <div class="sec-body">
+          <div class="sec-item"><strong>Encryption:</strong> RC4 stream cipher with 40 or 104-bit keys</div>
+          <div class="sec-item"><strong>Fatal flaw:</strong> 24-bit IV (Initialization Vector) reuse — attackers crack the key by collecting ~50,000 packets (minutes with modern tools)</div>
+          <div class="sec-item"><strong>Status:</strong> Cryptographically broken since 2001. Banned by PCI-DSS. Never use.</div>
+          <div class="sec-item"><strong>Exam tip:</strong> Always the wrong answer — if WEP appears as an option, eliminate it immediately</div>
+        </div>
+      </div>
+      <div class="sec-card">
+        <div class="sec-header dep">
+          <div class="sec-header-title">WPA (Original) — Legacy</div>
+          <div class="sec-header-sub">Wi-Fi Protected Access (2003)</div>
+        </div>
+        <div class="sec-body">
+          <div class="sec-item"><strong>Encryption:</strong> TKIP (Temporal Key Integrity Protocol) — per-packet key mixing, still uses RC4 underneath</div>
+          <div class="sec-item"><strong>Improvement:</strong> Dynamic key rotation — far better than WEP but architecture limits it</div>
+          <div class="sec-item"><strong>Status:</strong> Deprecated 2012. Known TKIP attacks. Replace with WPA2/WPA3.</div>
+          <div class="sec-item"><strong>Exam tip:</strong> A "legacy/transitional" option — better than WEP but not acceptable today</div>
+        </div>
+      </div>
+    </div>
+    <div class="sec-compare">
+      <div class="sec-card">
+        <div class="sec-header wpa2">
+          <div class="sec-header-title">WPA2 — Minimum Acceptable Standard</div>
+          <div class="sec-header-sub">Wi-Fi Protected Access 2 (2004)</div>
+        </div>
+        <div class="sec-body">
+          <div class="sec-item"><strong>Encryption:</strong> AES-CCMP — strong block cipher, replaces RC4</div>
+          <div class="sec-item"><strong>Personal (PSK):</strong> Single shared password. Vulnerable to offline dictionary attack — attacker captures 4-way handshake and brute-forces offline</div>
+          <div class="sec-item"><strong>Enterprise (802.1X):</strong> Per-user RADIUS authentication — much more secure</div>
+          <div class="sec-item"><strong>Vulnerabilities:</strong> KRACK (2017, patched), PMKID attack (enables offline cracking without handshake capture)</div>
+        </div>
+      </div>
+      <div class="sec-card">
+        <div class="sec-header wpa3">
+          <div class="sec-header-title">WPA3 — Current Recommended Standard</div>
+          <div class="sec-header-sub">Wi-Fi Protected Access 3 (2018)</div>
+        </div>
+        <div class="sec-body">
+          <div class="sec-item"><strong>Personal:</strong> SAE (Simultaneous Authentication of Equals) — replaces PSK. Generates unique keys per session, resists offline dictionary attacks even with weak passwords</div>
+          <div class="sec-item"><strong>Forward secrecy:</strong> Past sessions cannot be decrypted even if the password is later compromised</div>
+          <div class="sec-item"><strong>Open networks:</strong> OWE (Opportunistic Wireless Encryption) encrypts open Wi-Fi traffic without a password</div>
+          <div class="sec-item"><strong>Enterprise:</strong> WPA3-Enterprise 192-bit uses GCMP-256 for high-security environments</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">🎯 Exam Tip — Personal vs Enterprise</div>
+      <p><strong>WPA2/WPA3-Personal (PSK/SAE):</strong> One shared password for all users. Simple setup. Risk: anyone with the password has access; must change password if someone leaves.</p>
+      <p><strong>WPA2/WPA3-Enterprise (802.1X):</strong> Per-user credentials validated by RADIUS. Revoking one user's access doesn't affect others. Required for any regulated environment (PCI-DSS, HIPAA). If the scenario mentions "revoking individual access" or "per-user credentials," the answer is Enterprise/802.1X.</p>
+    </div>
+
+    <h2>802.1X — Enterprise Wi-Fi Authentication</h2>
+
+    <p>In WPA2/WPA3-Enterprise, clients authenticate using 802.1X (port-based access control) and EAP (Extensible Authentication Protocol). Three components are involved:</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Component</th><th>Role</th><th>Examples</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="td-term">Supplicant</td><td>The client device requesting wireless access. Presents credentials via EAP.</td><td>Laptop, phone, IoT device</td></tr>
+          <tr><td class="td-term">Authenticator</td><td>The wireless AP. Passes EAP traffic between supplicant and auth server — does not make the allow/deny decision itself.</td><td>Wireless access point, managed switch</td></tr>
+          <tr><td class="td-term">Auth Server (RADIUS)</td><td>Validates credentials and returns Accept or Reject to the authenticator. Integrates with Active Directory / LDAP.</td><td>Microsoft NPS, FreeRADIUS, Cisco ISE</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">📌 EAP Methods</div>
+      <p><strong>EAP-TLS:</strong> Most secure — both client and server authenticate with X.509 certificates. Requires certificate deployment to all clients. Used in high-security environments.</p>
+      <p><strong>PEAP (Protected EAP):</strong> Client authenticates with username/password, wrapped inside a TLS tunnel (server presents a certificate). Most common in enterprise deployments — simpler than EAP-TLS since clients don't need certificates.</p>
+      <p><strong>EAP-TTLS:</strong> Similar to PEAP — TLS tunnel for credential protection. Supports a wider variety of inner authentication methods.</p>
+    </div>
+
+    <h2>Wireless Attack Types</h2>
+
+    <div class="attack-grid">
+      <div class="attack-card">
+        <div class="attack-name">Evil Twin Attack</div>
+        <div class="attack-desc">Attacker creates a rogue AP broadcasting the <strong>same SSID as a legitimate network</strong>, often at higher power to attract clients. All traffic routes through the attacker (man-in-the-middle). <strong>Defence:</strong> 802.1X (clients only connect to authenticated infrastructure), VPN on untrusted networks, WIDS monitoring for duplicate SSIDs.</div>
+      </div>
+      <div class="attack-card orange">
+        <div class="attack-name">Rogue Access Point</div>
+        <div class="attack-desc">An <strong>unauthorised AP plugged into the corporate wired network</strong> — by an employee for convenience, or by an attacker. Creates an uncontrolled wireless entry point that bypasses perimeter controls. <strong>Defence:</strong> WIDS/WIPS, 802.1X on all switch ports (NAC), regular RF surveys, physical security.</div>
+      </div>
+      <div class="attack-card purple">
+        <div class="attack-name">Deauthentication Attack</div>
+        <div class="attack-desc">Attacker sends spoofed <strong>802.11 deauth frames</strong> forcing clients to disconnect. On reconnect, the WPA2 4-way handshake is captured for offline cracking. Also used to push clients onto an evil twin. <strong>Defence:</strong> WPA3/SAE (resists offline cracking), <strong>802.11w Protected Management Frames (PMF)</strong> — authenticates management frames to block spoofed deauths.</div>
+      </div>
+      <div class="attack-card yellow">
+        <div class="attack-name">Jamming (RF DoS)</div>
+        <div class="attack-desc">Flooding a frequency with RF noise to prevent legitimate devices from communicating — a wireless denial-of-service. Can be accidental (microwave ovens on 2.4GHz) or deliberate. <strong>Defence:</strong> WIDS jamming detection, 5GHz band (less interference), frequency-hopping spread spectrum (FHSS). Physical access to RF spectrum cannot be fully prevented.</div>
+      </div>
+    </div>
+
+    <h2>Other Key Wireless Concepts</h2>
+
+    <div class="tech-grid">
+      <div class="tech-card">
+        <div class="tech-icon">📶</div>
+        <div class="tech-name">SSID Hiding</div>
+        <div class="tech-desc">Disabling SSID broadcast in AP beacon frames. <strong>Provides no real security</strong> — the SSID is still visible in probe request/response frames when any client connects. Attackers discover hidden SSIDs trivially using passive monitoring tools. Causes legitimate users connectivity issues. Never substitute for proper encryption.</div>
+      </div>
+      <div class="tech-card">
+        <div class="tech-icon">🔢</div>
+        <div class="tech-name">MAC Address Filtering</div>
+        <div class="tech-desc">Allowing only pre-approved MAC addresses to associate with the AP. <strong>Easily bypassed</strong> — MAC addresses are transmitted in plaintext and trivially spoofed. An attacker sniffs an authorised MAC and spoofs it. High administrative overhead. Not a security control — just a marginal inconvenience to unskilled attackers.</div>
+      </div>
+      <div class="tech-card">
+        <div class="tech-icon">🏢</div>
+        <div class="tech-name">WIDS / WIPS</div>
+        <div class="tech-desc"><strong>Wireless IDS</strong> monitors the RF environment and alerts on rogue APs, evil twins, and anomalous behaviour. <strong>Wireless IPS</strong> takes active countermeasures — e.g., sending deauth frames to disconnect clients from rogue APs. Implemented as dedicated sensor overlays or as features in enterprise Wi-Fi controllers (Cisco, Aruba, Meraki).</div>
+      </div>
+      <div class="tech-card">
+        <div class="tech-icon">📐</div>
+        <div class="tech-name">Site Survey</div>
+        <div class="tech-desc">A <strong>wireless site survey</strong> maps RF coverage, identifies dead zones, measures signal strength, and detects interference sources and rogue APs before or after AP deployment. Passive surveys (listen only) and active surveys (associate and measure) are used. Essential for large deployments to ensure coverage and proper channel assignment.</div>
+      </div>
+    </div>
+
+    <h2>Exam Scenarios</h2>
+
+    <div class="scenario-list">
+      <div class="scenario-item"><strong>Scenario 1:</strong> Users keep getting disconnected from Wi-Fi, and during reconnection an attacker in the building captures their WPA2 handshake. What attack is this, and what stops it? <em>Answer:</em> <strong>Deauthentication (deauth) attack</strong>. The attacker sends spoofed deauth frames forcing reconnects. Fix: deploy <strong>WPA3</strong> (SAE resists offline cracking) and enable <strong>802.11w Protected Management Frames</strong> to authenticate management frames and block spoofed deauths.</div>
+      <div class="scenario-item"><strong>Scenario 2:</strong> A coffee shop's open Wi-Fi uses no password. WPA3 is available. What feature of WPA3 provides encryption even for open networks? <em>Answer:</em> <strong>OWE (Opportunistic Wireless Encryption)</strong>. Each client session is individually encrypted even without a password, preventing passive eavesdropping by other users on the same open SSID.</div>
+      <div class="scenario-item"><strong>Scenario 3:</strong> An employee leaves the company. The security team wants to revoke their Wi-Fi access without changing the password for everyone else. What Wi-Fi authentication method is required? <em>Answer:</em> <strong>WPA2/WPA3-Enterprise with 802.1X and RADIUS</strong>. Each user has individual credentials tied to their Active Directory account. Disabling the AD account revokes their Wi-Fi access immediately without affecting other users.</div>
+      <div class="scenario-item"><strong>Scenario 4:</strong> A laptop with an 802.11ac adapter cannot connect to the 2.4GHz guest network. Why? <em>Answer:</em> <strong>802.11ac (Wi-Fi 5) operates on the 5GHz band only</strong> — it has no 2.4GHz radio. The laptop needs to connect to a 5GHz SSID, or the guest network needs to also broadcast a 5GHz option (using a dual-band AP running 802.11n or 802.11ax).</div>
+      <div class="scenario-item"><strong>Scenario 5:</strong> Three APs in an open office are configured on channels 1, 3, and 6. Users report corrupted downloads and choppy VoIP. What is wrong? <em>Answer:</em> <strong>Adjacent-channel interference</strong>. Channel 3 overlaps with both channels 1 and 6, causing signal corruption. Reconfigure to use only non-overlapping channels: <strong>1, 6, and 11</strong>.</div>
+    </div>
+
+    <div class="cta-box">
+      <div class="cta-box-text">
+        <h3>Ace Network+ and Security+</h3>
+        <p>Every protocol, standard, and attack concept — all on one cheat sheet.</p>
+      </div>
+      <a href="network-plus-cheat-sheet.html" class="btn-blue">View Network+ Cheat Sheet →</a>
+    </div>
+
+    <h2>Related Topics</h2>
+    <div class="related-grid">
+      <a href="cryptography.html" class="related-link">Cryptography & PKI</a>
+      <a href="authentication-protocols.html" class="related-link">Authentication Protocols (RADIUS)</a>
+      <a href="firewall-types.html" class="related-link">Firewall Types</a>
+      <a href="vpn.html" class="related-link">VPN Types & Protocols</a>
+      <a href="subnetting-guide.html" class="related-link">Subnetting Explained</a>
+      <a href="network-plus-cheat-sheet.html" class="related-link">Network+ Cheat Sheet</a>
+    </div>
+
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">IT Study Hub</div>
+      <div class="footer-tagline">Free study guides for CompTIA Network+, Security+, A+, and cloud certifications.</div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Quick Links</div>
+      <a href="index.html">Home</a>
+      <a href="network-plus-cheat-sheet.html">Network+ Cheat Sheet</a>
+      <a href="best-study-resources.html">Study Resources</a>
+      <a href="privacy-policy.html">Privacy Policy</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-pp">© 2026 IT Study Hub. All rights reserved.</span>
+    <a href="privacy-policy.html" style="color:rgba(255,255,255,.4);">Privacy Policy</a>
+  </div>
+</footer>
+</body>
+</html>

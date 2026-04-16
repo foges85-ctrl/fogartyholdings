@@ -1,0 +1,1327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MS0H78HR74"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-MS0H78HR74');
+</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="canonical" href="https://itstudyhub.org/subnet-mask.html">
+
+<title>What Is a Subnet Mask and What Does It Actually Do?</title>
+<meta name="description" content="How subnet masks decide local vs routed traffic, CIDR notation, common masks, default gateway interaction, and the subnet scenarios on CompTIA A+ and Network+.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --navy:    #0a1628;
+  --navy2:   #0f2040;
+  --teal:    #00c2a8;
+  --teal2:   #00a892;
+  --blue:    #1a6cff;
+  --slate:   #8a9bb5;
+  --light:   #f0f4fa;
+  --lighter: #f8fafd;
+  --white:   #ffffff;
+  --border:  #e2e8f4;
+  --text:    #1c2a3e;
+  --muted:   #5c6f87;
+  --card-shadow: 0 4px 24px rgba(10,22,40,.08);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--lighter);
+  color: var(--text);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--teal2); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ── NAVBAR ── */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255,255,255,0.94);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 28px;
+  height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.logo-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 800;
+  font-size: 17px;
+  color: var(--navy);
+  letter-spacing: -0.3px;
+  flex-shrink: 0;
+  text-decoration: none;
+}
+
+.logo-img { height: 52px; width: auto; }
+.nav-links { display: flex; align-items: center; gap: 4px; }
+
+.nav-links a {
+  font-size: 14px;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: 8px;
+  color: var(--muted);
+  transition: color 0.15s, background 0.15s;
+  text-decoration: none;
+}
+
+.nav-links a:hover { color: var(--navy); background: var(--light); }
+.nav-links a.active { color: var(--navy); background: var(--light); }
+
+.nav-links a.nav-cta {
+  background: var(--navy);
+  color: var(--white) !important;
+  padding: 8px 18px;
+  border-radius: 8px;
+  margin-left: 6px;
+  transition: background 0.15s, transform 0.1s;
+}
+.nav-links a.nav-cta:hover { background: var(--navy2); transform: translateY(-1px); }
+
+@media (max-width: 768px) {
+  .nav-inner { padding: 0 16px; height: 60px; }
+  .logo-img { height: 44px; }
+  .logo-link span { font-size: 15px; }
+  .nav-links { overflow-x: auto; -webkit-overflow-scrolling: touch; flex-wrap: nowrap; }
+  .nav-links a { white-space: nowrap; font-size: 13px; padding: 6px 10px; }
+  .nav-links a.nav-cta { padding: 6px 14px; }
+}
+
+/* ── PAGE HERO ── */
+.page-hero {
+  background: var(--navy);
+  position: relative;
+  overflow: hidden;
+  padding: 52px 28px 60px;
+}
+
+.page-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 50% 100% at 90% 50%, rgba(0,194,168,0.1) 0%, transparent 70%),
+    radial-gradient(ellipse 30% 60% at 5% 90%, rgba(26,108,255,0.12) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.page-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+}
+
+.page-hero-inner {
+  max-width: 860px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 18px;
+  font-family: 'DM Mono', monospace;
+}
+
+.breadcrumb a { color: rgba(255,255,255,0.5); transition: color 0.15s; text-decoration: none; }
+.breadcrumb a:hover { color: var(--teal); }
+.breadcrumb span { color: rgba(255,255,255,0.25); }
+
+.page-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(0,194,168,0.15);
+  border: 1px solid rgba(0,194,168,0.3);
+  color: var(--teal);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border-radius: 100px;
+  margin-bottom: 16px;
+}
+
+.page-hero h1 {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(24px, 4vw, 38px);
+  font-weight: 800;
+  color: var(--white);
+  line-height: 1.18;
+  letter-spacing: -0.5px;
+  margin-bottom: 12px;
+}
+
+.page-hero h1 span { color: var(--teal); }
+
+.page-hero-sub {
+  font-size: 15px;
+  color: rgba(255,255,255,0.6);
+  max-width: 560px;
+  line-height: 1.7;
+}
+
+/* ── ARTICLE LAYOUT ── */
+.article-wrap {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 52px 28px 80px;
+}
+
+@media (max-width: 768px) { .article-wrap { padding: 32px 16px 60px; } }
+
+.article-body h2 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--navy);
+  letter-spacing: -0.3px;
+  margin: 40px 0 14px;
+}
+
+.article-body h2:first-child { margin-top: 0; }
+
+.article-body p {
+  font-size: 15px;
+  color: var(--text);
+  line-height: 1.75;
+  margin-bottom: 14px;
+}
+
+.article-body strong { color: var(--navy); font-weight: 700; }
+.article-body em { color: var(--muted); font-style: italic; }
+
+.article-body ul {
+  list-style: none;
+  margin: 0 0 18px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.article-body ul li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 15px;
+  color: var(--text);
+  line-height: 1.6;
+}
+
+.article-body ul li::before {
+  content: '▸';
+  color: var(--teal2);
+  font-size: 12px;
+  margin-top: 4px;
+  flex-shrink: 0;
+  font-weight: 700;
+}
+
+.divider { border: none; border-top: 1px solid var(--border); margin: 36px 0; }
+
+/* ── CODE BLOCK ── */
+.code-block {
+  background: var(--navy);
+  border-radius: 12px;
+  padding: 18px 22px;
+  margin: 4px 0 20px;
+  overflow-x: auto;
+}
+
+.code-block pre {
+  font-family: 'DM Mono', monospace;
+  font-size: 13.5px;
+  color: rgba(255,255,255,0.85);
+  line-height: 1.7;
+  margin: 0;
+  white-space: pre;
+}
+
+.code-block .code-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 10px;
+  display: block;
+}
+
+.code-inline {
+  font-family: 'DM Mono', monospace;
+  font-size: 13px;
+  background: var(--light);
+  color: var(--navy);
+  padding: 2px 8px;
+  border-radius: 5px;
+  border: 1px solid var(--border);
+}
+
+/* ── DEFINITION BOX ── */
+.definition-box {
+  background: linear-gradient(135deg, #f0faf8, #e8f4ff);
+  border: 1px solid rgba(0,194,168,0.2);
+  border-left: 4px solid var(--teal);
+  border-radius: 12px;
+  padding: 18px 22px;
+  margin: 4px 0 24px;
+  font-size: 15px;
+  color: var(--text);
+  line-height: 1.7;
+  font-style: italic;
+}
+
+/* ── SUBNET MASK TABLE ── */
+.table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  box-shadow: var(--card-shadow);
+  margin-bottom: 28px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--white);
+  min-width: 420px;
+}
+
+thead th {
+  background: var(--navy);
+  color: rgba(255,255,255,0.6);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  padding: 13px 18px;
+  text-align: left;
+  font-family: 'DM Mono', monospace;
+}
+
+thead th:first-child { color: var(--white); }
+
+tbody td {
+  padding: 13px 18px;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+  color: var(--text);
+  vertical-align: middle;
+}
+
+tbody tr:last-child td { border-bottom: none; }
+tbody tr:hover td { background: #f6f9ff; }
+
+.mask-val {
+  font-family: 'DM Mono', monospace;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--navy);
+}
+
+/* ── TRAFFIC DECISION CARDS ── */
+.traffic-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+@media (max-width: 560px) { .traffic-grid { grid-template-columns: 1fr; } }
+
+.traffic-card {
+  border-radius: 13px;
+  padding: 20px;
+  border: 1px solid transparent;
+}
+
+.traffic-card.local {
+  background: linear-gradient(135deg, #f0faf8, #edfaf7);
+  border-color: rgba(0,194,168,0.2);
+}
+
+.traffic-card.remote {
+  background: linear-gradient(135deg, #eef4ff, #e8f0ff);
+  border-color: rgba(26,108,255,0.2);
+}
+
+.traffic-card-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.traffic-card.local .traffic-card-label { color: var(--teal2); }
+.traffic-card.remote .traffic-card-label { color: var(--blue); }
+
+.traffic-card-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 6px;
+}
+
+.traffic-card p {
+  font-size: 13.5px;
+  color: var(--muted);
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* ── EXAM TIP ── */
+.exam-tip {
+  background: linear-gradient(135deg, #fffbeb, #fef9e0);
+  border: 1px solid #f0d060;
+  border-left: 4px solid #f0c000;
+  border-radius: 12px;
+  padding: 20px 22px;
+  margin: 4px 0 28px;
+}
+
+.exam-tip-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: #b08000;
+  margin-bottom: 10px;
+}
+
+.exam-tip p {
+  font-size: 14px;
+  color: #5a4000;
+  margin-bottom: 8px;
+  line-height: 1.65;
+}
+
+.exam-tip p:last-child { margin-bottom: 0; }
+.exam-tip strong { color: #3a2800; }
+
+/* ── TROUBLESHOOTING BOX ── */
+.trouble-box {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 22px 24px;
+  margin-bottom: 28px;
+  box-shadow: var(--card-shadow);
+}
+
+.trouble-box-header {
+  font-family: 'Outfit', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.trouble-scenario {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+@media (max-width: 560px) { .trouble-scenario { grid-template-columns: 1fr; } }
+
+.trouble-scenario-block {
+  background: var(--lighter);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 16px;
+}
+
+.trouble-scenario-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+  color: var(--slate);
+  margin-bottom: 8px;
+}
+
+.trouble-scenario-block pre {
+  font-family: 'DM Mono', monospace;
+  font-size: 13px;
+  color: var(--navy);
+  line-height: 1.7;
+  margin: 0;
+}
+
+.trouble-scenario-block.wrong { border-color: rgba(249,115,22,0.3); }
+.trouble-scenario-block.wrong .trouble-scenario-label { color: #c2540a; }
+
+.trouble-result {
+  background: linear-gradient(135deg, #fff8f0, #fff3eb);
+  border: 1px solid #fdd0a0;
+  border-radius: 10px;
+  padding: 14px 16px;
+  font-size: 14px;
+  color: #7c3a00;
+  line-height: 1.6;
+}
+
+.trouble-result strong { color: #5c2a00; }
+
+/* ── VS COMPARISON ── */
+.vs-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 28px;
+}
+
+@media (max-width: 560px) { .vs-grid { grid-template-columns: 1fr; } }
+
+.vs-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 18px 20px;
+  box-shadow: var(--card-shadow);
+}
+
+.vs-card-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--teal2);
+  margin-bottom: 6px;
+}
+
+.vs-card-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 8px;
+}
+
+.vs-card p {
+  font-size: 13.5px;
+  color: var(--muted);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ── SUMMARY PILLS ── */
+.summary-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+
+.summary-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 13px 16px;
+  font-size: 14px;
+  color: var(--text);
+  box-shadow: var(--card-shadow);
+}
+
+.summary-item::before {
+  content: '✓';
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  background: rgba(0,194,168,0.12);
+  color: var(--teal2);
+  border-radius: 50%;
+  font-size: 11px;
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* ── AFFILIATE BOX ── */
+.affiliate-box {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%);
+  border-radius: 16px;
+  padding: 28px 32px;
+  margin-bottom: 36px;
+  position: relative;
+  overflow: hidden;
+}
+
+.affiliate-box::before {
+  content: '';
+  position: absolute;
+  top: -40px; right: -40px;
+  width: 180px; height: 180px;
+  background: radial-gradient(circle, rgba(0,194,168,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.affiliate-tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 8px;
+}
+
+.affiliate-box h2 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 6px;
+}
+
+.affiliate-box p { color: rgba(255,255,255,0.6); font-size: 14px; margin-bottom: 18px; }
+.affiliate-buttons { display: flex; gap: 10px; flex-wrap: wrap; }
+
+.aff-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 18px;
+  border-radius: 9px;
+  font-size: 14px;
+  font-weight: 600;
+  transition: transform 0.15s, filter 0.15s;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.aff-btn:hover { transform: translateY(-2px); filter: brightness(1.05); text-decoration: none; }
+.aff-btn-primary { background: var(--teal); color: var(--navy); }
+.aff-btn-secondary { background: rgba(255,255,255,0.1); color: var(--white); border: 1px solid rgba(255,255,255,0.15); }
+
+/* ── RELATED ARTICLES ── */
+.related-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 36px;
+}
+
+@media (max-width: 560px) { .related-grid { grid-template-columns: 1fr; } }
+
+.related-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 13px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--navy);
+  text-decoration: none;
+  transition: border-color 0.15s, transform 0.15s, color 0.15s;
+  box-shadow: var(--card-shadow);
+}
+
+.related-link:hover {
+  border-color: rgba(0,194,168,0.3);
+  color: var(--teal2);
+  transform: translateY(-2px);
+  text-decoration: none;
+}
+
+.related-link::before { content: '→'; color: var(--teal2); font-size: 13px; flex-shrink: 0; }
+
+/* ── CTA BOX ── */
+.cta-box {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%);
+  border-radius: 16px;
+  padding: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-box::before {
+  content: '';
+  position: absolute;
+  top: -40px; right: -40px;
+  width: 180px; height: 180px;
+  background: radial-gradient(circle, rgba(0,194,168,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.cta-box-text h3 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--white);
+  margin-bottom: 4px;
+}
+
+.cta-box-text p { font-size: 14px; color: rgba(255,255,255,0.6); }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 22px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  transition: transform 0.15s, box-shadow 0.15s;
+  white-space: nowrap;
+  flex-shrink: 0;
+  text-decoration: none;
+}
+
+.btn:hover { transform: translateY(-2px); text-decoration: none; }
+.btn-teal { background: var(--teal); color: var(--navy); box-shadow: 0 6px 20px rgba(0,194,168,0.3); }
+.btn-teal:hover { box-shadow: 0 10px 28px rgba(0,194,168,0.4); }
+
+/* ── FOOTER ── */
+.footer { background: var(--navy); color: rgba(255,255,255,0.5); padding: 40px 28px; }
+
+.footer-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.footer-brand { display: flex; flex-direction: column; gap: 8px; }
+.footer-logo { font-family: 'Outfit', sans-serif; font-size: 16px; font-weight: 800; color: var(--white); }
+.footer-tagline { font-size: 13px; max-width: 280px; line-height: 1.6; }
+.footer-links { display: flex; flex-direction: column; gap: 8px; }
+.footer-links-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.7px; color: rgba(255,255,255,0.35); margin-bottom: 4px; }
+.footer-links a { font-size: 13px; color: rgba(255,255,255,0.55); transition: color 0.15s; text-decoration: none; }
+.footer-links a:hover { color: var(--teal); }
+
+.footer-bottom {
+  max-width: 1100px;
+  margin: 28px auto 0;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  font-size: 12px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+@media (max-width: 600px) {
+  .footer { padding: 36px 16px; }
+  .footer-bottom { flex-direction: column; }
+  .cta-box { flex-direction: column; align-items: flex-start; }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.page-hero-inner { animation: fadeUp 0.6s ease both; }
+
+.footer-email { color:rgba(255,255,255,0.4); }
+.footer-pp { color:rgba(255,255,255,0.4); }
+
+/* ── CERTFLASH APP BANNER ── */
+.app-banner {
+  background: linear-gradient(90deg, #0d1f3c 0%, #0a2a50 100%);
+  border-bottom: 1px solid rgba(0,194,168,0.25);
+  padding: 9px 48px 9px 28px;
+  text-align: center;
+  position: relative;
+  z-index: 101;
+}
+.app-banner-inner {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.app-banner-text {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.82);
+  letter-spacing: 0.1px;
+}
+.app-banner-text strong { color: var(--teal); font-weight: 700; }
+.app-banner-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--teal);
+  color: var(--navy) !important;
+  font-size: 12.5px;
+  font-weight: 700;
+  padding: 5px 15px;
+  border-radius: 100px;
+  white-space: nowrap;
+  transition: background 0.15s, transform 0.1s;
+}
+.app-banner-cta:hover { background: #00a896; color: var(--navy) !important; transform: translateY(-1px); }
+.app-banner-close {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.35);
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 4px 6px;
+  transition: color 0.15s;
+}
+.app-banner-close:hover { color: rgba(255,255,255,0.75); }
+@media (max-width: 600px) {
+  .app-banner { padding: 8px 40px 8px 16px; }
+  .app-banner-text { font-size: 12.5px; }
+}
+</style>
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647"
+     crossorigin="anonymous"></script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What Does a Subnet Mask Do?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A subnet mask works alongside an IP address to determine two things: Think of it as the \"local neighborhood boundary\" for your IP address — anything inside the boundary is local, everything outside goes through the router."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Most Common Subnet Mask",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The most common subnet mask you'll see on home and small office networks is 255.255.255.0 . Here's a typical IP configuration: IP Address: 192.168.1.50 Subnet Mask: 255.255.255.0 Gateway: 192.168.1.1 On a /24 network like this, all devices sharing the first three octets are on the same local network:"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How Your PC Decides Where to Send Traffic",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The device is \"local\" — traffic goes straight to it without passing through the router. The device is \"remote\" — traffic is forwarded to the router, which handles delivery. Wrong subnet mask causes classic \"partial connectivity\" symptoms: local works but internet fails, or internet works but local devices are missing."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How to View Your Subnet Mask in Windows",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Open Command Prompt and run either of these commands: ipconfig ← shows basic IP info ipconfig /all ← shows full details including subnet mask Look for the line labeled Subnet Mask in the output."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Common Subnet Masks to Recognize",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Quick mental shortcut: More 255s at the start = a bigger network portion, fewer available host addresses. More zeros = more device addresses available."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Subnet Mask vs Default Gateway",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tells your device which addresses are on the same network and can be reached directly. Where traffic goes when the destination is outside the local subnet — usually your router. If either is wrong, you may get: no internet, inability to reach printers or servers, or intermittent unexplained connectivity issues."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Subnet Masks Show Up on Every A+ Exam",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Practice exams make \"why can't this device communicate?\" questions automatic."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "CIDR Notation — The Network+ Way to Write Subnet Masks",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The A+ exam uses dotted-decimal subnet masks like 255.255.255.0 . The Network+ exam adds CIDR notation (Classless Inter-Domain Routing), which expresses the same mask as a prefix length — a slash followed by the number of network bits."
+      }
+    }
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "IT Study Hub",
+      "item": "https://itstudyhub.org/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "What Is a Subnet Mask and What Does It Actually Do?",
+      "item": "https://itstudyhub.org/subnet-mask.html"
+    }
+  ]
+}
+</script>
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="IT Study Hub">
+  <meta property="og:url" content="https://itstudyhub.org/subnet-mask.html">
+  <meta property="og:title" content="What Is a Subnet Mask and What Does It Actually Do?">
+  <meta property="og:description" content="A subnet mask is not just a setting you ignore — it tells your device which IPs are local and which need the router.">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<!-- CERTFLASH APP BANNER -->
+<div class="app-banner" id="certflashBanner">
+  <div class="app-banner-inner">
+    <span class="app-banner-text">📱 New iOS App — <strong>CertFlash</strong>: CompTIA flashcards built for exam day.</span>
+    <a href="https://apps.apple.com/us/app/certflash-comptia-study-cards/id6761732835"
+       class="app-banner-cta" target="_blank" rel="noopener noreferrer">
+      Get it on the App Store ↗
+    </a>
+  </div>
+  <button class="app-banner-close" aria-label="Dismiss"
+    onclick="document.getElementById('certflashBanner').style.display='none'">×</button>
+</div>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo-link">
+      <img src="favicon-512x512.png" alt="IT Study Hub Logo" class="logo-img">
+      <span>IT Study Hub</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="networking-roadmap.html">Networking Roadmap</a>
+      <a href="networking.html">Networking Guide</a>
+      <a href="home-lab.html">Home Lab</a>
+      <a href="best-study-resources.html" class="nav-cta">Best Study Resources</a>
+    </div>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span>›</span>
+      <a href="networking-roadmap.html">Networking Roadmap</a>
+      <span>›</span>
+      <span>Subnet Mask</span>
+    </nav>
+    <div class="page-hero-badge">CompTIA A+ · Network+ · Security+</div>
+    <h1>What Is a <span>Subnet Mask?</span></h1>
+    <p class="page-hero-sub">
+      If an IP address identifies your device on a network, the subnet mask answers the key question: which part is the network, and which part is the device?
+    </p>
+  </div>
+</section>
+
+<!-- ARTICLE -->
+<div class="article-wrap">
+  <div class="article-body">
+
+    <p>This is a high-yield concept for the <strong>CompTIA A+</strong> exam and real-world troubleshooting. Understanding subnet masks is what makes sense of why some devices can talk to each other and others can't.</p>
+
+    <div class="definition-box">
+      "Which part of this IP address is the network, and which part is the device?"
+    </div>
+
+    <hr class="divider">
+
+    <h2>What Does a Subnet Mask Do?</h2>
+
+    <p>A subnet mask works alongside an IP address to determine two things:</p>
+
+    <ul>
+      <li>Which devices are on the <strong>same local network</strong></li>
+      <li>Whether traffic should go <strong>directly</strong> to a device, or out to the <strong>default gateway</strong> (router)</li>
+    </ul>
+
+    <p>Think of it as the "local neighborhood boundary" for your IP address — anything inside the boundary is local, everything outside goes through the router.</p>
+
+    <hr class="divider">
+
+    <h2>Most Common Subnet Mask</h2>
+
+    <p>The most common subnet mask you'll see on home and small office networks is <span class="code-inline">255.255.255.0</span>. Here's a typical IP configuration:</p>
+
+    <div class="code-block">
+      <span class="code-label">Example — ipconfig output</span>
+      <pre>IP Address:   192.168.1.50
+Subnet Mask:  255.255.255.0
+Gateway:      192.168.1.1</pre>
+    </div>
+
+    <p>On a /24 network like this, all devices sharing the first three octets are on the same local network:</p>
+
+    <div class="code-block">
+      <pre>192.168.1.X  ← all on the same subnet</pre>
+    </div>
+
+    <hr class="divider">
+
+    <h2>How Your PC Decides Where to Send Traffic</h2>
+
+    <div class="traffic-grid">
+      <div class="traffic-card local">
+        <div class="traffic-card-label">Same Subnet</div>
+        <div class="traffic-card-title">Send directly on the LAN</div>
+        <p>The device is "local" — traffic goes straight to it without passing through the router.</p>
+      </div>
+      <div class="traffic-card remote">
+        <div class="traffic-card-label">Different Subnet</div>
+        <div class="traffic-card-title">Send to default gateway</div>
+        <p>The device is "remote" — traffic is forwarded to the router, which handles delivery.</p>
+      </div>
+    </div>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">⚡ CompTIA A+ Exam Tip</div>
+      <p><strong>Wrong subnet mask</strong> causes classic "partial connectivity" symptoms: local works but internet fails, or internet works but local devices are missing.</p>
+      <p>If a device can ping its gateway but not local hosts — or vice versa — suspect the subnet mask first.</p>
+    </div>
+
+    <hr class="divider">
+
+    <h2>How to View Your Subnet Mask in Windows</h2>
+
+    <p>Open Command Prompt and run either of these commands:</p>
+
+    <div class="code-block">
+      <span class="code-label">Command Prompt</span>
+      <pre>ipconfig          ← shows basic IP info
+ipconfig /all     ← shows full details including subnet mask</pre>
+    </div>
+
+    <p>Look for the line labeled <strong>Subnet Mask</strong> in the output.</p>
+
+    <hr class="divider">
+
+    <h2>Common Subnet Masks to Recognize</h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Subnet Mask</th>
+            <th>CIDR</th>
+            <th>Typical Use</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="mask-val">255.255.255.0</span></td>
+            <td>/24</td>
+            <td>Home networks, small offices — most common</td>
+          </tr>
+          <tr>
+            <td><span class="mask-val">255.255.0.0</span></td>
+            <td>/16</td>
+            <td>Larger internal networks</td>
+          </tr>
+          <tr>
+            <td><span class="mask-val">255.0.0.0</span></td>
+            <td>/8</td>
+            <td>Very large enterprise networks</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p><strong>Quick mental shortcut:</strong> More 255s at the start = a bigger network portion, fewer available host addresses. More zeros = more device addresses available.</p>
+
+    <hr class="divider">
+
+    <h2>Real-World Troubleshooting Example</h2>
+
+    <div class="trouble-box">
+      <div class="trouble-box-header">🔧 Scenario: Student laptop can't print, but internet works</div>
+
+      <div class="trouble-scenario">
+        <div class="trouble-scenario-block wrong">
+          <div class="trouble-scenario-label">⚠ Laptop (wrong mask)</div>
+          <pre>IP:   192.168.1.55
+Mask: 255.255.0.0</pre>
+        </div>
+        <div class="trouble-scenario-block">
+          <div class="trouble-scenario-label">✓ All other devices</div>
+          <pre>IP:   192.168.1.X
+Mask: 255.255.255.0</pre>
+        </div>
+      </div>
+
+      <div class="trouble-result">
+        <strong>Result:</strong> The laptop treats a much wider range of addresses as "local," causing ARP and routing confusion. Local devices may be unreachable despite internet working fine.<br><br>
+        <strong>Fix:</strong> Correct the subnet mask — usually done automatically by DHCP. Check if the laptop was manually configured.
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <h2>Subnet Mask vs Default Gateway</h2>
+
+    <div class="vs-grid">
+      <div class="vs-card">
+        <div class="vs-card-label">Subnet Mask</div>
+        <div class="vs-card-title">Defines "local"</div>
+        <p>Tells your device which addresses are on the same network and can be reached directly.</p>
+      </div>
+      <div class="vs-card">
+        <div class="vs-card-label">Default Gateway</div>
+        <div class="vs-card-title">The exit ramp</div>
+        <p>Where traffic goes when the destination is outside the local subnet — usually your router.</p>
+      </div>
+    </div>
+
+    <p>If either is wrong, you may get: no internet, inability to reach printers or servers, or intermittent unexplained connectivity issues.</p>
+
+    <hr class="divider">
+
+    <h2>Final Summary</h2>
+
+    <div class="summary-list">
+      <div class="summary-item">A subnet mask defines what your device considers "local"</div>
+      <div class="summary-item">The most common mask is <strong>255.255.255.0</strong> (/24)</div>
+      <div class="summary-item">Wrong subnet masks cause partial connectivity — local OR internet works, but not both</div>
+      <div class="summary-item">Subnet mask works alongside the default gateway and DHCP</div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- AFFILIATE BOX -->
+    <div class="affiliate-box">
+      <div class="affiliate-tag">📚 Recommended Study Tools</div>
+      <h2>Subnet Masks Show Up on Every A+ Exam</h2>
+      <p>Practice exams make "why can't this device communicate?" questions automatic.</p>
+      <div class="affiliate-buttons">
+        <a href="https://www.examcompass.com/comptia/a-plus-certification/free-a-plus-practice-tests"
+           class="aff-btn aff-btn-primary" target="_blank" rel="nofollow sponsored">
+          🧪 Take FREE Practice Exams
+        </a>
+        <a href="https://amzn.to/3OMI8uo"
+           class="aff-btn aff-btn-secondary" target="_blank" rel="nofollow sponsored">
+          📖 Bestselling A+ Study Guide
+        </a>
+      </div>
+    </div>
+
+    <h2>CIDR Notation — The Network+ Way to Write Subnet Masks</h2>
+
+    <p>The A+ exam uses dotted-decimal subnet masks like <code>255.255.255.0</code>. The Network+ exam adds <strong>CIDR notation</strong> (Classless Inter-Domain Routing), which expresses the same mask as a prefix length — a slash followed by the number of network bits.</p>
+
+    <table class="info-table">
+      <thead><tr><th>Subnet Mask</th><th>CIDR</th><th>Hosts per Subnet</th><th>Common Use</th></tr></thead>
+      <tbody>
+        <tr><td><code>255.0.0.0</code></td><td><code>/8</code></td><td>16,777,214</td><td>Class A private (10.x.x.x)</td></tr>
+        <tr><td><code>255.255.0.0</code></td><td><code>/16</code></td><td>65,534</td><td>Class B private (172.16–31.x.x)</td></tr>
+        <tr><td><code>255.255.255.0</code></td><td><code>/24</code></td><td>254</td><td>Most common — small office LAN</td></tr>
+        <tr><td><code>255.255.255.128</code></td><td><code>/25</code></td><td>126</td><td>Split a /24 into two halves</td></tr>
+        <tr><td><code>255.255.255.192</code></td><td><code>/26</code></td><td>62</td><td>Split a /24 into four quarters</td></tr>
+        <tr><td><code>255.255.255.224</code></td><td><code>/27</code></td><td>30</td><td>Small department or VLAN</td></tr>
+        <tr><td><code>255.255.255.240</code></td><td><code>/28</code></td><td>14</td><td>Server cluster or DMZ</td></tr>
+        <tr><td><code>255.255.255.252</code></td><td><code>/30</code></td><td>2</td><td>Point-to-point WAN links</td></tr>
+        <tr><td><code>255.255.255.255</code></td><td><code>/32</code></td><td>1</td><td>Single host route or loopback</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout callout-amber">
+      <strong>⚡ Network+ exam tip:</strong> Hosts per subnet = 2<sup>host bits</sup> − 2. Subtract 2 because the first address is the network address and the last is the broadcast address. For a /26: 32 − 26 = 6 host bits → 2<sup>6</sup> − 2 = 62 usable hosts.
+    </div>
+
+    <h2>Subnet Masks and Network Segmentation — The Security+ Angle</h2>
+
+    <p>On the Security+ exam, subnet masks aren't just about addressing — they're a <strong>security tool</strong>. Proper subnetting is one of the primary methods used to implement <a href="network-segmentation.html">network segmentation</a>, which limits the blast <a href="radius-explained.html">radius</a> of a breach.</p>
+
+    <h3>Why Segmentation Matters</h3>
+    <p>If every device on your network shares the same subnet (e.g., 192.168.1.0/24), a compromised device can reach every other device directly at Layer 2. Segmenting the network with different subnets forces all inter-segment traffic through a router or firewall, where it can be inspected and filtered.</p>
+
+    <div class="callout callout-blue" style="background:#eff6ff;border-left:4px solid #1d4ed8;">
+      <strong>Segmentation example:</strong> Separating guest Wi-Fi (10.10.20.0/24) from the corporate LAN (10.10.10.0/24) with a firewall between them means a compromised guest device cannot reach internal servers — even on the same physical network. The different subnet forces traffic through the firewall.
+    </div>
+
+    <h3>Common Segmentation Architectures</h3>
+    <table class="info-table">
+      <thead><tr><th>Zone</th><th>Typical Subnet</th><th>What Belongs Here</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Internal LAN</strong></td><td><code>10.0.1.0/24</code></td><td>Workstations, internal services</td></tr>
+        <tr><td><strong>DMZ</strong></td><td><code>10.0.2.0/24</code></td><td>Public-facing web servers, email gateways</td></tr>
+        <tr><td><strong>Server VLAN</strong></td><td><code>10.0.3.0/24</code></td><td>Database servers, file servers</td></tr>
+        <tr><td><strong>Guest Wi-Fi</strong></td><td><code>10.0.4.0/24</code></td><td>Untrusted devices — internet only</td></tr>
+        <tr><td><strong>IoT / OT</strong></td><td><code>10.0.5.0/24</code></td><td>Cameras, sensors, industrial devices</td></tr>
+        <tr><td><strong>Management</strong></td><td><code>10.0.100.0/24</code></td><td>Network gear management interfaces</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout callout-amber">
+      <strong>⚡ Security+ exam tip:</strong> Microsegmentation takes this further — each workload or application gets its own security boundary, enforced by software-defined networking rather than physical subnets. Zero Trust architecture relies heavily on microsegmentation: traffic between segments is always verified, never implicitly trusted regardless of subnet.
+    </div>
+
+    <h2>Network+ Exam Scenarios</h2>
+
+    <div class="exam-scenarios">
+      <div class="scenario-card">
+        <div class="scenario-q">A host at 192.168.1.50/26 tries to communicate with 192.168.1.130. The communication fails. Why?</div>
+        <div class="scenario-a"><strong>Different subnets.</strong> A /26 mask splits 192.168.1.0 into four subnets: .0–.63, .64–.127, .128–.191, .192–.255. Host .50 is in the .0 subnet; host .130 is in the .128 subnet. They cannot communicate directly — traffic must go through a router.</div>
+      </div>
+      <div class="scenario-card">
+        <div class="scenario-q">You need to create a point-to-point link between two routers. Which subnet mask wastes the fewest addresses?</div>
+        <div class="scenario-a"><strong>/30 (255.255.255.252).</strong> Provides exactly 2 usable host addresses — one for each router interface. A /29 would provide 6 hosts, wasting 4 addresses.</div>
+      </div>
+      <div class="scenario-card">
+        <div class="scenario-q">A company needs to split a 192.168.10.0/24 network into subnets of at least 50 hosts each. Which mask should they use?</div>
+        <div class="scenario-a"><strong>/26 (255.255.255.192).</strong> Provides 62 usable hosts per subnet. A /27 only provides 30 hosts — not enough. A /26 splits the /24 into four equal subnets of 62 hosts each.</div>
+      </div>
+    </div>
+
+    <h2>Related Networking Articles</h2>
+
+    <div class="related-grid">
+      <a href="subnetting-guide.html" class="related-link">Subnetting Explained</a>
+      <a href="best-a-plus.html" class="related-link">Best A+ Study Resources</a>
+      <a href="dhcp.html" class="related-link">What Is DHCP?</a>
+      <a href="dns.html" class="related-link">What Is DNS?</a>
+      <a href="network-troubleshooting-commands.html" class="related-link">Network Troubleshooting Commands</a>
+      <a href="ports.html" class="related-link">Common Port Numbers</a>
+      <a href="apipa.html" class="related-link">What Is APIPA?</a>
+      <a href="tcp-vs-udp.html" class="related-link">TCP vs UDP Explained</a>
+      <a href="home-lab-setup-guide.html" class="related-link">Build Your First Home Lab</a>
+      <a href="ipv4-vs-ipv6.html" class="related-link">IPv4 vs IPv6 Explained</a>
+      <a href="network-plus-cheat-sheet.html" class="related-link">Network+ Cheat Sheet</a>
+      <a href="security-plus-cheat-sheet.html" class="related-link">Security+ Cheat Sheet</a>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-box">
+      <div class="cta-box-text">
+        <h3>Preparing for the A+ Exam?</h3>
+        <p>See the books, practice exams, and free resources that actually work.</p>
+      </div>
+      <a href="best-a-plus.html" class="btn btn-teal">See Best Study Resources →</a>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">IT Study Hub</div>
+      <div class="footer-tagline">Practical CompTIA A+ and Networking resources for real-world IT success.</div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Pages</div>
+      <a href="index.html">Home</a>
+      <a href="networking-roadmap.html">Networking Roadmap</a>
+      <a href="networking.html">Networking Guide</a>
+      <a href="best-a-plus.html">Best Study Resources</a>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Topics</div>
+      <a href="osi-model.html">OSI Model</a>
+      <a href="tcp-vs-udp.html">TCP vs UDP</a>
+      <a href="dhcp.html">DHCP</a>
+      <a href="dns.html">DNS</a>
+      <a href="ports.html">Port Numbers</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 <a href="https://fogartyholdings.com" target="_blank" rel="noopener" style="color:inherit;">Fogarty Holdings LLC</a>. All rights reserved.</span>
+    <span class="footer-email"><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#105;&#116;&#115;&#116;&#117;&#100;&#121;&#104;&#117;&#98;&#46;&#111;&#114;&#103;" class="footer-pp">contact&#64;itstudyhub&#46;org</a> &nbsp;&middot;&nbsp; <a href="privacy-policy.html" class="footer-pp">Privacy Policy</a> &nbsp;&middot;&nbsp; Disclosure: Some links on this site may be affiliate links. I may earn a small commission at no extra cost to you.</span>
+  </div>
+</footer>
+
+</body>
+</html>

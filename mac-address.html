@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MS0H78HR74"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-MS0H78HR74');
+</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="canonical" href="https://itstudyhub.org/mac-address.html">
+
+<title>What Is a MAC Address and How Is It Different from an IP</title>
+<meta name="description" content="MAC addresses and IP addresses both identify devices — but they work at different layers and serve completely different purposes.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --navy:    #0a1628;
+  --navy2:   #0f2040;
+  --teal:    #00c2a8;
+  --teal2:   #00a892;
+  --blue:    #1a6cff;
+  --slate:   #8a9bb5;
+  --light:   #f0f4fa;
+  --lighter: #f8fafd;
+  --white:   #ffffff;
+  --border:  #e2e8f4;
+  --text:    #1c2a3e;
+  --muted:   #5c6f87;
+  --card-shadow: 0 4px 24px rgba(10,22,40,.08);
+  --card-shadow-hover: 0 12px 40px rgba(10,22,40,.14);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--lighter);
+  color: var(--text);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--teal2); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ── NAVBAR ── */
+.navbar {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255,255,255,0.94);
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-inner {
+  max-width: 1100px; margin: 0 auto; padding: 0 28px;
+  height: 68px; display: flex; align-items: center;
+  justify-content: space-between; gap: 16px;
+}
+.logo-link {
+  display: flex; align-items: center; gap: 10px;
+  font-family: 'Outfit', sans-serif; font-weight: 800;
+  font-size: 17px; color: var(--navy); letter-spacing: -0.3px;
+  flex-shrink: 0; text-decoration: none;
+}
+.logo-img { height: 52px; width: auto; }
+.nav-links { display: flex; align-items: center; gap: 4px; }
+.nav-links a {
+  font-size: 14px; font-weight: 600; padding: 8px 14px;
+  border-radius: 8px; color: var(--muted);
+  transition: color 0.15s, background 0.15s; text-decoration: none;
+}
+.nav-links a:hover { color: var(--navy); background: var(--light); }
+.nav-links a.nav-cta {
+  background: var(--navy); color: var(--white) !important;
+  padding: 8px 18px; border-radius: 8px; margin-left: 6px;
+  transition: background 0.15s, transform 0.1s;
+}
+.nav-links a.nav-cta:hover { background: var(--navy2); transform: translateY(-1px); }
+
+@media (max-width: 768px) {
+  .nav-inner { padding: 0 16px; height: 60px; }
+  .logo-img { height: 44px; }
+  .logo-link span { font-size: 15px; }
+  .nav-links { overflow-x: auto; -webkit-overflow-scrolling: touch; flex-wrap: nowrap; }
+  .nav-links a { white-space: nowrap; font-size: 13px; padding: 6px 10px; }
+  .nav-links a.nav-cta { padding: 6px 14px; }
+}
+
+/* ── PAGE HERO ── */
+.page-hero {
+  background: var(--navy); position: relative;
+  overflow: hidden; padding: 52px 28px 60px;
+}
+.page-hero::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 50% 100% at 90% 50%, rgba(0,194,168,0.1) 0%, transparent 70%),
+    radial-gradient(ellipse 30% 60% at 5% 90%, rgba(26,108,255,0.12) 0%, transparent 60%);
+  pointer-events: none;
+}
+.page-hero::after {
+  content: ''; position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 48px 48px; pointer-events: none;
+}
+.page-hero-inner {
+  max-width: 860px; margin: 0 auto; position: relative; z-index: 1;
+}
+.breadcrumb {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 13px; color: rgba(255,255,255,0.4);
+  margin-bottom: 18px; font-family: 'DM Mono', monospace;
+}
+.breadcrumb a { color: rgba(255,255,255,0.5); transition: color 0.15s; text-decoration: none; }
+.breadcrumb a:hover { color: var(--teal); }
+.breadcrumb span { color: rgba(255,255,255,0.25); }
+.page-hero-badge {
+  display: inline-flex; align-items: center;
+  background: rgba(0,194,168,0.15); border: 1px solid rgba(0,194,168,0.3);
+  color: var(--teal); font-size: 12px; font-weight: 600;
+  letter-spacing: 0.8px; text-transform: uppercase;
+  padding: 5px 12px; border-radius: 100px; margin-bottom: 16px;
+}
+.page-hero h1 {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(26px, 4vw, 40px); font-weight: 800;
+  color: var(--white); line-height: 1.15; letter-spacing: -0.5px; margin-bottom: 14px;
+}
+.page-hero h1 span { color: var(--teal); }
+.page-hero-sub {
+  font-size: 15px; color: rgba(255,255,255,0.6); max-width: 560px; line-height: 1.7;
+}
+
+/* ── ARTICLE LAYOUT ── */
+.article-wrap { max-width: 860px; margin: 0 auto; padding: 52px 28px 80px; }
+@media (max-width: 768px) { .article-wrap { padding: 32px 16px 60px; } }
+
+.article-body h2 {
+  font-family: 'Outfit', sans-serif; font-size: 20px; font-weight: 800;
+  color: var(--navy); letter-spacing: -0.3px; margin: 48px 0 14px;
+}
+.article-body h2:first-child { margin-top: 0; }
+.article-body p { font-size: 15px; color: var(--text); line-height: 1.75; margin-bottom: 14px; }
+.article-body strong { color: var(--navy); font-weight: 700; }
+.divider { border: none; border-top: 1px solid var(--border); margin: 36px 0; }
+
+/* ── MAC ADDRESS ANATOMY DISPLAY ── */
+.mac-anatomy {
+  background: var(--navy); border-radius: 14px;
+  padding: 28px 30px; margin-bottom: 28px;
+  position: relative; overflow: hidden;
+}
+.mac-anatomy::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 80% at 100% 20%, rgba(0,194,168,0.1) 0%, transparent 60%);
+  pointer-events: none;
+}
+.mac-anatomy-label {
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.8px; text-transform: uppercase;
+  color: rgba(255,255,255,0.4); margin-bottom: 18px;
+}
+.mac-display {
+  display: flex; align-items: center; justify-content: center;
+  gap: 0; flex-wrap: wrap; margin-bottom: 20px;
+}
+.mac-octet {
+  font-family: 'DM Mono', monospace; font-size: clamp(20px, 4vw, 32px);
+  font-weight: 500; padding: 4px 0; letter-spacing: 1px;
+}
+.mac-octet.oui { color: var(--teal); }
+.mac-octet.device { color: #93c5fd; }
+.mac-separator {
+  font-family: 'DM Mono', monospace; font-size: clamp(20px, 4vw, 32px);
+  color: rgba(255,255,255,0.25); padding: 4px 2px;
+}
+.mac-legend {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 6px;
+}
+@media (max-width: 480px) { .mac-legend { grid-template-columns: 1fr; } }
+.mac-legend-item {
+  background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 8px; padding: 12px 14px;
+}
+.mac-legend-color {
+  width: 10px; height: 10px; border-radius: 50%; display: inline-block; margin-right: 6px;
+  vertical-align: middle; flex-shrink: 0;
+}
+.mac-legend-title {
+  font-size: 12px; font-weight: 700; color: var(--white);
+  margin-bottom: 4px; display: flex; align-items: center;
+}
+.mac-legend-desc { font-size: 12px; color: rgba(255,255,255,0.45); line-height: 1.5; }
+
+/* ── COMPARISON TABLE ── */
+.compare-table-wrap {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 14px; overflow: hidden;
+  box-shadow: var(--card-shadow); margin-bottom: 28px;
+}
+.compare-table {
+  width: 100%; border-collapse: collapse; font-size: 14px;
+}
+.compare-table th {
+  background: var(--navy); color: var(--white);
+  font-family: 'Outfit', sans-serif; font-size: 14px; font-weight: 700;
+  padding: 14px 18px; text-align: left;
+}
+.compare-table th:first-child { width: 30%; }
+.compare-table td {
+  padding: 13px 18px; border-bottom: 1px solid var(--border);
+  vertical-align: top; line-height: 1.6;
+}
+.compare-table tr:last-child td { border-bottom: none; }
+.compare-table td:first-child {
+  font-weight: 700; color: var(--navy); background: var(--light);
+  font-size: 13px;
+}
+.compare-table td.mac-col { color: var(--teal2); font-family: 'DM Mono', monospace; font-size: 13px; }
+.compare-table td.ip-col { color: var(--blue); font-family: 'DM Mono', monospace; font-size: 13px; }
+
+/* ── HOW-TO COMMAND BLOCK ── */
+.cmd-block {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 14px; overflow: hidden;
+  box-shadow: var(--card-shadow); margin-bottom: 28px;
+}
+.cmd-block-header {
+  background: var(--navy); padding: 12px 20px;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+}
+.cmd-block-name {
+  font-family: 'DM Mono', monospace; font-size: 15px; font-weight: 500;
+  color: var(--teal); letter-spacing: 0.3px;
+}
+.cmd-block-tag {
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.7px; text-transform: uppercase;
+  background: rgba(0,194,168,0.15); border: 1px solid rgba(0,194,168,0.3);
+  color: var(--teal); padding: 3px 10px; border-radius: 100px;
+}
+.cmd-block-body { padding: 20px 22px; }
+.cmd-syntax {
+  background: var(--navy); border-radius: 8px;
+  padding: 12px 16px; margin-bottom: 14px;
+  font-family: 'DM Mono', monospace; font-size: 13px;
+  color: rgba(255,255,255,0.85); overflow-x: auto;
+}
+.cmd-prompt { color: var(--teal); margin-right: 8px; }
+.cmd-output {
+  background: #0d1f0d; border-radius: 8px;
+  padding: 14px 16px; margin-bottom: 14px;
+  font-family: 'DM Mono', monospace; font-size: 12px;
+  color: #86efac; line-height: 1.8; overflow-x: auto;
+}
+.out-label {
+  color: rgba(255,255,255,0.3); font-size: 10px;
+  letter-spacing: 0.8px; text-transform: uppercase;
+  display: block; margin-bottom: 8px;
+}
+.out-highlight { color: #fde68a; }
+.out-muted { color: rgba(134,239,172,0.4); }
+.cmd-note {
+  font-size: 13.5px; color: var(--muted); line-height: 1.65;
+}
+
+/* ── HOW SWITCHING WORKS (VISUAL FLOW) ── */
+.switch-flow {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 14px; overflow: hidden;
+  box-shadow: var(--card-shadow); margin-bottom: 28px;
+}
+.switch-flow-header {
+  background: var(--navy); padding: 12px 20px;
+  font-family: 'Outfit', sans-serif; font-size: 15px;
+  font-weight: 700; color: var(--white);
+}
+.switch-flow-body { padding: 20px 22px; }
+.flow-steps { display: flex; flex-direction: column; gap: 0; }
+.flow-step {
+  display: flex; align-items: flex-start; gap: 14px;
+  padding: 14px 0; border-bottom: 1px solid var(--border); position: relative;
+}
+.flow-step:last-child { border-bottom: none; padding-bottom: 0; }
+.flow-num {
+  display: flex; align-items: center; justify-content: center;
+  width: 28px; height: 28px; border-radius: 50%;
+  background: var(--navy); color: var(--white);
+  font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 500;
+  flex-shrink: 0; margin-top: 1px;
+}
+.flow-step-title { font-weight: 700; color: var(--navy); font-size: 14px; margin-bottom: 3px; }
+.flow-step-desc { font-size: 13.5px; color: var(--muted); line-height: 1.6; }
+.flow-step-code {
+  font-family: 'DM Mono', monospace; font-size: 12px;
+  background: var(--light); border: 1px solid var(--border);
+  border-radius: 5px; padding: 2px 7px; color: var(--navy);
+  display: inline-block; margin-top: 4px;
+}
+
+/* ── ARP EXPLAINER BOX ── */
+.arp-box {
+  background: linear-gradient(135deg, #f0f4ff, #eaf0ff);
+  border: 1px solid rgba(26,108,255,0.2);
+  border-left: 4px solid var(--blue);
+  border-radius: 12px; padding: 20px 22px; margin-bottom: 28px;
+}
+.arp-box-label {
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.8px; text-transform: uppercase;
+  color: var(--blue); margin-bottom: 8px;
+}
+.arp-box p { font-size: 14px; color: var(--text); line-height: 1.7; margin-bottom: 8px; }
+.arp-box p:last-child { margin-bottom: 0; }
+.arp-box strong { color: var(--navy); }
+
+/* ── EXAM TIP BOX ── */
+.exam-tip {
+  background: linear-gradient(135deg, #fffbeb, #fef9e0);
+  border: 1px solid #f0d060; border-left: 4px solid #f0c000;
+  border-radius: 12px; padding: 20px 22px; margin: 4px 0 28px;
+}
+.exam-tip-label {
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.8px; text-transform: uppercase; color: #b08000; margin-bottom: 8px;
+}
+.exam-tip p { font-size: 14px; color: #5a4000; margin-bottom: 8px; line-height: 1.65; }
+.exam-tip p:last-child { margin-bottom: 0; }
+.exam-tip strong { color: #3a2800; }
+
+/* ── KEY FACTS CARDS ── */
+.key-facts {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 28px;
+}
+@media (max-width: 560px) { .key-facts { grid-template-columns: 1fr; } }
+.key-fact {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 18px;
+  box-shadow: var(--card-shadow);
+  display: flex; align-items: flex-start; gap: 12px;
+}
+.key-fact-icon { font-size: 22px; flex-shrink: 0; line-height: 1; margin-top: 1px; }
+.key-fact-title { font-weight: 700; color: var(--navy); font-size: 14px; margin-bottom: 4px; }
+.key-fact-desc { font-size: 13px; color: var(--muted); line-height: 1.55; }
+
+/* ── SUMMARY LIST ── */
+.summary-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+.summary-item {
+  display: flex; align-items: flex-start; gap: 12px;
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 10px; padding: 13px 16px;
+  font-size: 14px; box-shadow: var(--card-shadow);
+}
+.summary-item::before {
+  content: '✓';
+  display: flex; align-items: center; justify-content: center;
+  width: 20px; height: 20px; min-width: 20px;
+  background: rgba(0,194,168,0.12); color: var(--teal2);
+  border-radius: 50%; font-size: 11px; font-weight: 700;
+  margin-top: 1px;
+}
+
+/* ── RELATED + CTA ── */
+.related-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 36px;
+}
+@media (max-width: 560px) { .related-grid { grid-template-columns: 1fr; } }
+.related-link {
+  display: flex; align-items: center; gap: 10px;
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 10px; padding: 13px 16px; font-size: 14px;
+  font-weight: 600; color: var(--navy); text-decoration: none;
+  transition: border-color 0.15s, transform 0.15s, color 0.15s;
+  box-shadow: var(--card-shadow);
+}
+.related-link:hover { border-color: rgba(0,194,168,0.3); color: var(--teal2); transform: translateY(-2px); text-decoration: none; }
+.related-link::before { content: '→'; color: var(--teal2); font-size: 13px; flex-shrink: 0; }
+
+.cta-box {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%);
+  border-radius: 16px; padding: 32px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 20px; flex-wrap: wrap; position: relative; overflow: hidden;
+}
+.cta-box::before {
+  content: ''; position: absolute; top: -40px; right: -40px; width: 180px; height: 180px;
+  background: radial-gradient(circle, rgba(0,194,168,0.15) 0%, transparent 70%); pointer-events: none;
+}
+.cta-box-text h3 { font-family: 'Outfit', sans-serif; font-size: 18px; font-weight: 800; color: var(--white); margin-bottom: 4px; }
+.cta-box-text p { font-size: 14px; color: rgba(255,255,255,0.6); }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px;
+  border-radius: 10px; font-size: 14px; font-weight: 600;
+  transition: transform 0.15s, box-shadow 0.15s;
+  white-space: nowrap; flex-shrink: 0; text-decoration: none;
+}
+.btn:hover { transform: translateY(-2px); text-decoration: none; }
+.btn-teal { background: var(--teal); color: var(--navy); box-shadow: 0 6px 20px rgba(0,194,168,0.3); }
+.btn-teal:hover { box-shadow: 0 10px 28px rgba(0,194,168,0.4); }
+
+/* ── FOOTER ── */
+.footer { background: var(--navy); color: rgba(255,255,255,0.5); padding: 40px 28px; }
+.footer-inner {
+  max-width: 1100px; margin: 0 auto;
+  display: flex; align-items: flex-start; justify-content: space-between; gap: 32px; flex-wrap: wrap;
+}
+.footer-brand { display: flex; flex-direction: column; gap: 8px; }
+.footer-logo { font-family: 'Outfit', sans-serif; font-size: 16px; font-weight: 800; color: var(--white); }
+.footer-tagline { font-size: 13px; max-width: 280px; line-height: 1.6; }
+.footer-links { display: flex; flex-direction: column; gap: 8px; }
+.footer-links-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.7px; color: rgba(255,255,255,0.35); margin-bottom: 4px; }
+.footer-links a { font-size: 13px; color: rgba(255,255,255,0.55); transition: color 0.15s; text-decoration: none; }
+.footer-links a:hover { color: var(--teal); }
+.footer-bottom {
+  max-width: 1100px; margin: 28px auto 0; padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.08); font-size: 12px;
+  display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+}
+@media (max-width: 600px) {
+  .footer { padding: 36px 16px; }
+  .footer-bottom { flex-direction: column; }
+  .cta-box { flex-direction: column; align-items: flex-start; }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.page-hero-inner { animation: fadeUp 0.6s ease both; }
+
+.footer-email { color:rgba(255,255,255,0.4); }
+.footer-pp { color:rgba(255,255,255,0.4); }
+
+/* ── CERTFLASH APP BANNER ── */
+.app-banner {
+  background: linear-gradient(90deg, #0d1f3c 0%, #0a2a50 100%);
+  border-bottom: 1px solid rgba(0,194,168,0.25);
+  padding: 9px 48px 9px 28px;
+  text-align: center;
+  position: relative;
+  z-index: 101;
+}
+.app-banner-inner {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.app-banner-text {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.82);
+  letter-spacing: 0.1px;
+}
+.app-banner-text strong { color: var(--teal); font-weight: 700; }
+.app-banner-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--teal);
+  color: var(--navy) !important;
+  font-size: 12.5px;
+  font-weight: 700;
+  padding: 5px 15px;
+  border-radius: 100px;
+  white-space: nowrap;
+  transition: background 0.15s, transform 0.1s;
+}
+.app-banner-cta:hover { background: #00a896; color: var(--navy) !important; transform: translateY(-1px); }
+.app-banner-close {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.35);
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 4px 6px;
+  transition: color 0.15s;
+}
+.app-banner-close:hover { color: rgba(255,255,255,0.75); }
+@media (max-width: 600px) {
+  .app-banner { padding: 8px 40px 8px 16px; }
+  .app-banner-text { font-size: 12.5px; }
+}
+</style>
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3360938501171647"
+     crossorigin="anonymous"></script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "The simple answer",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A MAC address (Media Access Control address) is a unique identifier assigned to a network interface card (NIC) at the time it's manufactured. It's permanently embedded in the hardware — every Wi-Fi card, Ethernet adapter, and Bluetooth chip has one, and no two are supposed to be the same anywhere in the world. If an IP address is like your current home address (it can change when you move), a MAC address is like your fingerprint — it stays with the hardware forever regardless of where it connects."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What a MAC address looks like",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A MAC address is 48 bits long, written as six pairs of hexadecimal characters separated by colons or hyphens. It always looks something like this: Hexadecimal uses digits 0–9 and letters A–F, so each pair can represent values from 00 to FF. You don't need to memorize the math — just recognize the format on the exam. MAC addresses appear on the exam written with colons (A4:C3:F0:7B:2D:91) or hyphens (A4-C3-F0-7B-2D-91). Both are the same address — Windows tends to use hyphens, Linux and Mac use colons. Either format is valid."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "MAC address vs IP address — the key difference",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "This is one of the most commonly tested comparisons on the A+ exam. The short version: a MAC address is a permanent hardware identity , while an IP address is a temporary logical assignment . They operate at different layers of the OSI model and serve different purposes. * MAC addresses can be spoofed in software, but the physical address burned into the hardware doesn't change."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How to find your MAC address on Windows",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The fastest way is with ipconfig /all — the same command from the network troubleshooting commands guide . Look for the line labeled Physical Address . The Physical Address line is your MAC address. Windows displays it with hyphens. Notice it appears right alongside the IP address — both are shown by ipconfig /all but serve completely different purposes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How switches use MAC addresses",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "This is where MAC addresses do their most important work. A switch operates at Layer 2 of the OSI model and uses MAC addresses — not IP addresses — to decide where to send frames on a local network. This is why switches are more efficient than hubs — a hub blindly sends every frame to every device, while a switch uses MAC addresses to deliver frames only where they need to go."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "ARP — how IP addresses get matched to MAC addresses",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Here's a question worth thinking about: if switches use MAC addresses and routers use IP addresses, how does a device know the MAC address of another device it wants to talk to? The answer is ARP — Address Resolution Protocol . When Device A wants to send data to 192.168.1.30 but doesn't know its MAC address, it broadcasts an ARP request to the whole network: \"Who has 192.168.1.30? Tell me your MAC address.\" ARP Request (broadcast): \"Who has 192.168.1.30? Tell A4:C3:F0:7B:2D:91.\""
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What the A+ exam tests on MAC addresses",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "DHCP servers can be configured to always assign the same IP address to a specific device by matching its MAC address. This is called a DHCP reservation (or static DHCP assignment). The server says: \"Whenever I see MAC address A4:C3:F0:7B:2D:91, always give it 192.168.1.50.\" This is how network printers and servers get consistent IP addresses without being manually configured with a static IP. It comes up on both A+ and Network+ exams."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "MAC spoofing — the Security+ attack",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Although MAC addresses are burned into hardware, the operating system can override what it transmits — this is called MAC spoofing . An attacker changes their device's reported MAC address to impersonate another device on the network. Bypass MAC filtering: Many wireless networks use MAC address filtering as an access control measure — only allowing known MAC addresses to connect. An attacker can capture a legitimate device's MAC address from wireless traffic (MACs are transmitted in plaintext) and spoof it to gain access. Identity impersonation: On wired networks, spoofing a MAC address can…"
+      }
+    }
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "IT Study Hub",
+      "item": "https://itstudyhub.org/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "What Is a MAC Address and How Is It Different from an IP",
+      "item": "https://itstudyhub.org/mac-address.html"
+    }
+  ]
+}
+</script>
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="IT Study Hub">
+  <meta property="og:url" content="https://itstudyhub.org/mac-address.html">
+  <meta property="og:title" content="What Is a MAC Address and How Is It Different from an IP">
+  <meta property="og:description" content="MAC addresses and IP addresses both identify devices — but they work at different layers and serve completely different purposes.">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<!-- CERTFLASH APP BANNER -->
+<div class="app-banner" id="certflashBanner">
+  <div class="app-banner-inner">
+    <span class="app-banner-text">📱 New iOS App — <strong>CertFlash</strong>: CompTIA flashcards built for exam day.</span>
+    <a href="https://apps.apple.com/us/app/certflash-comptia-study-cards/id6761732835"
+       class="app-banner-cta" target="_blank" rel="noopener noreferrer">
+      Get it on the App Store ↗
+    </a>
+  </div>
+  <button class="app-banner-close" aria-label="Dismiss"
+    onclick="document.getElementById('certflashBanner').style.display='none'">×</button>
+</div>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo-link">
+      <img src="favicon-512x512.png" alt="IT Study Hub Logo" class="logo-img">
+      <span>IT Study Hub</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="networking-roadmap.html">Networking Roadmap</a>
+      <a href="networking.html">Networking Guide</a>
+      <a href="home-lab.html">Home Lab</a>
+      <a href="best-study-resources.html" class="nav-cta">Best Study Resources</a>
+    </div>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span>›</span>
+      <a href="networking.html">Networking Guide</a>
+      <span>›</span>
+      <span>MAC Address</span>
+    </nav>
+    <div class="page-hero-badge">CompTIA A+ · Network+ · Security+ · Networking Fundamentals</div>
+    <h1>What Is a <span>MAC Address?</span></h1>
+    <p class="page-hero-sub">
+      Every network device has a permanent hardware address burned in at the factory — and a temporary logical address assigned by DHCP. Understanding the difference between these two is a core A+ concept.
+    </p>
+  </div>
+</section>
+
+<!-- ARTICLE -->
+<div class="article-wrap">
+  <div class="article-body">
+
+    <h2>The simple answer</h2>
+
+    <p>A <strong>MAC address</strong> (Media Access Control address) is a unique identifier assigned to a network interface card (NIC) at the time it's manufactured. It's permanently embedded in the hardware — every Wi-Fi card, Ethernet adapter, and Bluetooth chip has one, and no two are supposed to be the same anywhere in the world.</p>
+
+    <p>If an IP address is like your current home address (it can change when you move), a MAC address is like your fingerprint — it stays with the hardware forever regardless of where it connects.</p>
+
+    <hr class="divider">
+
+    <h2>What a MAC address looks like</h2>
+
+    <p>A MAC address is 48 bits long, written as six pairs of hexadecimal characters separated by colons or hyphens. It always looks something like this:</p>
+
+    <div class="mac-anatomy">
+      <div class="mac-anatomy-label">🔍 MAC Address Anatomy</div>
+      <div class="mac-display">
+        <span class="mac-octet oui">A4</span>
+        <span class="mac-separator">:</span>
+        <span class="mac-octet oui">C3</span>
+        <span class="mac-separator">:</span>
+        <span class="mac-octet oui">F0</span>
+        <span class="mac-separator">:</span>
+        <span class="mac-octet device">7B</span>
+        <span class="mac-separator">:</span>
+        <span class="mac-octet device">2D</span>
+        <span class="mac-separator">:</span>
+        <span class="mac-octet device">91</span>
+      </div>
+      <div class="mac-legend">
+        <div class="mac-legend-item">
+          <div class="mac-legend-title">
+            <span class="mac-legend-color" style="background:var(--teal);"></span>
+            First 3 pairs — OUI
+          </div>
+          <div class="mac-legend-desc">Organizationally Unique Identifier — identifies the manufacturer. Every NIC made by the same company shares these first 3 bytes.</div>
+        </div>
+        <div class="mac-legend-item">
+          <div class="mac-legend-title">
+            <span class="mac-legend-color" style="background:#93c5fd;"></span>
+            Last 3 pairs — Device ID
+          </div>
+          <div class="mac-legend-desc">Assigned by the manufacturer to uniquely identify that specific device. This makes the full address globally unique.</div>
+        </div>
+      </div>
+    </div>
+
+    <p>Hexadecimal uses digits 0–9 and letters A–F, so each pair can represent values from 00 to FF. You don't need to memorize the math — just recognize the format on the exam.</p>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">⚡ A+ Exam Format Notes</div>
+      <p>MAC addresses appear on the exam written with <strong>colons</strong> (A4:C3:F0:7B:2D:91) or <strong>hyphens</strong> (A4-C3-F0-7B-2D-91). Both are the same address — Windows tends to use hyphens, Linux and Mac use colons. Either format is valid.</p>
+      <p>The exam may also call the first half the <strong>OUI (Organizationally Unique Identifier)</strong> — this identifies the manufacturer and is worth knowing by name.</p>
+    </div>
+
+    <hr class="divider">
+
+    <h2>MAC address vs IP address — the key difference</h2>
+
+    <p>This is one of the most commonly tested comparisons on the A+ exam. The short version: a MAC address is a <strong>permanent hardware identity</strong>, while an IP address is a <strong>temporary logical assignment</strong>. They operate at different layers of the OSI model and serve different purposes.</p>
+
+    <div class="compare-table-wrap">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>MAC Address</th>
+            <th>IP Address</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>What it is</td>
+            <td class="mac-col">Hardware address</td>
+            <td class="ip-col">Logical address</td>
+          </tr>
+          <tr>
+            <td>Assigned by</td>
+            <td class="mac-col">Manufacturer (burned in)</td>
+            <td class="ip-col">DHCP server or manually</td>
+          </tr>
+          <tr>
+            <td>Can it change?</td>
+            <td class="mac-col">No (permanent)*</td>
+            <td class="ip-col">Yes — changes per network</td>
+          </tr>
+          <tr>
+            <td>OSI Layer</td>
+            <td class="mac-col">Layer 2 — Data Link</td>
+            <td class="ip-col">Layer 3 — Network</td>
+          </tr>
+          <tr>
+            <td>Format</td>
+            <td class="mac-col">A4:C3:F0:7B:2D:91</td>
+            <td class="ip-col">192.168.1.25</td>
+          </tr>
+          <tr>
+            <td>Scope</td>
+            <td class="mac-col">Local network only</td>
+            <td class="ip-col">Global (internet-routable)</td>
+          </tr>
+          <tr>
+            <td>Used by</td>
+            <td class="mac-col">Switches, ARP</td>
+            <td class="ip-col">Routers, DNS, internet</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p style="font-size:13px;color:var(--muted);margin-top:-14px;margin-bottom:28px;">* MAC addresses can be spoofed in software, but the physical address burned into the hardware doesn't change.</p>
+
+    <hr class="divider">
+
+    <h2>How to find your MAC address on Windows</h2>
+
+    <p>The fastest way is with <code style="font-family:'DM Mono',monospace;font-size:13px;background:rgba(0,0,0,0.06);padding:2px 7px;border-radius:4px;">ipconfig /all</code> — the same command from the <a href="network-troubleshooting-commands.html">network troubleshooting commands guide</a>. Look for the line labeled <strong>Physical Address</strong>.</p>
+
+    <div class="cmd-block">
+      <div class="cmd-block-header">
+        <span class="cmd-block-name">ipconfig /all</span>
+        <span class="cmd-block-tag">Windows CMD</span>
+      </div>
+      <div class="cmd-block-body">
+        <div class="cmd-syntax">
+          <span class="cmd-prompt">C:\&gt;</span>ipconfig /all
+        </div>
+        <div class="cmd-output">
+          <span class="out-label">Sample output (Ethernet adapter)</span>
+          Ethernet adapter Ethernet:<br><br>
+          <span class="out-muted">&nbsp; Connection-specific DNS Suffix . :</span><br>
+          <span class="out-muted">&nbsp; Description . . . . . . . . . . . : Intel(R) Ethernet Connection</span><br>
+          &nbsp; <span class="out-highlight">Physical Address. . . . . . . . . : A4-C3-F0-7B-2D-91</span><br>
+          <span class="out-muted">&nbsp; DHCP Enabled. . . . . . . . . . . : Yes</span><br>
+          <span class="out-muted">&nbsp; IPv4 Address. . . . . . . . . . . : 192.168.1.25</span><br>
+          <span class="out-muted">&nbsp; Subnet Mask . . . . . . . . . . . : 255.255.255.0</span><br>
+          <span class="out-muted">&nbsp; Default Gateway . . . . . . . . . : 192.168.1.1</span>
+        </div>
+        <p class="cmd-note">The <strong>Physical Address</strong> line is your MAC address. Windows displays it with hyphens. Notice it appears right alongside the IP address — both are shown by <code style="font-family:'DM Mono',monospace;font-size:12px;background:rgba(0,0,0,0.06);padding:1px 6px;border-radius:4px;">ipconfig /all</code> but serve completely different purposes.</p>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <h2>How switches use MAC addresses</h2>
+
+    <p>This is where MAC addresses do their most important work. A <strong>switch</strong> operates at Layer 2 of the OSI model and uses MAC addresses — not IP addresses — to decide where to send frames on a local network.</p>
+
+    <div class="switch-flow">
+      <div class="switch-flow-header">🔀 How a Switch Learns and Forwards Using MAC Addresses</div>
+      <div class="switch-flow-body">
+        <div class="flow-steps">
+          <div class="flow-step">
+            <div class="flow-num">1</div>
+            <div>
+              <div class="flow-step-title">A frame arrives on a port</div>
+              <div class="flow-step-desc">When Device A sends data, the switch receives the frame on the port Device A is plugged into. The frame contains Device A's source MAC address.</div>
+            </div>
+          </div>
+          <div class="flow-step">
+            <div class="flow-num">2</div>
+            <div>
+              <div class="flow-step-title">The switch records the MAC address</div>
+              <div class="flow-step-desc">The switch adds the source MAC address and the port number to its <strong>MAC address table</strong> (also called a CAM table). Over time it learns where every device lives.</div>
+              <div class="flow-step-code">A4:C3:F0:7B:2D:91 → Port 3</div>
+            </div>
+          </div>
+          <div class="flow-step">
+            <div class="flow-num">3</div>
+            <div>
+              <div class="flow-step-title">The switch checks the destination MAC</div>
+              <div class="flow-step-desc">It looks up the destination MAC address in its table. If it finds a match, it sends the frame only to that specific port — not to everyone.</div>
+            </div>
+          </div>
+          <div class="flow-step">
+            <div class="flow-num">4</div>
+            <div>
+              <div class="flow-step-title">Unknown MAC = flood</div>
+              <div class="flow-step-desc">If the destination MAC is not in the table yet, the switch floods the frame out all ports (except the one it came in on) until it gets a response and learns where that device is.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p>This is why switches are more efficient than hubs — a hub blindly sends every frame to every device, while a switch uses MAC addresses to deliver frames only where they need to go.</p>
+
+    <hr class="divider">
+
+    <h2>ARP — how IP addresses get matched to MAC addresses</h2>
+
+    <p>Here's a question worth thinking about: if switches use MAC addresses and routers use IP addresses, how does a device know the MAC address of another device it wants to talk to?</p>
+
+    <p>The answer is <strong>ARP — Address Resolution Protocol</strong>. When Device A wants to send data to 192.168.1.30 but doesn't know its MAC address, it broadcasts an ARP request to the whole network: <em>"Who has 192.168.1.30? Tell me your MAC address."</em></p>
+
+    <div class="arp-box">
+      <div class="arp-box-label">🔗 ARP — The Bridge Between IP and MAC</div>
+      <p><strong>ARP Request (broadcast):</strong> "Who has 192.168.1.30? Tell A4:C3:F0:7B:2D:91."</p>
+      <p><strong>ARP Reply (unicast):</strong> "192.168.1.30 is at B8:27:EB:4A:1C:55."</p>
+      <p>Device A stores this mapping in its <strong>ARP cache</strong> so it doesn't have to ask again. You can view your ARP cache by running <code style="font-family:'DM Mono',monospace;font-size:12px;background:rgba(0,0,0,0.08);padding:1px 6px;border-radius:4px;">arp -a</code> in a Windows command prompt.</p>
+    </div>
+
+    <hr class="divider">
+
+    <h2>What the A+ exam tests on MAC addresses</h2>
+
+    <div class="key-facts">
+      <div class="key-fact">
+        <div class="key-fact-icon">📋</div>
+        <div>
+          <div class="key-fact-title">MAC = Layer 2 / Data Link</div>
+          <div class="key-fact-desc">The exam will ask which OSI layer MAC addresses operate at. The answer is always Layer 2 — the Data Link layer.</div>
+        </div>
+      </div>
+      <div class="key-fact">
+        <div class="key-fact-icon">🏭</div>
+        <div>
+          <div class="key-fact-title">OUI identifies the manufacturer</div>
+          <div class="key-fact-desc">The first three bytes (six hex characters) of a MAC address identify the manufacturer. This is called the OUI — Organizationally Unique Identifier.</div>
+        </div>
+      </div>
+      <div class="key-fact">
+        <div class="key-fact-icon">🔀</div>
+        <div>
+          <div class="key-fact-title">Switches use MACs, routers use IPs</div>
+          <div class="key-fact-desc">Switches forward frames using MAC addresses at Layer 2. Routers forward packets using IP addresses at Layer 3. Classic exam distinction.</div>
+        </div>
+      </div>
+      <div class="key-fact">
+        <div class="key-fact-icon">🔍</div>
+        <div>
+          <div class="key-fact-title">Physical Address in ipconfig /all</div>
+          <div class="key-fact-desc">Windows shows the MAC address as "Physical Address" in the output of ipconfig /all. Knowing how to find it is a tested skill.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">⚡ DHCP Reservations — a common A+ scenario</div>
+      <p>DHCP servers can be configured to always assign the same IP address to a specific device by matching its MAC address. This is called a <strong>DHCP reservation</strong> (or static DHCP assignment). The server says: "Whenever I see MAC address A4:C3:F0:7B:2D:91, always give it 192.168.1.50."</p>
+      <p>This is how network printers and servers get consistent IP addresses without being manually configured with a static IP. It comes up on both A+ and Network+ exams.</p>
+    </div>
+
+    <hr class="divider">
+
+    <h2>MAC spoofing — the Security+ attack</h2>
+
+    <p>Although MAC addresses are burned into hardware, the operating system can override what it transmits — this is called <strong>MAC spoofing</strong>. An attacker changes their device's reported MAC address to impersonate another device on the network.</p>
+
+    <div style="background:rgba(220,38,38,0.04);border:1px solid rgba(220,38,38,0.2);border-left:4px solid #ef4444;border-radius:12px;padding:16px 20px;margin-bottom:20px;">
+      <div style="font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;color:#dc2626;margin-bottom:8px;">⚠️ MAC spoofing — how and why</div>
+      <p style="font-size:14px;color:var(--text);line-height:1.7;margin-bottom:8px;"><strong>Bypass MAC filtering:</strong> Many wireless networks use MAC address filtering as an access control measure — only allowing known MAC addresses to connect. An attacker can capture a legitimate device's MAC address from wireless traffic (MACs are transmitted in plaintext) and spoof it to gain access.</p>
+      <p style="font-size:14px;color:var(--text);line-height:1.7;margin-bottom:0;"><strong>Identity impersonation:</strong> On wired networks, spoofing a MAC address can fool switches into forwarding traffic intended for the real device to the attacker instead — a form of Layer 2 interception.</p>
+    </div>
+
+    <div style="background:rgba(26,108,255,0.04);border:1px solid rgba(26,108,255,0.2);border-left:4px solid #1a6cff;border-radius:12px;padding:16px 20px;margin-bottom:28px;">
+      <div style="font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;color:#1a6cff;margin-bottom:8px;">📌 Why MAC filtering is weak security</div>
+      <p style="font-size:14px;color:var(--text);line-height:1.7;margin-bottom:0;">MAC filtering is easily defeated by spoofing and should never be relied on as a primary security control. The Security+ exam expects you to recognise it as <strong>security through obscurity</strong> — it adds friction but provides no real protection against a determined attacker. Use 802.1X (<a href="radius-explained.html">RADIUS</a> authentication) instead for genuine network access control.</p>
+    </div>
+
+    <h2>CAM table overflow attack</h2>
+
+    <p>Switches maintain a <strong>CAM table</strong> (Content Addressable Memory) — a mapping of MAC addresses to switch ports. This is how a switch knows which port to send traffic to, rather than flooding it everywhere like a hub. Each entry has a timeout and is refreshed when traffic is seen from that MAC address.</p>
+
+    <p>A <strong>CAM table overflow</strong> attack exploits the fact that the CAM table has finite memory. The attacker floods the switch with thousands of frames with fake source MAC addresses, filling the CAM table completely. When the table is full, the switch can no longer learn new entries — it falls back to flooding all traffic out of all ports, exactly like a hub. The attacker's device, connected to one of those ports, now receives a copy of every frame on the network.</p>
+
+    <div style="background:var(--navy);border-radius:12px;overflow:hidden;margin-bottom:28px;border:1px solid rgba(255,255,255,0.08);">
+      <div style="font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:0.7px;text-transform:uppercase;color:var(--teal);padding:10px 18px 8px;border-bottom:1px solid rgba(255,255,255,0.08);">CAM table overflow — attack flow</div>
+      <pre style="font-family:'DM Mono',monospace;font-size:13px;color:rgba(255,255,255,0.85);line-height:1.8;padding:14px 18px;overflow-x:auto;margin:0;"><span style="color:rgba(255,255,255,0.35);">Normal operation:</span>
+Switch CAM table: AA:BB:CC → Port 1 | DD:EE:FF → Port 2 | ...
+Switch sends traffic only to the correct port
+
+<span style="color:#ef4444;font-weight:700;">Attack:</span>
+Attacker tool (macof) floods switch with 10,000+ fake MAC addresses
+CAM table fills to capacity — no more entries can be added
+
+<span style="color:rgba(255,255,255,0.35);">Result:</span>
+Switch cannot find new MACs in table → floods ALL traffic to ALL ports
+Attacker receives a copy of every frame → <span style="color:#ef4444;font-weight:700;">passive network interception</span></pre>
+    </div>
+
+    <h2>Port security — the defence</h2>
+
+    <p><strong>Port security</strong> is a switch feature that limits how many MAC addresses can be learned on a given port, and optionally locks the port to specific MAC addresses. It directly counters CAM table overflow attacks and prevents rogue devices from connecting.</p>
+
+    <div style="background:var(--navy);border-radius:12px;overflow:hidden;margin-bottom:28px;border:1px solid rgba(255,255,255,0.08);">
+      <div style="font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:0.7px;text-transform:uppercase;color:var(--teal);padding:10px 18px 8px;border-bottom:1px solid rgba(255,255,255,0.08);">Port security — violation modes</div>
+      <pre style="font-family:'DM Mono',monospace;font-size:13px;color:rgba(255,255,255,0.85);line-height:1.8;padding:14px 18px;overflow-x:auto;margin:0;"><span style="color:var(--teal);font-weight:700;">Protect</span>   Drop frames from unknown MACs. No alert, port stays up.
+<span style="color:#fcd34d;font-weight:700;">Restrict</span>  Drop frames + increment violation counter + send <a href="snmp-explained.html">SNMP</a> trap.
+<span style="color:#ef4444;font-weight:700;">Shutdown</span>  Put port into err-disabled state immediately. Requires manual re-enable.
+           ← Default and most secure. The exam answer when asked "most restrictive mode".</pre>
+    </div>
+
+    <div class="exam-tip">
+      <div class="exam-tip-label">⚡ Security+ — MAC address attacks summary</div>
+      <p><strong>MAC spoofing</strong> — attacker changes their MAC to impersonate another device. Bypasses MAC filtering. Defence: use 802.1X instead of MAC filtering.</p>
+      <p><strong>CAM table overflow</strong> — floods switch with fake MACs until it floods traffic like a hub. Enables passive interception. Defence: port security with maximum MAC limit per port.</p>
+      <p><strong>Port security shutdown mode</strong> — the most restrictive violation response. Err-disables the port immediately when a violation is detected.</p>
+    </div>
+
+    <h2>Broadcast vs unicast vs multicast — MAC addressing modes</h2>
+
+    <p>Not all frames are addressed to a single device. Understanding the three MAC addressing modes is tested on both A+ and Network+:</p>
+
+    <div style="overflow-x:auto;border-radius:14px;border:1px solid var(--border);box-shadow:var(--card-shadow);margin-bottom:28px;">
+      <table style="width:100%;border-collapse:collapse;background:var(--white);min-width:360px;">
+        <thead>
+          <tr>
+            <th style="background:var(--navy);color:rgba(255,255,255,0.9);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.7px;padding:12px 16px;text-align:left;font-family:'DM Mono',monospace;">Type</th>
+            <th style="background:var(--navy);color:rgba(255,255,255,0.7);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.7px;padding:12px 16px;text-align:left;font-family:'DM Mono',monospace;">MAC address</th>
+            <th style="background:var(--navy);color:rgba(255,255,255,0.7);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.7px;padding:12px 16px;text-align:left;font-family:'DM Mono',monospace;">Delivered to</th>
+            <th style="background:var(--navy);color:rgba(255,255,255,0.7);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.7px;padding:12px 16px;text-align:left;font-family:'DM Mono',monospace;">Example use</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:11px 16px;font-weight:700;color:var(--navy);font-family:'DM Mono',monospace;font-size:13px;">Unicast</td>
+            <td style="padding:11px 16px;font-size:13.5px;">Specific device MAC</td>
+            <td style="padding:11px 16px;font-size:13.5px;">One device only</td>
+            <td style="padding:11px 16px;font-size:13.5px;">Normal data transfer between two devices</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:11px 16px;font-weight:700;color:var(--navy);font-family:'DM Mono',monospace;font-size:13px;">Broadcast</td>
+            <td style="padding:11px 16px;font-size:13.5px;">FF:FF:FF:FF:FF:FF</td>
+            <td style="padding:11px 16px;font-size:13.5px;">All devices on segment</td>
+            <td style="padding:11px 16px;font-size:13.5px;">ARP requests, DHCP discovery</td>
+          </tr>
+          <tr>
+            <td style="padding:11px 16px;font-weight:700;color:var(--navy);font-family:'DM Mono',monospace;font-size:13px;">Multicast</td>
+            <td style="padding:11px 16px;font-size:13.5px;">Starts with 01:00:5E (IPv4)</td>
+            <td style="padding:11px 16px;font-size:13.5px;">Group of subscribed devices</td>
+            <td style="padding:11px 16px;font-size:13.5px;">Video streaming, routing protocol updates</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Key Takeaways</h2>
+
+    <div class="summary-list">
+      <div class="summary-item">A MAC address is a <strong>permanent hardware identifier</strong> burned into a NIC at the factory — 48 bits written as 6 pairs of hex characters</div>
+      <div class="summary-item">The first 3 pairs are the <strong>OUI</strong> (manufacturer ID), the last 3 pairs uniquely identify the device</div>
+      <div class="summary-item">MAC addresses operate at <strong>OSI Layer 2 (Data Link)</strong> — IP addresses operate at Layer 3 (Network)</div>
+      <div class="summary-item"><strong>Switches</strong> use MAC address tables to forward frames only to the correct port — more efficient than hubs</div>
+      <div class="summary-item"><strong>ARP</strong> resolves IP addresses to MAC addresses on a local network — view your cache with <code style="font-family:'DM Mono',monospace;font-size:12px;">arp -a</code></div>
+      <div class="summary-item">Find your MAC address on Windows with <code style="font-family:'DM Mono',monospace;font-size:12px;">ipconfig /all</code> — look for <strong>Physical Address</strong></div>
+      <div class="summary-item"><strong>DHCP reservations</strong> use MAC addresses to assign a consistent IP to a specific device every time</div>
+    </div>
+
+    
+<div class="author-bio-wrap" style="background:#f0f4fa;border:1px solid #e2e8f4;border-radius:14px;padding:24px 26px;margin:48px 0 40px;display:flex;align-items:flex-start;gap:18px;">
+  <div style="flex-shrink:0;width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#0a1628 0%,#1a6cff 100%);display:flex;align-items:center;justify-content:center;font-family:'Outfit',sans-serif;font-size:20px;font-weight:800;color:#fff;">IH</div>
+  <div>
+    <div style="font-family:'Outfit',sans-serif;font-size:15px;font-weight:800;color:#0a1628;margin-bottom:4px;">IT Study Hub Editorial Team</div>
+    <div style="font-family:'DM Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#1a6cff;margin-bottom:8px;">CompTIA A+ &middot; Network+ &middot; Security+</div>
+    <p style="font-size:13px;color:#5c6f87;line-height:1.65;margin:0;">Our content is written and reviewed by IT professionals holding active CompTIA certifications. Every article is grounded in current exam objectives and cross-checked against official CompTIA documentation and authoritative primary sources. <a href="about.html" style="color:#1a6cff;font-weight:600;">About us &rarr;</a></p>
+  </div>
+</div>
+<h2>Related Articles</h2>
+
+    <div class="related-grid">
+      <a href="osi-model.html" class="related-link">OSI Model — All 7 Layers</a>
+      <a href="network-troubleshooting-commands.html" class="related-link">Network Troubleshooting Commands</a>
+      <a href="dhcp.html" class="related-link">What Is DHCP?</a>
+      <a href="dns.html" class="related-link">What Is DNS?</a>
+      <a href="subnet-mask.html" class="related-link">What Is a Subnet Mask?</a>
+      <a href="default-gateway.html" class="related-link">What Is a Default Gateway?</a>
+      <a href="tcp-vs-udp.html" class="related-link">TCP vs UDP Explained</a>
+      <a href="firewall-basics.html" class="related-link">Firewall Basics</a>
+      <a href="router-vs-switch.html" class="related-link">Router vs Switch</a>
+      <a href="networking.html" class="related-link">Networking Master Guide</a>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-box">
+      <div class="cta-box-text">
+        <h3>Preparing for the A+ exam?</h3>
+        <p>See the books and practice exams that make the most difference.</p>
+      </div>
+      <a href="best-a-plus.html" class="btn btn-teal">See Best Study Resources →</a>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">IT Study Hub</div>
+      <div class="footer-tagline">Practical CompTIA A+ · Network+ · Security+ and Networking resources for real-world IT success.</div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Pages</div>
+      <a href="index.html">Home</a>
+      <a href="networking-roadmap.html">Networking Roadmap</a>
+      <a href="networking.html">Networking Guide</a>
+      <a href="home-lab.html">Home Lab</a>
+      <a href="best-a-plus.html">Best Study Resources</a>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">Topics</div>
+      <a href="osi-model.html">OSI Model</a>
+      <a href="tcp-vs-udp.html">TCP vs UDP</a>
+      <a href="dhcp.html">DHCP</a>
+      <a href="dns.html">DNS</a>
+      <a href="default-gateway.html">Default Gateway</a>
+      <a href="nat-explained.html">NAT</a>
+      <a href="mac-address.html">MAC Address</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 <a href="https://fogartyholdings.com" target="_blank" rel="noopener" style="color:inherit;">Fogarty Holdings LLC</a>. All rights reserved.</span>
+    <span class="footer-email"><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#105;&#116;&#115;&#116;&#117;&#100;&#121;&#104;&#117;&#98;&#46;&#111;&#114;&#103;" class="footer-pp">contact&#64;itstudyhub&#46;org</a> &nbsp;&middot;&nbsp; <a href="privacy-policy.html" class="footer-pp">Privacy Policy</a> &nbsp;&middot;&nbsp; Disclosure: Some links on this site may be affiliate links. I may earn a small commission at no extra cost to you.</span>
+  </div>
+</footer>
+
+</body>
+</html>
