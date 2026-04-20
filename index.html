@@ -336,6 +336,24 @@
     }
     .venture-card:hover .venture-link { gap: 0.65rem; }
 
+    .venture-privacy {
+      display: inline-block;
+      margin-top: 0.5rem;
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border-bottom: 1px dotted rgba(122, 158, 192, 0.3);
+      padding-bottom: 1px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .venture-privacy:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
     /* ── ABOUT STRIP ── */
     .about-strip {
       display: grid;
@@ -495,6 +513,7 @@
       <a href="https://itstudyhub.org" class="btn-primary" target="_blank">↗ IT Study Hub</a>
       <a href="https://apps.apple.com/us/app/certflash-comptia-study-cards/id6761732835" class="btn-ghost" target="_blank">↗ CertFlash on App Store</a>
       <a href="https://apps.apple.com/us/app/digital-legacy-vault/id6762098328" class="btn-ghost" target="_blank">↗ Digital Legacy Vault</a>
+      <a href="#netscanpro" class="btn-ghost">↗ NetScanPro</a>
     </div>
   </div>
 
@@ -512,6 +531,7 @@
         <div class="venture-name">CertFlash</div>
         <p class="venture-desc">CompTIA Study Cards — an intuitive flashcard app designed to help IT professionals master A+, Network+, Security+, and more certification exams.</p>
         <a href="https://apps.apple.com/us/app/certflash-comptia-study-cards/id6761732835" class="venture-link" target="_blank">View on App Store →</a>
+        <a href="/certflash-privacy.html" class="venture-privacy">Privacy Policy</a>
       </div>
 
       <div class="venture-card">
@@ -520,6 +540,16 @@
         <div class="venture-name">Digital Legacy Vault</div>
         <p class="venture-desc">Securely store and organize your most important digital information — passwords, accounts, documents, and final wishes — so loved ones are never left searching.</p>
         <a href="https://apps.apple.com/us/app/digital-legacy-vault/id6762098328" class="venture-link" target="_blank">View on App Store →</a>
+        <a href="/digital-legacy-vault-privacy.html" class="venture-privacy">Privacy Policy</a>
+      </div>
+
+      <div class="venture-card" id="netscanpro">
+        <span class="venture-tag tag-app">iOS App</span>
+        <div class="venture-icon">📡</div>
+        <div class="venture-name">NetScanPro</div>
+        <p class="venture-desc">A privacy-first network scanner for iOS. Discover devices, services, and open ports on your local Wi-Fi network — all processed on-device with Face ID protection.</p>
+        <a href="#" class="venture-link">Coming Soon →</a>
+        <a href="/netscanpro-privacy.html" class="venture-privacy">Privacy Policy</a>
       </div>
 
       <div class="venture-card">
