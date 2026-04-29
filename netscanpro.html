@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-J1LCDRSX16"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-J1LCDRSX16');
+  </script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NetScanPro — Privacy-First Wi-Fi Network Scanner for iOS | Fogarty Holdings</title>
+  <meta name="description" content="Discover every device on your Wi-Fi. NetScanPro is a privacy-first network scanner for iOS — no accounts, no servers, no subscriptions. One-time $6.99 unlock.">
+
+  <link rel="canonical" href="https://fogartyholdings.com/netscanpro.html">
+
+  <!-- Open Graph / Link Preview Tags -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://fogartyholdings.com/netscanpro.html">
+  <meta property="og:title" content="NetScanPro — Privacy-First Wi-Fi Network Scanner for iOS">
+  <meta property="og:description" content="Discover every device on your Wi-Fi. Privacy-first iOS network scanner — no accounts, no servers, no subscriptions. One-time $6.99 unlock.">
+  <meta property="og:image" content="https://fogartyholdings.com/netscanpro-icon.png">
+  <meta property="og:image:width" content="1024">
+  <meta property="og:image:height" content="1024">
+
+  <!-- Twitter / iMessage Card Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="NetScanPro — Privacy-First Wi-Fi Network Scanner for iOS">
+  <meta name="twitter:description" content="Discover every device on your Wi-Fi. Privacy-first iOS network scanner — no accounts, no servers, no subscriptions. One-time $6.99 unlock.">
+  <meta name="twitter:image" content="https://fogartyholdings.com/netscanpro-icon.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+  <!-- Schema.org structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "NetScanPro",
+    "description": "Privacy-first Wi-Fi network scanner for iOS. Discover devices, services, and open ports on your local network using TCP probing and Bonjour/mDNS. No accounts, no servers, no subscriptions.",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "iOS",
+    "url": "https://fogartyholdings.com/netscanpro.html",
+    "image": "https://fogartyholdings.com/netscanpro-icon.png",
+    "downloadUrl": "https://apps.apple.com/us/app/netscanpro/id6762677151",
+    "offers": {
+      "@type": "Offer",
+      "price": "6.99",
+      "priceCurrency": "USD"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Fogarty Holdings LLC",
+      "url": "https://fogartyholdings.com"
+    }
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #060d1a;
+      --surface: #0c1828;
+      --surface2: #122035;
+      --border: rgba(100,160,255,0.15);
+      --accent: #5badee;
+      --accent2: #93ccff;
+      --text: #ffffff;
+      --muted: #7a9ec0;
+      --jakarta: 'Plus Jakarta Sans', sans-serif;
+      --mono: 'DM Mono', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--jakarta);
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── GRID BACKGROUND ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(79,163,224,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(79,163,224,0.04) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── GLOW ORBS ── */
+    .orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(120px);
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.35;
+    }
+    .orb-1 { width: 600px; height: 600px; background: #1a5a9e; top: -200px; right: -150px; }
+    .orb-2 { width: 500px; height: 500px; background: #0e3d78; bottom: -100px; left: -150px; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 3rem;
+      background: rgba(6,13,26,0.88);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-size: 0.8rem;
+      font-family: var(--mono);
+      color: var(--accent);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+
+    .nav-pill {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 0.35rem 0.85rem;
+      border-radius: 100px;
+      letter-spacing: 0.1em;
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .nav-pill:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 8rem 3rem 4rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .app-icon {
+      width: 160px;
+      height: 160px;
+      border-radius: 36px;
+      box-shadow:
+        0 20px 60px rgba(91, 173, 238, 0.25),
+        0 0 0 1px rgba(255,255,255,0.05);
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards 0.05s;
+    }
+
+    .hero-eyebrow {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--accent);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards 0.2s;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    .hero-title {
+      font-size: clamp(3rem, 8vw, 6.5rem);
+      font-weight: 800;
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards 0.35s;
+    }
+    .hero-title span {
+      background: linear-gradient(135deg, #93ccff, #c8e8ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-tagline {
+      font-size: clamp(1.15rem, 2.2vw, 1.5rem);
+      font-weight: 500;
+      color: var(--text);
+      max-width: 640px;
+      line-height: 1.4;
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards 0.45s;
+    }
+
+    .hero-desc {
+      font-family: var(--mono);
+      font-size: 0.9rem;
+      color: var(--muted);
+      max-width: 540px;
+      line-height: 1.8;
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards 0.55s;
+    }
+
+    .hero-cta {
+      margin-top: 2.5rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards 0.65s;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--accent);
+      color: #fff;
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      padding: 0.75rem 1.5rem;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .btn-primary:hover { opacity: 0.85; transform: translateY(-2px); }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: transparent;
+      color: var(--text);
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      padding: 0.75rem 1.5rem;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      text-decoration: none;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .btn-ghost:hover { border-color: var(--accent); transform: translateY(-2px); }
+
+    /* ── SECTION ── */
+    section {
+      position: relative;
+      z-index: 1;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 5rem 3rem;
+    }
+
+    .section-label {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      color: var(--accent);
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .section-label::before {
+      content: '';
+      display: block;
+      width: 20px; height: 1px;
+      background: var(--accent);
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 4.5vw, 3rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 2.5rem;
+      line-height: 1.1;
+    }
+
+    .section-title span {
+      background: linear-gradient(135deg, #93ccff, #c8e8ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ── PROBLEM NARRATIVE ── */
+    .narrative {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 3rem;
+    }
+
+    .narrative p {
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: var(--text);
+      margin-bottom: 1.25rem;
+    }
+    .narrative p:last-child { margin-bottom: 0; }
+
+    .narrative .muted {
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 0.9rem;
+    }
+
+    /* ── FEATURES GRID ── */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+
+    .feature-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .feature-card:hover {
+      border-color: rgba(91,173,238,0.45);
+      transform: translateY(-4px);
+    }
+
+    .feature-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .feature-name {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.01em;
+    }
+
+    .feature-desc {
+      font-family: var(--mono);
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* ── AUDIENCE STRIP ── */
+    .audience-strip {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .audience-cell {
+      background: var(--surface);
+      padding: 2rem 1.5rem;
+      text-align: center;
+    }
+
+    .audience-icon {
+      font-size: 1.8rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .audience-label {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      line-height: 1.4;
+    }
+
+    /* ── PRICING ── */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .pricing-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2.25rem;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.3s, transform 0.3s;
+      position: relative;
+    }
+    .pricing-card:hover {
+      border-color: rgba(91,173,238,0.45);
+      transform: translateY(-4px);
+    }
+
+    .pricing-card.featured {
+      border-color: rgba(91,173,238,0.45);
+      background: linear-gradient(180deg, rgba(91,173,238,0.06), rgba(91,173,238,0.02));
+    }
+
+    .pricing-badge {
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--accent);
+      color: #fff;
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      padding: 0.25rem 0.85rem;
+      border-radius: 100px;
+      text-transform: uppercase;
+    }
+
+    .pricing-tier {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--muted);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .pricing-amount {
+      font-size: 2.2rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.25rem;
+    }
+
+    .pricing-period {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .pricing-features {
+      list-style: none;
+      margin-bottom: 1.5rem;
+      flex-grow: 1;
+    }
+
+    .pricing-features li {
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      color: var(--text);
+      line-height: 1.5;
+      padding: 0.55rem 0;
+      padding-left: 1.5rem;
+      position: relative;
+      border-bottom: 1px solid var(--border);
+    }
+    .pricing-features li:last-child { border-bottom: none; }
+    .pricing-features li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    /* ── PRIVACY CALLOUT ── */
+    .privacy-callout {
+      background: linear-gradient(135deg, rgba(91,173,238,0.08), rgba(14,61,120,0.12));
+      border: 1px solid rgba(91,173,238,0.25);
+      border-radius: 12px;
+      padding: 3rem;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .privacy-icon {
+      font-size: 4rem;
+    }
+
+    .privacy-content h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 0.85rem;
+      letter-spacing: -0.01em;
+    }
+
+    .privacy-content p {
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.75;
+      margin-bottom: 0.75rem;
+    }
+    .privacy-content p:last-child { margin-bottom: 0; }
+
+    .privacy-content a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s;
+    }
+    .privacy-content a:hover { border-bottom-color: var(--accent); }
+
+    /* ── FINAL CTA ── */
+    .final-cta {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 4rem 3rem;
+      text-align: center;
+    }
+
+    .final-cta h3 {
+      font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+
+    .final-cta p {
+      font-family: var(--mono);
+      font-size: 0.9rem;
+      color: var(--muted);
+      max-width: 480px;
+      margin: 0 auto 2rem;
+      line-height: 1.7;
+    }
+
+    .final-cta .hero-cta {
+      justify-content: center;
+      animation: none;
+      opacity: 1;
+      margin-top: 0;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid var(--border);
+      padding: 2rem 3rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-left, .footer-right {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+    }
+
+    .footer-right a {
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-right a:hover { color: var(--accent); }
+
+    /* ── DIVIDER ── */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 0 3rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .features-grid { grid-template-columns: 1fr; }
+      .audience-strip { grid-template-columns: repeat(2, 1fr); }
+      .pricing-grid { grid-template-columns: 1fr; }
+      .privacy-callout { grid-template-columns: 1fr; gap: 1.5rem; text-align: left; }
+    }
+    @media (max-width: 700px) {
+      nav { padding: 1rem 1.5rem; }
+      .hero { padding: 7rem 1.5rem 3rem; }
+      section { padding: 3.5rem 1.5rem; }
+      .narrative { padding: 2rem; }
+      .privacy-callout { padding: 2rem; }
+      .final-cta { padding: 3rem 1.5rem; }
+      footer { flex-direction: column; padding: 1.5rem; }
+      .divider { margin: 0 1.5rem; }
+      .audience-strip { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+
+  <nav>
+    <a href="/" class="nav-logo">FH // LLC</a>
+    <a href="/" class="nav-pill">← Back to Fogarty Holdings</a>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <img src="netscanpro-icon.png" alt="NetScanPro app icon — privacy-first iOS Wi-Fi network scanner" class="app-icon">
+    <div class="hero-eyebrow">iOS App · Now Available</div>
+    <h1 class="hero-title"><span>NetScanPro</span></h1>
+    <p class="hero-tagline">Discover everything on your Wi-Fi.</p>
+    <p class="hero-desc">Privacy-first network scanner for iOS. No accounts, no servers, no subscriptions. Find every device on your network — Macs, PCs, phones, printers, smart TVs, routers — and understand what's actually running on them.</p>
+    <div class="hero-cta">
+      <a href="https://apps.apple.com/us/app/netscanpro/id6762677151" class="btn-primary" target="_blank">↗ Download on App Store</a>
+      <a href="#features" class="btn-ghost">Learn how it works ↓</a>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- WHY IT'S DIFFERENT -->
+  <section>
+    <div class="section-label reveal">Why It's Different</div>
+    <h2 class="section-title reveal">It doesn't just scan.<br><span>It teaches.</span></h2>
+
+    <div class="narrative reveal">
+      <p>Most network scanners hand you a wall of port numbers and walk away. NetScanPro explains them in plain language so you actually understand what you're looking at.</p>
+      <p>Tap port 445 and you'll see SMB — file sharing — flagged with a security note explaining the WannaCry ransomware connection and why exposing it on an untrusted network is risky. Tap port 3389 and you'll see RDP, with a note about brute-force attempts on internet-facing hosts. Every scanned port comes with context: what the service does, what it's for, and what to watch out for.</p>
+      <p class="muted">Network printers, IP cameras, RDP, Telnet, MQTT — services that are harmless on your home Wi-Fi but a problem if your network is misconfigured. NetScanPro flags them.</p>
+      <p>It's built for the curious — people who want to know what's actually running on their network, not just see a count.</p>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- FEATURES -->
+  <section id="features">
+    <div class="section-label reveal">Features</div>
+    <h2 class="section-title reveal">Everything you need.<br><span>Nothing you don't.</span></h2>
+
+    <div class="features-grid reveal">
+      <div class="feature-card">
+        <div class="feature-icon">📡</div>
+        <div class="feature-name">Discover every device</div>
+        <p class="feature-desc">Scans your Wi-Fi using TCP probing and Bonjour/mDNS. Finds Macs, PCs, phones, printers, smart TVs, routers, smart speakers, and more — with hostname, IP, MAC, and vendor info.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🔍</div>
+        <div class="feature-name">Understand open ports (Pro)</div>
+        <p class="feature-desc">Scan 25 common ports per device. Tap any port for a plain-language explanation. Security notes flag risky exposures like SMB, RDP, IP cameras, and network printers.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🔒</div>
+        <div class="feature-name">Stays on your device</div>
+        <p class="feature-desc">All scanning happens locally on your iPhone. No accounts, no analytics, no tracking, no servers. Your scan history stays on your phone — nothing ever leaves it.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">💸</div>
+        <div class="feature-name">One-time purchase</div>
+        <p class="feature-desc">Pro unlocks for $6.99, once. No subscriptions, no upsells, no expiration. Pay through Apple, restore on any device signed into your Apple ID.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- PRIVACY -->
+  <section>
+    <div class="section-label reveal">Privacy</div>
+    <h2 class="section-title reveal">Built for people who care<br><span>where their data goes.</span></h2>
+
+    <div class="privacy-callout reveal">
+      <div class="privacy-icon">🔒</div>
+      <div class="privacy-content">
+        <h3>Nothing leaves your phone.</h3>
+        <p>All scanning happens on your iPhone. NetScanPro <strong>never</strong> connects to remote servers, because there are no remote servers. There's no account to create, no email to hand over, no "free trial that requires sign-up."</p>
+        <p>No analytics SDKs. No crash reporters. No third-party trackers. Face ID is required to unlock the app, so even your local scan history stays yours. Payment is handled by Apple — NetScanPro never sees your card details.</p>
+        <p><a href="/netscanpro-privacy.html">Read the full Privacy Policy →</a></p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- PRICING -->
+  <section>
+    <div class="section-label reveal">Pricing</div>
+    <h2 class="section-title reveal">Pay once. Done.</h2>
+
+    <div class="pricing-grid reveal" style="grid-template-columns: repeat(2, 1fr); max-width: 760px; margin-left: auto; margin-right: auto;">
+      <div class="pricing-card">
+        <div class="pricing-tier">Free</div>
+        <div class="pricing-amount">$0</div>
+        <div class="pricing-period">Forever</div>
+        <ul class="pricing-features">
+          <li>Unlimited device discovery</li>
+          <li>3 network scans per day</li>
+          <li>Hostname, IP, MAC, vendor info</li>
+          <li>Bonjour/mDNS service detection</li>
+          <li>Face ID protection</li>
+        </ul>
+        <a href="https://apps.apple.com/us/app/netscanpro/id6762677151" class="btn-ghost" target="_blank">↗ Get Started Free</a>
+      </div>
+
+      <div class="pricing-card featured">
+        <div class="pricing-badge">One-time</div>
+        <div class="pricing-tier">Pro</div>
+        <div class="pricing-amount">$6.99</div>
+        <div class="pricing-period">One-time payment</div>
+        <ul class="pricing-features">
+          <li>Unlimited scans</li>
+          <li>Port scanning on every device</li>
+          <li>Plain-language port descriptions</li>
+          <li>Security notes for risky exposures</li>
+          <li>No subscriptions, ever</li>
+        </ul>
+        <a href="https://apps.apple.com/us/app/netscanpro/id6762677151" class="btn-primary" target="_blank">↗ Unlock Pro on App Store</a>
+      </div>
+    </div>
+
+    <p style="font-family: var(--mono); font-size: 0.78rem; color: var(--muted); text-align: center; margin-top: 1.5rem; line-height: 1.7;">
+      Restore Purchase brings your Pro entitlement to any device signed into your Apple ID.
+    </p>
+  </section>
+
+  <hr class="divider">
+
+  <!-- FAQ -->
+  <section>
+    <div class="section-label reveal">FAQ</div>
+    <h2 class="section-title reveal">Common questions.</h2>
+
+    <div class="features-grid reveal">
+      <div class="feature-card">
+        <div class="feature-name">Is this like Fing?</div>
+        <p class="feature-desc">Similar device discovery, but no subscriptions and no servers. Fewer bells and whistles — more privacy. NetScanPro doesn't phone home, doesn't require an account, and unlocks fully for a one-time $6.99.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-name">Will it work on my home network?</div>
+        <p class="feature-desc">Yes — any standard home Wi-Fi. NetScanPro is designed for /24 IPv4 subnets and is IPv6-aware. Works on Wi-Fi 5, 6, 6E, and 7 routers from any vendor.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-name">Why does it ask for local network permission?</div>
+        <p class="feature-desc">iOS requires that permission for any app that scans the local network. It's the same prompt Sonos, Hue, and AirPlay apps trigger. Explained in the App Store privacy disclosure.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-name">Why doesn't it find my Alexa?</div>
+        <p class="feature-desc">Amazon devices use proprietary discovery protocols that don't broadcast on standard mDNS or respond to typical TCP probes. We're working on better detection for a future release.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-name">Do you sell my data?</div>
+        <p class="feature-desc">No. There's nothing to sell. Nothing leaves your device — no scan history, no device list, no analytics. There's no server to leak from because there's no server.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-name">What happens if I switch phones?</div>
+        <p class="feature-desc">Tap "Restore Purchase" inside NetScanPro on the new device. Your Pro entitlement follows your Apple ID, so any iPhone or iPad signed in gets Pro features automatically.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- FINAL CTA -->
+  <section>
+    <div class="final-cta reveal">
+      <h3>See what's on your network.</h3>
+      <p>Free to try with unlimited device discovery. Unlock Pro for $6.99 — once, never again.</p>
+      <div class="hero-cta">
+        <a href="https://apps.apple.com/us/app/netscanpro/id6762677151" class="btn-primary" target="_blank">↗ Download on App Store</a>
+        <a href="/" class="btn-ghost">← Back to Fogarty Holdings</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-left">© 2026 Fogarty Holdings LLC. All rights reserved.</div>
+    <div class="footer-right">
+      <a href="/">fogartyholdings.com</a> · <a href="/netscanpro-privacy.html">Privacy</a> · <a href="mailto:contact@fogartyholdings.com">Contact</a>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach((el, i) => {
+      el.style.transitionDelay = `${i * 0.07}s`;
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
