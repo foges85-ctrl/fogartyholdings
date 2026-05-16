@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bar Barons — Privacy Policy | Fogarty Holdings LLC</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #060d1a;
+      --surface: #0c1828;
+      --surface2: #122035;
+      --border: rgba(100,160,255,0.15);
+      --accent: #5badee;
+      --accent2: #93ccff;
+      --text: #ffffff;
+      --muted: #7a9ec0;
+      --jakarta: 'Plus Jakarta Sans', sans-serif;
+      --mono: 'DM Mono', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--jakarta);
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── GRID BACKGROUND ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(79,163,224,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(79,163,224,0.04) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── GLOW ORBS ── */
+    .orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(120px);
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.35;
+    }
+    .orb-1 { width: 600px; height: 600px; background: #1a5a9e; top: -200px; right: -150px; }
+    .orb-2 { width: 500px; height: 500px; background: #0e3d78; bottom: -100px; left: -150px; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 3rem;
+      background: rgba(6,13,26,0.88);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-size: 0.8rem;
+      font-family: var(--mono);
+      color: var(--accent);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+    .nav-logo:hover { color: var(--accent2); }
+
+    .nav-pill {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 0.35rem 0.85rem;
+      border-radius: 100px;
+      letter-spacing: 0.1em;
+    }
+
+    /* ── PAGE HEADER ── */
+    .page-header {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 9rem 3rem 3rem;
+    }
+
+    .page-eyebrow {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      color: var(--accent);
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards 0.2s;
+    }
+    .page-eyebrow::before {
+      content: '';
+      display: block;
+      width: 20px; height: 1px;
+      background: var(--accent);
+    }
+
+    .page-title {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+      margin-bottom: 1rem;
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards 0.35s;
+    }
+    .page-title span {
+      background: linear-gradient(135deg, #93ccff, #c8e8ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .page-meta {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--muted);
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards 0.5s;
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 0 3rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── CONTENT CARD ── */
+    .content-wrap {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      margin: 3rem auto 5rem;
+      padding: 0 3rem;
+    }
+
+    .content-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 3rem;
+    }
+
+    /* ── TYPOGRAPHY ── */
+    .content-card h2 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin: 2.5rem 0 0.75rem;
+      font-family: var(--mono);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    .content-card h2:first-child { margin-top: 0; }
+
+    .content-card p {
+      font-family: var(--jakarta);
+      font-size: 0.925rem;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+
+    .content-card p strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .content-card ul {
+      margin: 0.5rem 0 1rem 1.25rem;
+      color: var(--muted);
+    }
+
+    .content-card ul li {
+      font-family: var(--jakarta);
+      font-size: 0.925rem;
+      line-height: 1.8;
+      margin-bottom: 0.35rem;
+      color: var(--muted);
+    }
+
+    .content-card a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(91,173,238,0.3);
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .content-card a:hover {
+      color: var(--accent2);
+      border-color: var(--accent2);
+    }
+
+    .content-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2.5rem 0;
+    }
+
+    .content-note {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+    .content-note a {
+      color: var(--accent);
+      border-bottom: 1px solid rgba(91,173,238,0.3);
+      text-decoration: none;
+    }
+    .content-note a:hover { color: var(--accent2); }
+
+    /* ── FOOTER ── */
+    footer {
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid var(--border);
+      padding: 2rem 3rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-left {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+    }
+    .footer-right {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+    }
+    .footer-right a {
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-right a:hover { color: var(--accent); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 700px) {
+      nav { padding: 1rem 1.5rem; }
+      .page-header { padding: 8rem 1.5rem 2.5rem; }
+      .divider { margin: 0 1.5rem; }
+      .content-wrap { padding: 0 1.5rem; margin: 2rem auto 4rem; }
+      .content-card { padding: 2rem 1.5rem; }
+      footer { flex-direction: column; padding: 1.5rem; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+
+  <nav>
+    <a href="https://fogartyholdings.com" class="nav-logo">FH // LLC</a>
+    <div class="nav-pill">Bar Barons ✦ Privacy Policy</div>
+  </nav>
+
+  <div class="page-header">
+    <div class="page-eyebrow">Legal</div>
+    <h1 class="page-title">Bar Barons<br><span>Privacy Policy</span></h1>
+    <p class="page-meta">Effective date: May 16, 2026</p>
+  </div>
+
+  <hr class="divider">
+
+  <div class="content-wrap">
+    <div class="content-card reveal">
+
+      <p>This privacy policy applies to the <strong>Bar Barons</strong> app (hereby referred to as "Application") for iOS devices, created by <strong>Fogarty Holdings LLC</strong> (hereby referred to as "Service Provider"). Bar Barons is a free social game for NYC bar-goers with no in-app purchases at launch. This service is intended for use "AS IS" and is restricted to users aged 17 and over.</p>
+
+      <h2>Summary</h2>
+      <p>Bar Barons is built on Apple's iCloud and CloudKit infrastructure. <strong>Fogarty Holdings LLC operates no backend servers and stores no user data on Fogarty-controlled infrastructure.</strong> Your private data lives in your personal iCloud container, which only you can access. Public data — bar visits and leaderboards — lives in CloudKit's public database, managed by Apple. We do not sell or share data with third parties, run no analytics, and serve no ads.</p>
+
+      <h2>Information We Collect</h2>
+      <p>The Application collects only the minimum information needed to run the game. Specifically:</p>
+      <ul>
+        <li><strong>Sign in with Apple identity token</strong> — used for account creation and authentication. We never see your email or real name unless you choose to share them via Sign in with Apple's "Share My Email" option.</li>
+        <li><strong>Display name and avatar emoji</strong> — chosen by you. Visible to your friends and on public leaderboards.</li>
+        <li><strong>GPS location</strong> — captured only at the moment you submit a claim, used to verify you are physically at the bar. Location is not tracked continuously and is not stored beyond the verification check.</li>
+        <li><strong>Camera and photo access</strong> — used to capture receipt photos for verification. Optical character recognition (OCR) runs entirely on-device using Apple's Vision framework. Receipt photos are stored in your private iCloud container and are not transmitted to Fogarty Holdings.</li>
+        <li><strong>Visit records</strong> — date, bar, and verified visit count. Stored in your private CloudKit container.</li>
+        <li><strong>Public visit data</strong> — bar name, date of visit, and your display name are published to Apple's CloudKit public database to power leaderboards, throne assignments, and the social feed.</li>
+        <li><strong>Friend connections</strong> — display names and Apple IDs of mutually-confirmed friends are stored to enable the shared activity feed.</li>
+      </ul>
+
+      <h2>How Your Data Is Stored</h2>
+      <ul>
+        <li>All data is stored in Apple's iCloud / CloudKit infrastructure.</li>
+        <li>Private data (receipts, visit history, friend list) lives in your personal iCloud container — Fogarty Holdings LLC has no access to it.</li>
+        <li>Public data (the activity feed, leaderboards, throne records) lives in CloudKit's public database, managed by Apple under <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">Apple's Privacy Policy</a>.</li>
+        <li>Fogarty Holdings LLC operates no backend servers and stores no user data on Fogarty-controlled infrastructure.</li>
+      </ul>
+
+      <h2>What We Do Not Collect</h2>
+      <ul>
+        <li>No email addresses</li>
+        <li>No real names (unless you explicitly choose to share them via Sign in with Apple)</li>
+        <li>No phone numbers</li>
+        <li>No payment information (the app is free with no in-app purchases at launch)</li>
+        <li>No analytics or telemetry</li>
+        <li>No third-party tracking</li>
+        <li>No advertising identifiers</li>
+      </ul>
+      <p>We do not sell, rent, or share your data with third parties.</p>
+
+      <h2>On-Device Receipt Verification</h2>
+      <p>When you submit a claim, Bar Barons uses Apple's Vision framework to perform OCR on the receipt photo entirely on your iPhone. The text extracted from the receipt is compared against the bar's expected name to verify the visit. The receipt photo itself is never transmitted to Fogarty Holdings — it is stored only in your private iCloud container, where only you can access it.</p>
+
+      <h2>Location Use</h2>
+      <p>Bar Barons requests location access in order to verify that you are present at a bar at the moment you submit a claim. The Application does <strong>not</strong> track your location continuously, in the background, or at any time other than the moment a claim is submitted. The verification check is performed against the bar's known coordinates; your precise location is not stored or published beyond what is required for that single verification.</p>
+
+      <h2>Push Notifications</h2>
+      <p>The Application uses Apple Push Notification Service (APNs) to send notifications for friend requests, milestone achievements, and throne changes (for example, when someone takes a bar's Baron title from you). You can disable notifications at any time in iOS Settings &rarr; Notifications &rarr; Bar Barons.</p>
+
+      <h2>Friend Connections</h2>
+      <p>Friend connections require mutual confirmation. When both users accept, your display names become visible to each other within the shared activity feed. Your friend list is stored in your private CloudKit container. You can remove a friend at any time, which immediately revokes their ability to see your activity in their feed.</p>
+
+      <h2>Children's Privacy</h2>
+      <p>The Application is intended for users <strong>17 and over</strong> due to its alcohol-related content. The App Store age rating restricts the Application accordingly. The Service Provider does not knowingly collect data from anyone under the age of 17. If you believe a user under 17 has used the Application, please contact us at <a href="mailto:contact@fogartyholdings.com">contact@fogartyholdings.com</a> and we will take appropriate action.</p>
+
+      <h2>Data Deletion</h2>
+      <p>You have full control over your data and may delete it at any time:</p>
+      <ul>
+        <li><strong>In-app:</strong> Go to Profile &rarr; Delete Account. This removes all of your private CloudKit data and marks your public visits as anonymized.</li>
+        <li><strong>Sign out of iCloud:</strong> The Application's CloudKit-backed data becomes inaccessible.</li>
+        <li><strong>Delete the app:</strong> Removes local caches and revokes the Application's access to your iCloud container.</li>
+        <li><strong>By request:</strong> Email <a href="mailto:contact@fogartyholdings.com">contact@fogartyholdings.com</a> for assistance with deletion requests.</li>
+      </ul>
+
+      <h2>Third Party Access</h2>
+      <p>The Application's only third-party data processor is <strong>Apple Inc.</strong>, which provides Sign in with Apple, iCloud / CloudKit storage, Apple Push Notification Service, and the App Store. Apple's handling of this data is governed by <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">Apple's Privacy Policy</a>. No other third parties receive your data.</p>
+      <p>The Service Provider may disclose information only as required by law, such as to comply with a subpoena or similar legal process. However, because no user data is stored on Fogarty-controlled infrastructure, there is no Service-Provider-held user data to disclose.</p>
+
+      <h2>Security</h2>
+      <p>The Application relies on Apple's iCloud and CloudKit security infrastructure for data protection in transit and at rest. Authentication is handled by Sign in with Apple, which provides cryptographically-secured tokens without exposing your Apple ID password to the Application or the Service Provider.</p>
+
+      <h2>Changes</h2>
+      <p>This Privacy Policy may be updated from time to time for any reason. The Service Provider will notify you of any changes by updating this page with the new Privacy Policy. You are advised to consult this Privacy Policy regularly for any changes, as continued use of the Application is deemed approval of all changes.</p>
+
+      <h2>Governing Law</h2>
+      <p>This Privacy Policy and your use of the Application are governed by the laws of the State of New York, USA. The Application complies with Apple's App Store Review Guidelines.</p>
+
+      <h2>Your Consent</h2>
+      <p>By using the Application, you are consenting to the processing of your information as set forth in this Privacy Policy now and as amended by us.</p>
+
+      <h2>Contact Us</h2>
+      <p>If you have any questions regarding privacy while using the Application, want to request deletion of your data, or have questions about our practices, please contact the Service Provider via email at <a href="mailto:contact@fogartyholdings.com">contact@fogartyholdings.com</a>.</p>
+
+      <hr class="content-divider">
+      <p class="content-note">This privacy policy covers the Bar Barons iOS app only. For other Fogarty Holdings privacy policies, visit <a href="https://fogartyholdings.com">fogartyholdings.com</a>.</p>
+
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-left">© 2026 Fogarty Holdings LLC. All rights reserved.</div>
+    <div class="footer-right"><a href="https://fogartyholdings.com">fogartyholdings.com</a> &nbsp;·&nbsp; Registered in New York State.</div>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.05 });
+
+    document.querySelectorAll('.reveal').forEach((el, i) => {
+      el.style.transitionDelay = `${i * 0.07}s`;
+      observer.observe(el);
+    });
+  </script>
+
+</body>
+</html>
