@@ -4,7 +4,7 @@
   <!-- Homepage -->
   <url>
     <loc>https://fogartyholdings.com/</loc>
-    <lastmod>2026-04-28</lastmod>
+    <lastmod>2026-05-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -37,6 +37,14 @@
   <url>
     <loc>https://fogartyholdings.com/fieldstub.html</loc>
     <lastmod>2026-05-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Bar Barons — Marketing Page -->
+  <url>
+    <loc>https://fogartyholdings.com/bar-barons.html</loc>
+    <lastmod>2026-05-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -77,6 +85,14 @@
   <url>
     <loc>https://fogartyholdings.com/fieldstub-privacy.html</loc>
     <lastmod>2026-05-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+
+  <!-- Bar Barons — Privacy Policy -->
+  <url>
+    <loc>https://fogartyholdings.com/bar-barons-privacy.html</loc>
+    <lastmod>2026-05-16</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
