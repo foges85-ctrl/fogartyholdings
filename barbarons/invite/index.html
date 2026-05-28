@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bar Barons — You're Invited</title>
+<meta name="description" content="You've been invited to play Bar Barons. Claim NYC bars by scanning your receipt.">
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Plus Jakarta Sans", sans-serif;
+    background: #0a1929;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    text-align: center;
+    padding: 20px;
+  }
+  .crown { font-size: 64px; margin-bottom: 16px; }
+  h1 { font-size: 28px; margin: 0 0 16px 0; }
+  p { font-size: 16px; line-height: 1.5; color: #b8c5d6; max-width: 360px; margin: 0 0 32px 0; }
+  .button {
+    display: inline-block;
+    padding: 14px 32px;
+    background: #5badee;
+    color: #0a1929;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 16px;
+  }
+  .small { font-size: 13px; color: #6b7a8f; margin-top: 24px; }
+</style>
+</head>
+<body>
+  <div class="crown">👑</div>
+  <h1>You're Invited to Bar Barons</h1>
+  <p>Claim NYC bars by scanning your receipt. Become the Baron of your favorite spots and Lord of your neighborhood.</p>
+  <a href="#" id="store-link" class="button">Open in App Store</a>
+  <p class="small">iPhone only · Free</p>
+
+<script>
+(function() {
+  var ua = navigator.userAgent || '';
+  var isIOS = /iPad|iPhone|iPod/.test(ua);
+  var appStoreURL = 'https://apps.apple.com/us/app/bar-barons/id6770139105';
+  var marketingURL = '/bar-barons.html';
+
+  document.getElementById('store-link').href = appStoreURL;
+
+  if (isIOS) {
+    // iOS user without the app installed (universal link didn't open the app)
+    // Redirect to App Store after a brief moment so they see what they're getting
+    setTimeout(function() { window.location.href = appStoreURL; }, 1500);
+  } else {
+    // Android or desktop — send them to the marketing page where they can learn more
+    setTimeout(function() { window.location.href = marketingURL; }, 1500);
+  }
+})();
+</script>
+</body>
+</html>
