@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fogarty Holdings — Not Found</title>
+<style>
+  body {
+    margin: 0;
+    padding: 40px 20px;
+    font-family: -apple-system, BlinkMacSystemFont, "Plus Jakarta Sans", sans-serif;
+    background: #0a1929;
+    color: #ffffff;
+    text-align: center;
+  }
+  h1 { font-size: 24px; margin: 20px 0 8px 0; }
+  p { color: #b8c5d6; }
+  a { color: #5badee; text-decoration: none; }
+</style>
+</head>
+<body>
+<script>
+(function() {
+  var path = window.location.pathname || '';
+  // Catch /barbarons/invite/* — route to the real invite page,
+  // preserving the inviter ID as a query param for the universal link
+  // to extract on the app side (or for the static page to use).
+  var inviteMatch = path.match(/^\/barbarons\/invite\/(.+)$/);
+  if (inviteMatch && inviteMatch[1]) {
+    var inviterID = inviteMatch[1];
+    window.location.replace('/barbarons/invite/?from=' + encodeURIComponent(inviterID));
+    return;
+  }
+})();
+</script>
+<h1>Page not found</h1>
+<p>The link you followed doesn't exist on this site.</p>
+<p><a href="/">← Back to Fogarty Holdings</a></p>
+</body>
+</html>
