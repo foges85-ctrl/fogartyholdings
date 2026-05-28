@@ -1,0 +1,11 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "HDL5ZBBKDH.com.fogartyholdings.BarBarons",
+        "paths": ["/barbarons/invite/*"]
+      }
+    ]
+  }
+}
