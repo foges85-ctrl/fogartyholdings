@@ -12,24 +12,24 @@
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bar Barons — Claim New York's bars. Become a Baron. | Fogarty Holdings</title>
-  <meta name="description" content="The social media app that actually makes you socialize. Scan a receipt, claim New York's bars, and become a Baron. An iOS app from Fogarty Holdings LLC.">
+  <title>Bar Barons — Claim New York and Boston's bars. Become a Baron. | Fogarty Holdings</title>
+  <meta name="description" content="The social media app that actually makes you socialize. Scan a receipt, claim New York and Boston's bars, and become a Baron. An iOS app from Fogarty Holdings LLC.">
 
   <link rel="canonical" href="https://fogartyholdings.com/bar-barons.html">
 
   <!-- Open Graph / Link Preview Tags -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://fogartyholdings.com/bar-barons.html">
-  <meta property="og:title" content="Bar Barons — Claim New York's bars. Become a Baron.">
-  <meta property="og:description" content="The social media app that actually makes you socialize. Scan a receipt, claim New York's bars, and become a Baron.">
+  <meta property="og:title" content="Bar Barons — Claim New York and Boston's bars. Become a Baron.">
+  <meta property="og:description" content="The social media app that actually makes you socialize. Scan a receipt, claim New York and Boston's bars, and become a Baron.">
   <meta property="og:image" content="https://fogartyholdings.com/barbarons-appicon.png">
   <meta property="og:image:width" content="1024">
   <meta property="og:image:height" content="1024">
 
   <!-- Twitter / iMessage Card Tags -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Bar Barons — Claim New York's bars. Become a Baron.">
-  <meta name="twitter:description" content="The social media app that actually makes you socialize. Scan a receipt, claim New York's bars, and become a Baron.">
+  <meta name="twitter:title" content="Bar Barons — Claim New York and Boston's bars. Become a Baron.">
+  <meta name="twitter:description" content="The social media app that actually makes you socialize. Scan a receipt, claim New York and Boston's bars, and become a Baron.">
   <meta name="twitter:image" content="https://fogartyholdings.com/barbarons-appicon.png">
 
   <!-- Favicon -->
@@ -43,7 +43,7 @@
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     "name": "Bar Barons",
-    "description": "A social game for New York bar-goers. Claim bars by scanning receipts, verified on-device. Compete for Baron and Lord status across all five boroughs of New York City and Westchester County.",
+    "description": "A social game for New York and Boston bar-goers. Claim bars by scanning receipts, verified on-device. Compete for Baron and Lord status across all five NYC boroughs, Long Island, Westchester County, and Boston.",
     "applicationCategory": "SocialNetworkingApplication",
     "operatingSystem": "iOS 17+",
     "url": "https://fogartyholdings.com/bar-barons.html",
@@ -388,11 +388,37 @@
     }
     .coverage-content p:last-child { margin-bottom: 0; }
 
+    .coverage-region {
+      margin-top: 1.5rem;
+    }
+
+    .coverage-region-label {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--accent);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      margin-bottom: 0.6rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .coverage-region-label::before {
+      content: '';
+      display: block;
+      width: 16px;
+      height: 1px;
+      background: var(--accent);
+    }
+
     .neighborhood-strip {
       display: flex;
       flex-wrap: wrap;
       gap: 0.5rem;
-      margin-top: 1.25rem;
+    }
+
+    .coverage-region .neighborhood-strip {
+      margin-top: 0;
     }
 
     .neighborhood-chip {
@@ -559,11 +585,11 @@
 
   <!-- HERO -->
   <div class="hero">
-    <img src="barbarons-appicon.png" alt="Bar Barons app icon — claim New York's bars" class="app-icon">
+    <img src="barbarons-appicon.png" alt="Bar Barons app icon — claim New York and Boston's bars" class="app-icon">
     <div class="hero-eyebrow">iOS App · Now Available</div>
-    <h1 class="hero-title">Claim New York's bars.<br><span>Become a Baron.</span></h1>
+    <h1 class="hero-title">Claim New York and Boston's bars.<br><span>Become a Baron.</span></h1>
     <p class="hero-tagline">The social media app that actually makes you socialize.</p>
-    <p class="hero-desc">A social game for New York bar-goers. Scan a receipt. Stake your claim. Rule your neighborhood. Bar Barons turns your nights out into a citywide competition — verified visits, friendly rivalries, and thrones worth defending. No feed to doomscroll. No filters. Just where you actually go.</p>
+    <p class="hero-desc">A social game for New York and Boston bar-goers. Scan a receipt. Stake your claim. Rule your neighborhood. Bar Barons turns your nights out into a two-city competition — verified visits, friendly rivalries, and thrones worth defending. No feed to doomscroll. No filters. Just where you actually go.</p>
     <div class="hero-cta">
       <a href="https://apps.apple.com/us/app/bar-barons/id6770139105" class="btn-primary" target="_blank">↗ Download on App Store</a>
       <a href="#features" class="btn-ghost">See how it works ↓</a>
@@ -604,8 +630,8 @@
 
       <div class="feature-card">
         <div class="feature-icon">🗽</div>
-        <div class="feature-name">1,800+ bars covered</div>
-        <p class="feature-desc">All five NYC boroughs plus Westchester County — dive bars, cocktail rooms, beer gardens, neighborhood mainstays. From the East Village to St. George to Yonkers.</p>
+        <div class="feature-name">1,900+ bars covered</div>
+        <p class="feature-desc">All five NYC boroughs, Long Island, Westchester County, and 100 bars across Boston — dive bars, cocktail rooms, beer gardens, neighborhood mainstays. From the East Village to Rockville Centre to Southie.</p>
       </div>
 
       <div class="feature-card">
@@ -647,45 +673,78 @@
   <!-- COVERAGE -->
   <section>
     <div class="section-label reveal">Coverage</div>
-    <h2 class="section-title reveal">All five boroughs.<br><span>One throne per bar.</span></h2>
+    <h2 class="section-title reveal">Two cities.<br><span>One throne per bar.</span></h2>
 
     <div class="coverage-callout reveal">
       <div class="coverage-icon">🗺️</div>
       <div class="coverage-content">
-        <h3>1,800+ bars across NYC and Westchester.</h3>
-        <p>Bar Barons covers every borough — Manhattan, Brooklyn, Queens, the Bronx, and Staten Island — plus a growing roster of bars in Westchester County. If you drink there, chances are you can claim it.</p>
-        <div class="neighborhood-strip">
-          <span class="neighborhood-chip">East Village</span>
-          <span class="neighborhood-chip">Lower East Side</span>
-          <span class="neighborhood-chip">West Village</span>
-          <span class="neighborhood-chip">Chelsea</span>
-          <span class="neighborhood-chip">Hell's Kitchen</span>
-          <span class="neighborhood-chip">Midtown</span>
-          <span class="neighborhood-chip">Upper East Side</span>
-          <span class="neighborhood-chip">Upper West Side</span>
-          <span class="neighborhood-chip">Harlem</span>
-          <span class="neighborhood-chip">Williamsburg</span>
-          <span class="neighborhood-chip">Greenpoint</span>
-          <span class="neighborhood-chip">Bushwick</span>
-          <span class="neighborhood-chip">Park Slope</span>
-          <span class="neighborhood-chip">Bed-Stuy</span>
-          <span class="neighborhood-chip">Crown Heights</span>
-          <span class="neighborhood-chip">Carroll Gardens</span>
-          <span class="neighborhood-chip">Astoria</span>
-          <span class="neighborhood-chip">Long Island City</span>
-          <span class="neighborhood-chip">Ridgewood</span>
-          <span class="neighborhood-chip">Forest Hills</span>
-          <span class="neighborhood-chip">Jackson Heights</span>
-          <span class="neighborhood-chip">Mott Haven</span>
-          <span class="neighborhood-chip">Riverdale</span>
-          <span class="neighborhood-chip">Belmont</span>
-          <span class="neighborhood-chip">Fordham</span>
-          <span class="neighborhood-chip">St. George</span>
-          <span class="neighborhood-chip">Stapleton</span>
-          <span class="neighborhood-chip">New Dorp</span>
-          <span class="neighborhood-chip">Yonkers</span>
-          <span class="neighborhood-chip">New Rochelle</span>
-          <span class="neighborhood-chip">White Plains</span>
+        <h3>1,900+ bars across New York and Boston.</h3>
+        <p>Bar Barons covers every NYC borough — Manhattan, Brooklyn, Queens, the Bronx, and Staten Island — plus a growing roster on Long Island, in Westchester County, and 100 bars across Boston. If you drink there, chances are you can claim it.</p>
+
+        <div class="coverage-region">
+          <div class="coverage-region-label">New York City</div>
+          <div class="neighborhood-strip">
+            <span class="neighborhood-chip">East Village</span>
+            <span class="neighborhood-chip">Lower East Side</span>
+            <span class="neighborhood-chip">West Village</span>
+            <span class="neighborhood-chip">Chelsea</span>
+            <span class="neighborhood-chip">Hell's Kitchen</span>
+            <span class="neighborhood-chip">Midtown</span>
+            <span class="neighborhood-chip">Upper East Side</span>
+            <span class="neighborhood-chip">Upper West Side</span>
+            <span class="neighborhood-chip">Harlem</span>
+            <span class="neighborhood-chip">Williamsburg</span>
+            <span class="neighborhood-chip">Greenpoint</span>
+            <span class="neighborhood-chip">Bushwick</span>
+            <span class="neighborhood-chip">Park Slope</span>
+            <span class="neighborhood-chip">Bed-Stuy</span>
+            <span class="neighborhood-chip">Crown Heights</span>
+            <span class="neighborhood-chip">Carroll Gardens</span>
+            <span class="neighborhood-chip">Astoria</span>
+            <span class="neighborhood-chip">Long Island City</span>
+            <span class="neighborhood-chip">Ridgewood</span>
+            <span class="neighborhood-chip">Forest Hills</span>
+            <span class="neighborhood-chip">Jackson Heights</span>
+            <span class="neighborhood-chip">Mott Haven</span>
+            <span class="neighborhood-chip">Riverdale</span>
+            <span class="neighborhood-chip">Belmont</span>
+            <span class="neighborhood-chip">Fordham</span>
+            <span class="neighborhood-chip">St. George</span>
+            <span class="neighborhood-chip">Stapleton</span>
+            <span class="neighborhood-chip">New Dorp</span>
+          </div>
+        </div>
+
+        <div class="coverage-region">
+          <div class="coverage-region-label">Long Island</div>
+          <div class="neighborhood-strip">
+            <span class="neighborhood-chip">Rockville Centre</span>
+          </div>
+        </div>
+
+        <div class="coverage-region">
+          <div class="coverage-region-label">Westchester</div>
+          <div class="neighborhood-strip">
+            <span class="neighborhood-chip">Yonkers</span>
+            <span class="neighborhood-chip">New Rochelle</span>
+            <span class="neighborhood-chip">White Plains</span>
+          </div>
+        </div>
+
+        <div class="coverage-region">
+          <div class="coverage-region-label">Boston</div>
+          <div class="neighborhood-strip">
+            <span class="neighborhood-chip">Back Bay</span>
+            <span class="neighborhood-chip">North End</span>
+            <span class="neighborhood-chip">South End</span>
+            <span class="neighborhood-chip">Beacon Hill</span>
+            <span class="neighborhood-chip">Fenway</span>
+            <span class="neighborhood-chip">Allston</span>
+            <span class="neighborhood-chip">South Boston</span>
+            <span class="neighborhood-chip">Seaport</span>
+            <span class="neighborhood-chip">Charlestown</span>
+            <span class="neighborhood-chip">Jamaica Plain</span>
+          </div>
         </div>
       </div>
     </div>
@@ -696,7 +755,7 @@
   <!-- FINAL CTA -->
   <section>
     <div class="final-cta reveal">
-      <h3>Your bar. Your borough. Your throne.</h3>
+      <h3>Your bar. Your turf. Your throne.</h3>
       <p>Free on the App Store. iOS 17 and up. Sign in with Apple — no email, no ads, no nonsense.</p>
       <div class="hero-cta">
         <a href="https://apps.apple.com/us/app/bar-barons/id6770139105" class="btn-primary" target="_blank">↗ Download on App Store</a>
