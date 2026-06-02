@@ -661,8 +661,8 @@
     <img src="netscanpro-icon.png" alt="NetScanPro app icon — privacy-first iOS Wi-Fi network scanner" class="app-icon">
     <div class="hero-eyebrow">iOS App · Now Available</div>
     <h1 class="hero-title"><span>NetScanPro</span></h1>
-    <p class="hero-tagline">Discover everything on your Wi-Fi.</p>
-    <p class="hero-desc">Privacy-first network scanner for iOS. No accounts, no servers, no subscriptions. Find every device on your network — Macs, PCs, phones, printers, smart TVs, routers — and understand what's actually running on them.</p>
+    <p class="hero-tagline">Discover everything on your Wi-Fi — and what's actually risky.</p>
+    <p class="hero-desc">Privacy-first network scanner for iOS. No accounts, no servers, no subscriptions. Find every device on your network — Macs, PCs, phones, printers, smart TVs, routers, Matter and smart-home gear — and see every security finding in one place, ranked by severity.</p>
     <div class="hero-cta">
       <a href="https://apps.apple.com/us/app/netscanpro/id6762677151" class="btn-primary" target="_blank">↗ Download on App Store</a>
       <a href="#features" class="btn-ghost">Learn how it works ↓</a>
@@ -677,10 +677,10 @@
     <h2 class="section-title reveal">It doesn't just scan.<br><span>It teaches.</span></h2>
 
     <div class="narrative reveal">
-      <p>Most network scanners hand you a wall of port numbers and walk away. NetScanPro explains them in plain language so you actually understand what you're looking at.</p>
-      <p>Tap port 445 and you'll see SMB — file sharing — flagged with a security note explaining the WannaCry ransomware connection and why exposing it on an untrusted network is risky. Tap port 3389 and you'll see RDP, with a note about brute-force attempts on internet-facing hosts. Every scanned port comes with context: what the service does, what it's for, and what to watch out for.</p>
-      <p class="muted">Network printers, IP cameras, RDP, Telnet, MQTT — services that are harmless on your home Wi-Fi but a problem if your network is misconfigured. NetScanPro flags them.</p>
-      <p>It's built for the curious — people who want to know what's actually running on their network, not just see a count.</p>
+      <p>Most network scanners hand you a wall of port numbers and walk away. NetScanPro explains them in plain language — and now goes a step further, telling you what's actually risky versus what's just good to know.</p>
+      <p>Port security notes use severity tiers, so a genuine risk looks different from a "good to know." Tap port 445 and SMB is flagged as a real risk with the WannaCry context and a specific action to take. Tap port 3389 and RDP is called out for brute-force exposure. Notes for SMB, RDP, RTSP, and printer ports lead with the risk and the fix — not a wall of trivia.</p>
+      <p class="muted">Network printers, IP cameras, RDP, Telnet, MQTT, VNC — services that are harmless on your home Wi-Fi but a problem if your network is misconfigured. NetScanPro flags them, ranked by how much they actually matter.</p>
+      <p>It's built for the curious — people who want to know what's actually running on their network, and what to do about it.</p>
     </div>
   </section>
 
@@ -692,16 +692,22 @@
     <h2 class="section-title reveal">Everything you need.<br><span>Nothing you don't.</span></h2>
 
     <div class="features-grid reveal">
+      <div class="feature-card" style="grid-column: 1 / -1; border-color: rgba(91,173,238,0.45); background: linear-gradient(180deg, rgba(91,173,238,0.06), rgba(91,173,238,0.02));">
+        <div class="feature-icon">🛡️</div>
+        <div class="feature-name">Network Security Summary (Pro) · New</div>
+        <p class="feature-desc">Scan every device on your network at once and see all your security findings in one place — grouped by risk type, color-coded by severity. Tap any finding to see exactly which devices are affected.</p>
+      </div>
+
       <div class="feature-card">
         <div class="feature-icon">📡</div>
         <div class="feature-name">Discover every device</div>
-        <p class="feature-desc">Scans your Wi-Fi using TCP probing and Bonjour/mDNS. Finds Macs, PCs, phones, printers, smart TVs, routers, smart speakers, and more — with hostname, IP, MAC, and vendor info.</p>
+        <p class="feature-desc">Scans your Wi-Fi using TCP probing and Bonjour/mDNS. Finds Macs, PCs, phones, printers, smart TVs, routers, smart speakers, and Matter/smart-home devices — with hostname, IP, MAC, and vendor info.</p>
       </div>
 
       <div class="feature-card">
         <div class="feature-icon">🔍</div>
         <div class="feature-name">Understand open ports (Pro)</div>
-        <p class="feature-desc">Scan 25 common ports per device. Tap any port for a plain-language explanation. Security notes flag risky exposures like SMB, RDP, IP cameras, and network printers.</p>
+        <p class="feature-desc">Scans 26 common ports per device — including VNC (5900). Tap any port for a plain-language explanation. Security notes are tiered by severity and rewritten for SMB, RDP, RTSP, and printer ports to lead with the real risk and a specific action.</p>
       </div>
 
       <div class="feature-card">
@@ -765,9 +771,10 @@
         <div class="pricing-period">One-time payment</div>
         <ul class="pricing-features">
           <li>Unlimited scans</li>
-          <li>Port scanning on every device</li>
+          <li>Network Security Summary</li>
+          <li>Port scanning on every device (26 ports)</li>
+          <li>Severity-tiered security notes</li>
           <li>Plain-language port descriptions</li>
-          <li>Security notes for risky exposures</li>
           <li>No subscriptions, ever</li>
         </ul>
         <a href="https://apps.apple.com/us/app/netscanpro/id6762677151" class="btn-primary" target="_blank">↗ Unlock Pro on App Store</a>
@@ -803,8 +810,8 @@
       </div>
 
       <div class="feature-card">
-        <div class="feature-name">Why doesn't it find my Alexa?</div>
-        <p class="feature-desc">Amazon devices use proprietary discovery protocols that don't broadcast on standard mDNS or respond to typical TCP probes. We're working on better detection for a future release.</p>
+        <div class="feature-name">Does it detect smart-home devices?</div>
+        <p class="feature-desc">Yes — the latest release improves detection of smart-home and Matter devices. Some legacy proprietary devices (like older Amazon Echoes) still don't broadcast on standard mDNS, but coverage keeps expanding.</p>
       </div>
 
       <div class="feature-card">
