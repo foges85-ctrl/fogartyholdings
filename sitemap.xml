@@ -49,6 +49,14 @@
     <priority>0.9</priority>
   </url>
 
+  <!-- CertFlash — Marketing Page -->
+  <url>
+    <loc>https://fogartyholdings.com/certflash.html</loc>
+    <lastmod>2026-06-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
   <!-- Referra — Privacy Policy -->
   <url>
     <loc>https://fogartyholdings.com/referra-privacy.html</loc>
