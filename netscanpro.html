@@ -43,7 +43,7 @@
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     "name": "NetScanPro",
-    "description": "Privacy-first Wi-Fi network scanner for iOS. Discover devices, services, and open ports on your local network using TCP probing and Bonjour/mDNS. No accounts, no servers, no subscriptions.",
+    "description": "Privacy-first Wi-Fi network scanner for iOS. Discover devices, services, and open ports on your local network using four discovery methods in parallel: TCP probing, Bonjour/mDNS, SSDP/UPnP, and ICMP ping. No accounts, no servers, no subscriptions.",
     "applicationCategory": "UtilitiesApplication",
     "operatingSystem": "iOS",
     "url": "https://fogartyholdings.com/netscanpro.html",
@@ -701,13 +701,19 @@
       <div class="feature-card">
         <div class="feature-icon">📡</div>
         <div class="feature-name">Discover every device</div>
-        <p class="feature-desc">Scans your Wi-Fi using TCP probing and Bonjour/mDNS. Finds Macs, PCs, phones, printers, smart TVs, routers, smart speakers, and Matter/smart-home devices — with hostname, IP, MAC, and vendor info.</p>
+        <p class="feature-desc">Scans your Wi-Fi using four discovery methods in parallel — TCP probing, Bonjour/mDNS, SSDP/UPnP, and ICMP ping. Finds Macs, PCs, phones, printers, smart TVs, routers, smart speakers, and Matter/smart-home devices — with hostname, IP, MAC, and vendor info.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🗂️</div>
+        <div class="feature-name">Every network, kept separate</div>
+        <p class="feature-desc">Each Wi-Fi network keeps its own device list and scan history. Create networks manually and pin scans to a specific one, so two sites that look identical (same subnet, same gateway) never merge into one record. Move devices between networks to reorganize your catalog. <a href="netscanpro-field-techs.html" style="color: var(--accent); text-decoration: none;">Field tech or MSP? See how NetScanPro handles multi-site work →</a></p>
       </div>
 
       <div class="feature-card">
         <div class="feature-icon">🔍</div>
         <div class="feature-name">Understand open ports (Pro)</div>
-        <p class="feature-desc">Scans 26 common ports per device — including VNC (5900). Tap any port for a plain-language explanation. Security notes are tiered by severity and rewritten for SMB, RDP, RTSP, and printer ports to lead with the real risk and a specific action.</p>
+        <p class="feature-desc">Scans 25 common ports per device — including VNC (5900). Tap any port for a plain-language explanation. Security notes are tiered by severity and rewritten for SMB, RDP, RTSP, and printer ports to lead with the real risk and a specific action.</p>
       </div>
 
       <div class="feature-card">
@@ -772,9 +778,11 @@
         <ul class="pricing-features">
           <li>Unlimited scans</li>
           <li>Network Security Summary</li>
-          <li>Port scanning on every device (26 ports)</li>
+          <li>Port scanning on every device (25 ports)</li>
           <li>Severity-tiered security notes</li>
           <li>Plain-language port descriptions</li>
+          <li>PDF report export</li>
+          <li>Device renaming</li>
           <li>No subscriptions, ever</li>
         </ul>
         <a href="https://apps.apple.com/us/app/netscanpro/id6762677151" class="btn-primary" target="_blank">↗ Unlock Pro on App Store</a>
@@ -802,6 +810,11 @@
       <div class="feature-card">
         <div class="feature-name">Will it work on my home network?</div>
         <p class="feature-desc">Yes — any standard home Wi-Fi. NetScanPro is designed for /24 IPv4 subnets and is IPv6-aware. Works on Wi-Fi 5, 6, 6E, and 7 routers from any vendor.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-name">Can I use it across multiple sites or client networks?</div>
+        <p class="feature-desc">Yes. Each network keeps its own separate device list and scan history. You can <a href="netscanpro-field-techs.html" style="color: var(--accent); text-decoration: none;">create networks manually and pin a scan</a> to a specific one, so two sites that share the same subnet and gateway stay separate instead of merging. Pro adds a PDF report per network you can hand off. And because nothing ever leaves your phone, scanning a client network doesn't send their data anywhere.</p>
       </div>
 
       <div class="feature-card">

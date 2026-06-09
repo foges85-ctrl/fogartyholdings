@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-J1LCDRSX16"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-J1LCDRSX16');
+  </script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NetScanPro for Field Techs and MSPs — Multi-Site Network Scanner for iOS | Fogarty Holdings</title>
+  <meta name="description" content="iOS network scanner built for site visits. Keep look-alike client networks separate, document each site with PDF reports, and keep all client data on-device. One-time $6.99.">
+
+  <link rel="canonical" href="https://fogartyholdings.com/netscanpro-field-techs.html">
+
+  <!-- Open Graph / Link Preview Tags -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://fogartyholdings.com/netscanpro-field-techs.html">
+  <meta property="og:title" content="NetScanPro for Field Techs and MSPs — Multi-Site Network Scanner for iOS">
+  <meta property="og:description" content="iOS network scanner built for site visits. Keep look-alike client networks separate, document each site with PDF reports, and keep all client data on-device. One-time $6.99.">
+  <meta property="og:image" content="https://fogartyholdings.com/netscanpro-icon.png">
+  <meta property="og:image:width" content="1024">
+  <meta property="og:image:height" content="1024">
+
+  <!-- Twitter / iMessage Card Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="NetScanPro for Field Techs and MSPs — Multi-Site Network Scanner for iOS">
+  <meta name="twitter:description" content="iOS network scanner built for site visits. Keep look-alike client networks separate, document each site with PDF reports, and keep all client data on-device. One-time $6.99.">
+  <meta name="twitter:image" content="https://fogartyholdings.com/netscanpro-icon.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+  <!-- Schema.org structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "NetScanPro",
+    "description": "Privacy-first iOS network scanner for field technicians and MSPs. Keep look-alike client sites separate with manual networks and scan pinning, document each site with per-network PDF reports, and keep all client data on-device. No accounts, no servers, no subscriptions.",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "iOS",
+    "url": "https://fogartyholdings.com/netscanpro-field-techs.html",
+    "image": "https://fogartyholdings.com/netscanpro-icon.png",
+    "downloadUrl": "https://apps.apple.com/us/app/netscanpro/id6762677151",
+    "offers": {
+      "@type": "Offer",
+      "price": "6.99",
+      "priceCurrency": "USD"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Fogarty Holdings LLC",
+      "url": "https://fogartyholdings.com"
+    }
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #060d1a;
+      --surface: #0c1828;
+      --surface2: #122035;
+      --border: rgba(100,160,255,0.15);
+      --accent: #5badee;
+      --accent2: #93ccff;
+      --text: #ffffff;
+      --muted: #7a9ec0;
+      --jakarta: 'Plus Jakarta Sans', sans-serif;
+      --mono: 'DM Mono', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--jakarta);
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── GRID BACKGROUND ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(79,163,224,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(79,163,224,0.04) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── GLOW ORBS ── */
+    .orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(120px);
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.35;
+    }
+    .orb-1 { width: 600px; height: 600px; background: #1a5a9e; top: -200px; right: -150px; }
+    .orb-2 { width: 500px; height: 500px; background: #0e3d78; bottom: -100px; left: -150px; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 3rem;
+      background: rgba(6,13,26,0.88);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-size: 0.8rem;
+      font-family: var(--mono);
+      color: var(--accent);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+
+    .nav-pill {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 0.35rem 0.85rem;
+      border-radius: 100px;
+      letter-spacing: 0.1em;
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .nav-pill:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 8rem 3rem 4rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .app-icon {
+      width: 160px;
+      height: 160px;
+      border-radius: 36px;
+      box-shadow:
+        0 20px 60px rgba(91, 173, 238, 0.25),
+        0 0 0 1px rgba(255,255,255,0.05);
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards 0.05s;
+    }
+
+    .hero-eyebrow {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--accent);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards 0.2s;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    .hero-title {
+      font-size: clamp(2.5rem, 6.5vw, 5rem);
+      font-weight: 800;
+      line-height: 1.0;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards 0.35s;
+    }
+    .hero-title span {
+      background: linear-gradient(135deg, #93ccff, #c8e8ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-desc {
+      font-family: var(--mono);
+      font-size: 0.9rem;
+      color: var(--muted);
+      max-width: 560px;
+      line-height: 1.8;
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards 0.55s;
+    }
+
+    .hero-cta {
+      margin-top: 2.5rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards 0.65s;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--accent);
+      color: #fff;
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      padding: 0.75rem 1.5rem;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .btn-primary:hover { opacity: 0.85; transform: translateY(-2px); }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: transparent;
+      color: var(--text);
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      padding: 0.75rem 1.5rem;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      text-decoration: none;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .btn-ghost:hover { border-color: var(--accent); transform: translateY(-2px); }
+
+    /* ── SECTION ── */
+    section {
+      position: relative;
+      z-index: 1;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 5rem 3rem;
+    }
+
+    .section-label {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      color: var(--accent);
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .section-label::before {
+      content: '';
+      display: block;
+      width: 20px; height: 1px;
+      background: var(--accent);
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 4.5vw, 3rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 2.5rem;
+      line-height: 1.1;
+    }
+
+    .section-title span {
+      background: linear-gradient(135deg, #93ccff, #c8e8ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ── PROBLEM NARRATIVE ── */
+    .narrative {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 3rem;
+    }
+
+    .narrative p {
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: var(--text);
+      margin-bottom: 1.25rem;
+    }
+    .narrative p:last-child { margin-bottom: 0; }
+
+    .narrative .muted {
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 0.9rem;
+    }
+
+    /* ── FEATURES GRID ── */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+
+    .feature-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .feature-card:hover {
+      border-color: rgba(91,173,238,0.45);
+      transform: translateY(-4px);
+    }
+
+    .feature-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .feature-name {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.01em;
+    }
+
+    .feature-desc {
+      font-family: var(--mono);
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* ── FINAL CTA ── */
+    .final-cta {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 4rem 3rem;
+      text-align: center;
+    }
+
+    .final-cta h3 {
+      font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+
+    .final-cta p {
+      font-family: var(--mono);
+      font-size: 0.9rem;
+      color: var(--muted);
+      max-width: 480px;
+      margin: 0 auto 2rem;
+      line-height: 1.7;
+    }
+
+    .final-cta .hero-cta {
+      justify-content: center;
+      animation: none;
+      opacity: 1;
+      margin-top: 0;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid var(--border);
+      padding: 2rem 3rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-left, .footer-right {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+    }
+
+    .footer-right a {
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-right a:hover { color: var(--accent); }
+
+    /* ── DIVIDER ── */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 0 3rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .features-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 700px) {
+      nav { padding: 1rem 1.5rem; }
+      .hero { padding: 7rem 1.5rem 3rem; }
+      section { padding: 3.5rem 1.5rem; }
+      .narrative { padding: 2rem; }
+      .final-cta { padding: 3rem 1.5rem; }
+      footer { flex-direction: column; padding: 1.5rem; }
+      .divider { margin: 0 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+
+  <nav>
+    <a href="/" class="nav-logo">FH // LLC</a>
+    <a href="/netscanpro.html" class="nav-pill">← Back to NetScanPro</a>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <img src="netscanpro-icon.png" alt="NetScanPro app icon — multi-site iOS network scanner for field techs and MSPs" class="app-icon">
+    <div class="hero-eyebrow">For field techs and MSPs</div>
+    <h1 class="hero-title">One scanner. Every client site. <span>Kept separate.</span></h1>
+    <p class="hero-desc">NetScanPro is a privacy-first iOS network scanner built to handle the thing most scanners get wrong: client sites that look identical. No accounts, no servers, no client data leaving your phone.</p>
+    <div class="hero-cta">
+      <a href="https://apps.apple.com/us/app/netscanpro/id6762677151" class="btn-primary" target="_blank">↗ Download on App Store</a>
+      <a href="netscanpro.html" class="btn-ghost">← Back to NetScanPro overview</a>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- THE LOOK-ALIKE SITE PROBLEM -->
+  <section>
+    <div class="section-label reveal">The Problem</div>
+    <h2 class="section-title reveal">The look-alike<br><span>site problem.</span></h2>
+
+    <div class="narrative reveal">
+      <p>Two client sites both running 192.168.1.x behind a .1 gateway are indistinguishable to automatic network detection — there is no signal to tell them apart, so most scanners merge them into one device list.</p>
+      <p>NetScanPro fixes this by letting you draw the boundary yourself: create a named network for each site, pin your scan to it, and the records stay separate no matter how identical the sites look.</p>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- BUILT FOR SITE VISITS -->
+  <section id="features">
+    <div class="section-label reveal">Features</div>
+    <h2 class="section-title reveal">Built for<br><span>site visits.</span></h2>
+
+    <div class="features-grid reveal">
+      <div class="feature-card">
+        <div class="feature-icon">📌</div>
+        <div class="feature-name">Manual networks and pinning</div>
+        <p class="feature-desc">Create a network per client site and pin scans to it. Look-alike subnets never merge. Switching sites is one tap.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🗂️</div>
+        <div class="feature-name">Move devices</div>
+        <p class="feature-desc">Inherited a merged record? Create the second site and move its devices over. Scan history stays where it happened.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">📄</div>
+        <div class="feature-name">Per-site documentation (Pro)</div>
+        <p class="feature-desc">Export a PDF report per network — device inventory, open ports, security findings — ready to hand to a client.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🛡️</div>
+        <div class="feature-name">Security summary (Pro)</div>
+        <p class="feature-desc">Scan every device at a site at once and see findings grouped by risk type and ranked by severity, so you can tell a client what actually needs attention.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🔒</div>
+        <div class="feature-name">Client-safe by design</div>
+        <p class="feature-desc">All scanning happens on-device. No accounts, no cloud, no analytics. Nothing about a client's network ever leaves your phone — which makes it easy to answer when a client asks where their data goes.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">💸</div>
+        <div class="feature-name">One-time $6.99</div>
+        <p class="feature-desc">Pro is a single purchase through Apple. No per-seat subscription, no recurring line item.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- FINAL CTA -->
+  <section>
+    <div class="final-cta reveal">
+      <h3>Bring it to your next site visit.</h3>
+      <p>Free to try with unlimited device discovery. Pro unlocks unlimited scans, port scanning, the security summary, and PDF reports for $6.99, once.</p>
+      <div class="hero-cta">
+        <a href="https://apps.apple.com/us/app/netscanpro/id6762677151" class="btn-primary" target="_blank">↗ Download on App Store</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-left">© 2026 Fogarty Holdings LLC. All rights reserved.</div>
+    <div class="footer-right">
+      <a href="/">fogartyholdings.com</a> · <a href="/netscanpro-privacy.html">Privacy</a> · <a href="mailto:contact@fogartyholdings.com">Contact</a>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach((el, i) => {
+      el.style.transitionDelay = `${i * 0.07}s`;
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
