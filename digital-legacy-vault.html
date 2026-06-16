@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-J1LCDRSX16"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-J1LCDRSX16');
+  </script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Legacy Vault — Private, Offline End-of-Life Organizer for iOS | Fogarty Holdings</title>
+  <meta name="description" content="Store emergency contacts, final wishes, medications, and a map to your important paperwork — all 100% offline on your device. No accounts, no cloud, no internet. Export a professional PDF for your executor whenever you're ready.">
+
+  <link rel="canonical" href="https://fogartyholdings.com/digital-legacy-vault.html">
+
+  <!-- Open Graph / Link Preview Tags -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://fogartyholdings.com/digital-legacy-vault.html">
+  <meta property="og:title" content="Digital Legacy Vault — Private, Offline End-of-Life Organizer for iOS">
+  <meta property="og:description" content="Everything your loved ones need to know, stored privately on your device. 100% offline — no accounts, no cloud, no internet. Export a professional PDF for your executor.">
+  <meta property="og:image" content="https://fogartyholdings.com/DigitalLegacyVaultAppIcon.png">
+  <meta property="og:image:width" content="1024">
+  <meta property="og:image:height" content="1024">
+
+  <!-- Twitter / iMessage Card Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Digital Legacy Vault — Private, Offline End-of-Life Organizer for iOS">
+  <meta name="twitter:description" content="Everything your loved ones need to know, stored privately on your device. 100% offline — no accounts, no cloud, no internet. Export a professional PDF for your executor.">
+  <meta name="twitter:image" content="https://fogartyholdings.com/DigitalLegacyVaultAppIcon.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+  <!-- Schema.org structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Digital Legacy Vault",
+    "description": "A private, 100% offline iOS app for storing everything your loved ones need to know — emergency contacts, final wishes, medications, document locations, and a letter to your executor. No accounts, no cloud, no network access; all data is encrypted on-device and can be exported as a professional PDF.",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "iOS",
+    "url": "https://fogartyholdings.com/digital-legacy-vault.html",
+    "image": "https://fogartyholdings.com/DigitalLegacyVaultAppIcon.png",
+    "downloadUrl": "https://apps.apple.com/us/app/digital-legacy-vault/id6762098328",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Fogarty Holdings LLC",
+      "url": "https://fogartyholdings.com"
+    }
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #060d1a;
+      --surface: #0c1828;
+      --surface2: #122035;
+      --border: rgba(100,160,255,0.15);
+      --accent: #5badee;
+      --accent2: #93ccff;
+      --text: #ffffff;
+      --muted: #7a9ec0;
+      --jakarta: 'Plus Jakarta Sans', sans-serif;
+      --mono: 'DM Mono', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--jakarta);
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── GRID BACKGROUND ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(79,163,224,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(79,163,224,0.04) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── GLOW ORBS ── */
+    .orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(120px);
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.35;
+    }
+    .orb-1 { width: 600px; height: 600px; background: #1a5a9e; top: -200px; right: -150px; }
+    .orb-2 { width: 500px; height: 500px; background: #0e3d78; bottom: -100px; left: -150px; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 3rem;
+      background: rgba(6,13,26,0.88);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-size: 0.8rem;
+      font-family: var(--mono);
+      color: var(--accent);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+
+    .nav-pill {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 0.35rem 0.85rem;
+      border-radius: 100px;
+      letter-spacing: 0.1em;
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .nav-pill:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 8rem 3rem 4rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .app-icon {
+      width: 160px;
+      height: 160px;
+      border-radius: 36px;
+      box-shadow:
+        0 20px 60px rgba(91, 173, 238, 0.25),
+        0 0 0 1px rgba(255,255,255,0.05);
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards 0.05s;
+    }
+
+    .hero-eyebrow {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--accent);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards 0.2s;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    .hero-title {
+      font-size: clamp(3rem, 8vw, 6.5rem);
+      font-weight: 800;
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards 0.35s;
+    }
+    .hero-title span {
+      background: linear-gradient(135deg, #93ccff, #c8e8ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-tagline {
+      font-size: clamp(1.15rem, 2.2vw, 1.5rem);
+      font-weight: 500;
+      color: var(--text);
+      max-width: 640px;
+      line-height: 1.4;
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards 0.45s;
+    }
+
+    .hero-desc {
+      font-family: var(--mono);
+      font-size: 0.9rem;
+      color: var(--muted);
+      max-width: 540px;
+      line-height: 1.8;
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards 0.55s;
+    }
+
+    .hero-cta {
+      margin-top: 2.5rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards 0.65s;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--accent);
+      color: #fff;
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      padding: 0.75rem 1.5rem;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .btn-primary:hover { opacity: 0.85; transform: translateY(-2px); }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: transparent;
+      color: var(--text);
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      padding: 0.75rem 1.5rem;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      text-decoration: none;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .btn-ghost:hover { border-color: var(--accent); transform: translateY(-2px); }
+
+    /* ── SECTION ── */
+    section {
+      position: relative;
+      z-index: 1;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 5rem 3rem;
+    }
+
+    .section-label {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      color: var(--accent);
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .section-label::before {
+      content: '';
+      display: block;
+      width: 20px; height: 1px;
+      background: var(--accent);
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 4.5vw, 3rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 2.5rem;
+      line-height: 1.1;
+    }
+
+    .section-title span {
+      background: linear-gradient(135deg, #93ccff, #c8e8ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ── PROBLEM NARRATIVE ── */
+    .narrative {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 3rem;
+    }
+
+    .narrative p {
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: var(--text);
+      margin-bottom: 1.25rem;
+    }
+    .narrative p:last-child { margin-bottom: 0; }
+
+    .narrative .muted {
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 0.9rem;
+    }
+
+    /* ── FEATURES GRID ── */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+
+    .feature-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .feature-card:hover {
+      border-color: rgba(91,173,238,0.45);
+      transform: translateY(-4px);
+    }
+
+    .feature-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .feature-name {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.01em;
+    }
+
+    .feature-desc {
+      font-family: var(--mono);
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* ── DECKS STRIP ── */
+    .decks-strip {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .deck-cell {
+      background: var(--surface);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      transition: background 0.25s;
+    }
+    .deck-cell:hover { background: var(--surface2); }
+
+    .deck-icon {
+      font-size: 1.8rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .deck-name {
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.4rem;
+    }
+
+    .deck-meta {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      line-height: 1.5;
+    }
+
+    .deck-tag {
+      display: inline-block;
+      margin-top: 0.6rem;
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.55rem;
+      border-radius: 100px;
+      border: 1px solid;
+    }
+    .deck-tag.free { color: var(--accent2); border-color: rgba(126,184,247,0.35); background: rgba(126,184,247,0.08); }
+    .deck-tag.pro  { color: var(--accent); border-color: rgba(91,173,238,0.35); background: rgba(91,173,238,0.08); }
+
+    /* ── PRICING ── */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .pricing-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2.25rem;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.3s, transform 0.3s;
+      position: relative;
+    }
+    .pricing-card:hover {
+      border-color: rgba(91,173,238,0.45);
+      transform: translateY(-4px);
+    }
+
+    .pricing-card.featured {
+      border-color: rgba(91,173,238,0.45);
+      background: linear-gradient(180deg, rgba(91,173,238,0.06), rgba(91,173,238,0.02));
+    }
+
+    .pricing-badge {
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--accent);
+      color: #fff;
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      padding: 0.25rem 0.85rem;
+      border-radius: 100px;
+      text-transform: uppercase;
+    }
+
+    .pricing-tier {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--muted);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .pricing-amount {
+      font-size: 2.2rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.25rem;
+    }
+
+    .pricing-period {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .pricing-features {
+      list-style: none;
+      margin-bottom: 1.5rem;
+      flex-grow: 1;
+    }
+
+    .pricing-features li {
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      color: var(--text);
+      line-height: 1.5;
+      padding: 0.55rem 0;
+      padding-left: 1.5rem;
+      position: relative;
+      border-bottom: 1px solid var(--border);
+    }
+    .pricing-features li:last-child { border-bottom: none; }
+    .pricing-features li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    /* ── CROSS-LINK CALLOUT ── */
+    .privacy-callout {
+      background: linear-gradient(135deg, rgba(91,173,238,0.08), rgba(14,61,120,0.12));
+      border: 1px solid rgba(91,173,238,0.25);
+      border-radius: 12px;
+      padding: 3rem;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .privacy-icon {
+      font-size: 4rem;
+    }
+
+    .privacy-content h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 0.85rem;
+      letter-spacing: -0.01em;
+    }
+
+    .privacy-content p {
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.75;
+      margin-bottom: 0.75rem;
+    }
+    .privacy-content p:last-child { margin-bottom: 0; }
+
+    .privacy-content a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s;
+    }
+    .privacy-content a:hover { border-bottom-color: var(--accent); }
+
+    /* ── FINAL CTA ── */
+    .final-cta {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 4rem 3rem;
+      text-align: center;
+    }
+
+    .final-cta h3 {
+      font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+
+    .final-cta p {
+      font-family: var(--mono);
+      font-size: 0.9rem;
+      color: var(--muted);
+      max-width: 480px;
+      margin: 0 auto 2rem;
+      line-height: 1.7;
+    }
+
+    .final-cta .hero-cta {
+      justify-content: center;
+      animation: none;
+      opacity: 1;
+      margin-top: 0;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid var(--border);
+      padding: 2rem 3rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-left, .footer-right {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+    }
+
+    .footer-right a {
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-right a:hover { color: var(--accent); }
+
+    /* ── DIVIDER ── */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 0 3rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .features-grid { grid-template-columns: 1fr; }
+      .decks-strip { grid-template-columns: repeat(2, 1fr); }
+      .pricing-grid { grid-template-columns: 1fr; }
+      .privacy-callout { grid-template-columns: 1fr; gap: 1.5rem; text-align: left; }
+    }
+    @media (max-width: 700px) {
+      nav { padding: 1rem 1.5rem; }
+      .hero { padding: 7rem 1.5rem 3rem; }
+      section { padding: 3.5rem 1.5rem; }
+      .narrative { padding: 2rem; }
+      .privacy-callout { padding: 2rem; }
+      .final-cta { padding: 3rem 1.5rem; }
+      footer { flex-direction: column; padding: 1.5rem; }
+      .divider { margin: 0 1.5rem; }
+      .decks-strip { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+
+  <nav>
+    <a href="/" class="nav-logo">FH // LLC</a>
+    <a href="/" class="nav-pill">← Back to Fogarty Holdings</a>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <img src="DigitalLegacyVaultAppIcon.png" alt="Digital Legacy Vault app icon — private offline end-of-life organizer for iOS" class="app-icon">
+    <div class="hero-eyebrow">iOS App · Now Available</div>
+    <h1 class="hero-title"><span>Digital Legacy</span><br>Vault</h1>
+    <p class="hero-tagline">Everything your loved ones need to know — private, offline, and ready when it matters.</p>
+    <p class="hero-desc">A secure place to store emergency contacts, final wishes, medications, and a map to your important paperwork. 100% offline — no accounts, no cloud, no internet, ever. Your information never leaves your device. Export a professionally formatted PDF for your executor whenever you're ready.</p>
+    <div class="hero-cta">
+      <a href="https://apps.apple.com/us/app/digital-legacy-vault/id6762098328" class="btn-primary" target="_blank">↗ Download on App Store</a>
+      <a href="#features" class="btn-ghost">See how it works ↓</a>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- WHY IT'S DIFFERENT -->
+  <section>
+    <div class="section-label reveal">Why It's Different</div>
+    <h2 class="section-title reveal">Your most sensitive information<br><span>stays on your device.</span></h2>
+
+    <div class="narrative reveal">
+      <p>Most apps that hold information this personal sync it to a server somewhere. Digital Legacy Vault takes the opposite approach: there are no accounts to create, no cloud to sync to, and no internet connection required — ever. The app has no ability to transmit your data because it makes zero network calls.</p>
+      <p>Everything you enter is encrypted at rest using iOS Complete File Protection, locked behind Face ID or Touch ID, and excluded from iCloud backup by design. Set it up once, update it when things change, and print it when it matters.</p>
+      <p class="muted">Built natively for iOS. 100% offline. No accounts. No cloud. Your information never leaves your device.</p>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- WHAT YOU CAN STORE -->
+  <section>
+    <div class="section-label reveal">What You Can Store</div>
+    <h2 class="section-title reveal">A complete record,<br><span>in one secure place.</span></h2>
+
+    <div class="decks-strip reveal">
+      <div class="deck-cell">
+        <div class="deck-icon">📇</div>
+        <div class="deck-name">Emergency Contacts</div>
+        <div class="deck-meta">Sorted by priority</div>
+      </div>
+      <div class="deck-cell">
+        <div class="deck-icon">🕊️</div>
+        <div class="deck-name">Final Wishes</div>
+        <div class="deck-meta">Arrangements &amp; directives</div>
+      </div>
+      <div class="deck-cell">
+        <div class="deck-icon">💊</div>
+        <div class="deck-name">Medications</div>
+        <div class="deck-meta">Doses &amp; allergies</div>
+      </div>
+      <div class="deck-cell">
+        <div class="deck-icon">🗺️</div>
+        <div class="deck-name">Document Locations</div>
+        <div class="deck-meta">Map to the paperwork</div>
+      </div>
+      <div class="deck-cell">
+        <div class="deck-icon">✉️</div>
+        <div class="deck-name">Letter to Executor</div>
+        <div class="deck-meta">A personal message</div>
+      </div>
+    </div>
+
+    <p style="font-family: var(--mono); font-size: 0.78rem; color: var(--muted); text-align: center; margin-top: 1.5rem; line-height: 1.7;">
+      The people to call first, your final wishes, current prescriptions, where to find your will and accounts, and a personal note — all in one place.
+    </p>
+  </section>
+
+  <hr class="divider">
+
+  <!-- FEATURES -->
+  <section id="features">
+    <div class="section-label reveal">Built for Privacy</div>
+    <h2 class="section-title reveal">Secure by design.<br><span>Private by default.</span></h2>
+
+    <div class="features-grid reveal">
+      <div class="feature-card">
+        <div class="feature-icon">🔐</div>
+        <div class="feature-name">Face ID / Touch ID lock</div>
+        <p class="feature-desc">Your vault locks automatically every time you leave the app, so your information is protected behind biometric authentication the moment you switch away.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🛡️</div>
+        <div class="feature-name">Encrypted &amp; offline</div>
+        <p class="feature-desc">All data is encrypted at rest using iOS Complete File Protection. The app makes zero network calls — it has no ability to transmit your data, so nothing ever leaves your device.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">☁️</div>
+        <div class="feature-name">Excluded from iCloud backup</div>
+        <p class="feature-desc">Your vault is deliberately kept out of iCloud backups by design, so your most sensitive information stays exactly where it belongs — on your device, under your control.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">👤</div>
+        <div class="feature-name">Apple Legacy Contact guidance</div>
+        <p class="feature-desc">When you designate a primary emergency contact, the app guides you to set them as your Apple Legacy Contact — so they can request access to your iPhone after you pass, without your passcode or Face ID.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">📄</div>
+        <div class="feature-name">Professional PDF export</div>
+        <p class="feature-desc">Generate a formatted PDF at any time — complete with your name, date, document ID, executor letter, and a confidentiality footer. Print it for your papers or share it securely with your executor.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">📱</div>
+        <div class="feature-name">Privacy-safe widget</div>
+        <p class="feature-desc">The home screen widget shows only when you last updated your vault — never the actual data — so a glance at your phone never exposes anything sensitive.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- PRIVACY CALLOUT -->
+  <section>
+    <div class="section-label reveal">A Different Approach</div>
+    <h2 class="section-title reveal">No breaches to worry about<br><span>when there's no cloud.</span></h2>
+
+    <div class="privacy-callout reveal">
+      <div class="privacy-icon">🔒</div>
+      <div class="privacy-content">
+        <h3>Plan ahead with peace of mind.</h3>
+        <p>In an age of data breaches and cloud vulnerabilities, Digital Legacy Vault keeps your information offline and encrypted on your own device. There's no server to hack, no account to compromise, and no network for your data to travel across.</p>
+        <p>Read exactly how your data is handled in the privacy policy.</p>
+        <p><a href="/digital-legacy-vault-privacy.html">View the privacy policy →</a></p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- FAQ -->
+  <section>
+    <div class="section-label reveal">FAQ</div>
+    <h2 class="section-title reveal">Common questions.</h2>
+
+    <div class="features-grid reveal">
+      <div class="feature-card">
+        <div class="feature-name">Is it really 100% offline?</div>
+        <p class="feature-desc">Yes. The app requires no account and no internet connection. It makes zero network calls, so it has no technical ability to transmit your information anywhere. Everything stays on your device.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-name">What can I store in it?</div>
+        <p class="feature-desc">Emergency contacts sorted by priority, your final wishes and medical directives, current medications and allergies, the locations of important documents like your will and accounts, and a personal letter to your executor.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-name">How does the PDF export work?</div>
+        <p class="feature-desc">You can generate a professionally formatted PDF at any time — with your name, date, document ID, executor letter, and a confidentiality footer. Print it and store it with your important papers, or share it securely with your executor.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-name">What is an Apple Legacy Contact?</div>
+        <p class="feature-desc">It's an Apple feature that lets someone request access to your iPhone and account after you pass away, without your passcode or Face ID. When you set a primary emergency contact, the app guides you through designating them.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-name">Is my data encrypted?</div>
+        <p class="feature-desc">Yes. All data is encrypted at rest using iOS Complete File Protection, your vault locks behind Face ID or Touch ID, and it's excluded from iCloud backup by design.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-name">Do I need to create an account?</div>
+        <p class="feature-desc">No. There are no accounts and no sign-up. You download the app, set up your vault, and everything lives privately on your device from the start.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- FINAL CTA -->
+  <section>
+    <div class="final-cta reveal">
+      <h3>Set it up once. Update it when things change.</h3>
+      <p>Give your loved ones everything they need to know — stored privately on your device, ready to print when it matters.</p>
+      <div class="hero-cta">
+        <a href="https://apps.apple.com/us/app/digital-legacy-vault/id6762098328" class="btn-primary" target="_blank">↗ Download on App Store</a>
+        <a href="/" class="btn-ghost">← Back to Fogarty Holdings</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-left">© 2026 Fogarty Holdings LLC. All rights reserved.</div>
+    <div class="footer-right">
+      <a href="/">fogartyholdings.com</a> · <a href="/digital-legacy-vault-privacy.html">Privacy</a> · <a href="mailto:contact@fogartyholdings.com">Contact</a>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach((el, i) => {
+      el.style.transitionDelay = `${i * 0.07}s`;
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
