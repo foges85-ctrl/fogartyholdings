@@ -153,4 +153,12 @@
     <priority>0.4</priority>
   </url>
 
+  <!-- PrepPeriod — Privacy Policy -->
+  <url>
+    <loc>https://fogartyholdings.com/prepperiod-privacy.html</loc>
+    <lastmod>2026-07-10</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+
 </urlset>
