@@ -73,6 +73,14 @@
     <priority>0.9</priority>
   </url>
 
+  <!-- PrepPeriod — Marketing Page -->
+  <url>
+    <loc>https://fogartyholdings.com/prepperiod.html</loc>
+    <lastmod>2026-07-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
   <!-- NetScanPro for Field Techs — Landing Page -->
   <url>
     <loc>https://fogartyholdings.com/netscanpro-field-techs.html</loc>

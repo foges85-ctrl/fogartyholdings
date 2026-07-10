@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-J1LCDRSX16"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-J1LCDRSX16');
+  </script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PrepPeriod — Classroom Documentation from Your Apple Watch | Fogarty Holdings</title>
+  <meta name="description" content="Log behavior incidents, hall passes, parent contacts, positive notes, and attendance in two taps from your Apple Watch — timestamped the moment they happen. Complete the details during your prep period. Free to use; PDF reports are a one-time unlock.">
+
+  <link rel="canonical" href="https://fogartyholdings.com/prepperiod.html">
+
+  <!-- Open Graph / Link Preview Tags -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://fogartyholdings.com/prepperiod.html">
+  <meta property="og:title" content="PrepPeriod — Classroom Documentation from Your Apple Watch">
+  <meta property="og:description" content="Two taps on your wrist, timestamped the moment it happens. Complete the details at prep. A clear, credible record for parent conferences, IEP meetings, and admin discussions.">
+  <meta property="og:image" content="https://fogartyholdings.com/PrepPeriodAppIcon.png">
+  <meta property="og:image:width" content="1024">
+  <meta property="og:image:height" content="1024">
+
+  <!-- Twitter / iMessage Card Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="PrepPeriod — Classroom Documentation from Your Apple Watch">
+  <meta name="twitter:description" content="Two taps on your wrist, timestamped the moment it happens. Complete the details at prep. A clear, credible record for parent conferences, IEP meetings, and admin discussions.">
+  <meta name="twitter:image" content="https://fogartyholdings.com/PrepPeriodAppIcon.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+  <!-- Schema.org structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "PrepPeriod",
+    "description": "A watch-first classroom documentation tool for teachers. Log behavior incidents, hall passes, parent contacts, positive notes, and attendance in two taps from Apple Watch — timestamped the moment they're captured — then complete the details during prep period. Free to download and use; professional PDF reports are a one-time in-app unlock. All data stays on the teacher's own devices and syncs through their personal iCloud.",
+    "applicationCategory": "EducationalApplication",
+    "operatingSystem": "iOS",
+    "url": "https://fogartyholdings.com/prepperiod.html",
+    "image": "https://fogartyholdings.com/PrepPeriodAppIcon.png",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Fogarty Holdings LLC",
+      "url": "https://fogartyholdings.com"
+    }
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a111d;
+      --surface: #121b2a;
+      --surface2: #192436;
+      --border: rgba(245,166,66,0.16);
+      --accent: #f09d33;
+      --accent2: #ffc46b;
+      --text: #ffffff;
+      --muted: #9aa8bd;
+      --jakarta: 'Plus Jakarta Sans', sans-serif;
+      --mono: 'DM Mono', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--jakarta);
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── GRID BACKGROUND ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(240,157,51,0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(240,157,51,0.035) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── GLOW ORBS ── */
+    .orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(120px);
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.3;
+    }
+    .orb-1 { width: 600px; height: 600px; background: #8a5514; top: -200px; right: -150px; }
+    .orb-2 { width: 500px; height: 500px; background: #5e3a0c; bottom: -100px; left: -150px; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 3rem;
+      background: rgba(10,17,29,0.88);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-size: 0.8rem;
+      font-family: var(--mono);
+      color: var(--accent);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+
+    .nav-pill {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 0.35rem 0.85rem;
+      border-radius: 100px;
+      letter-spacing: 0.1em;
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .nav-pill:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 8rem 3rem 4rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .app-icon {
+      width: 160px;
+      height: 160px;
+      border-radius: 36px;
+      box-shadow:
+        0 20px 60px rgba(240, 157, 51, 0.25),
+        0 0 0 1px rgba(255,255,255,0.05);
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards 0.05s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--surface), var(--surface2));
+      border: 1px solid var(--border);
+    }
+    .app-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hero-eyebrow {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--accent);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards 0.2s;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    .hero-title {
+      font-size: clamp(3rem, 8vw, 6.5rem);
+      font-weight: 800;
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards 0.35s;
+    }
+    .hero-title span {
+      background: linear-gradient(135deg, #ffc46b, #ffe4b8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-tagline {
+      font-size: clamp(1.15rem, 2.2vw, 1.5rem);
+      font-weight: 500;
+      color: var(--text);
+      max-width: 640px;
+      line-height: 1.4;
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards 0.45s;
+    }
+
+    .hero-desc {
+      font-family: var(--mono);
+      font-size: 0.9rem;
+      color: var(--muted);
+      max-width: 540px;
+      line-height: 1.8;
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards 0.55s;
+    }
+
+    .hero-cta {
+      margin-top: 2.5rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards 0.65s;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--accent);
+      color: #16110a;
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      padding: 0.75rem 1.5rem;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .btn-primary:hover { opacity: 0.85; transform: translateY(-2px); }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: transparent;
+      color: var(--text);
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      padding: 0.75rem 1.5rem;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ── DIVIDER ── */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 0 3rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── SECTION ── */
+    section {
+      position: relative;
+      z-index: 1;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 5rem 3rem;
+    }
+
+    .section-label {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--accent);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .section-label::before {
+      content: '';
+      display: block;
+      width: 24px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+      margin-bottom: 3rem;
+      max-width: 760px;
+    }
+    .section-title span {
+      background: linear-gradient(135deg, #ffc46b, #ffe4b8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ── NARRATIVE ── */
+    .narrative {
+      max-width: 720px;
+    }
+    .narrative p {
+      font-family: var(--jakarta);
+      font-size: 1.05rem;
+      color: var(--muted);
+      line-height: 1.85;
+      margin-bottom: 1.25rem;
+    }
+    .narrative p strong { color: var(--text); font-weight: 600; }
+    .narrative p.muted {
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      color: var(--muted);
+      opacity: 0.85;
+    }
+
+    /* ── HOW IT WORKS STRIP ── */
+    .steps-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .step-cell {
+      background: var(--surface);
+      padding: 2.5rem 2rem;
+      transition: background 0.25s;
+    }
+    .step-cell:hover { background: var(--surface2); }
+
+    .step-num {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--accent);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .step-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .step-name {
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.6rem;
+    }
+
+    .step-desc {
+      font-family: var(--jakarta);
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* ── FEATURE GRID ── */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+
+    .feature-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .feature-card:hover {
+      border-color: rgba(240,157,51,0.4);
+      transform: translateY(-2px);
+    }
+
+    .feature-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .feature-name {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+      color: var(--text);
+    }
+
+    .feature-desc {
+      font-family: var(--jakarta);
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .feature-tag {
+      display: inline-block;
+      vertical-align: 2px;
+      margin-left: 0.4rem;
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid rgba(240,157,51,0.35);
+      background: rgba(240,157,51,0.08);
+      padding: 0.15rem 0.5rem;
+      border-radius: 100px;
+    }
+
+    /* ── PRIVACY CALLOUT ── */
+    .privacy-callout {
+      display: flex;
+      gap: 2rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2.5rem;
+      align-items: flex-start;
+    }
+    .privacy-icon {
+      font-size: 2.5rem;
+      flex-shrink: 0;
+    }
+    .privacy-content h3 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .privacy-content p {
+      font-family: var(--jakarta);
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+    .privacy-content p strong { color: var(--text); font-weight: 600; }
+    .privacy-content a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(240,157,51,0.3);
+    }
+    .privacy-content a:hover { color: var(--accent2); border-color: var(--accent2); }
+
+    /* ── PRICING ── */
+    .pricing-grid {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .pricing-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2.5rem 2rem;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+    .pricing-card.featured {
+      border-color: rgba(240,157,51,0.5);
+      background: linear-gradient(180deg, var(--surface), var(--surface2));
+    }
+    .pricing-badge {
+      position: absolute;
+      top: -10px;
+      right: 1.5rem;
+      background: var(--accent);
+      color: #16110a;
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.7rem;
+      border-radius: 4px;
+    }
+    .pricing-tier {
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      color: var(--accent);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+    .pricing-amount {
+      font-size: 2.8rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.25rem;
+    }
+    .pricing-period {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+    }
+    .pricing-features {
+      list-style: none;
+      margin: 0 0 2rem 0;
+      padding: 0;
+      flex: 1;
+    }
+    .pricing-features li {
+      font-family: var(--jakarta);
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 0.65rem;
+      padding-left: 1.4rem;
+      position: relative;
+    }
+    .pricing-features li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    /* ── FINAL CTA ── */
+    .final-cta {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 3.5rem 3rem;
+      text-align: center;
+    }
+    .final-cta h3 {
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+    .final-cta p {
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      color: var(--muted);
+      max-width: 540px;
+      margin: 0 auto 2rem;
+      line-height: 1.7;
+    }
+    .final-cta .hero-cta {
+      justify-content: center;
+      margin-top: 0;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid var(--border);
+      padding: 2rem 3rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-left {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+    }
+    .footer-right {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+    }
+    .footer-right a {
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-right a:hover { color: var(--accent); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .features-grid { grid-template-columns: 1fr; }
+      .steps-strip { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 700px) {
+      nav { padding: 1rem 1.5rem; }
+      .hero { padding: 7rem 1.5rem 3rem; }
+      section { padding: 3.5rem 1.5rem; }
+      .privacy-callout { flex-direction: column; padding: 1.75rem; gap: 1rem; }
+      .pricing-grid { grid-template-columns: 1fr !important; }
+      footer { flex-direction: column; padding: 1.5rem; align-items: flex-start; }
+      .divider { margin: 0 1.5rem; }
+      .final-cta { padding: 2.5rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+
+  <nav>
+    <a href="https://fogartyholdings.com" class="nav-logo">FH // LLC</a>
+    <a href="https://fogartyholdings.com" class="nav-pill">← Back to Fogarty Holdings</a>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <!-- APP ICON: amber clipboard and pencil on deep slate -->
+    <div class="app-icon"><img src="/PrepPeriodAppIcon.png" alt="PrepPeriod app icon — an amber clipboard with checkmarks and a pencil on deep slate"></div>
+    <div class="hero-eyebrow">iOS + Apple Watch · Built for Teachers</div>
+    <h1 class="hero-title">Get your prep<br>period <span>back.</span></h1>
+    <p class="hero-tagline">The classroom documentation tool built for how teachers actually work — captured on your wrist, completed on your time.</p>
+    <p class="hero-desc">Log behavior incidents, hall passes, parent contacts, positive notes, and attendance in two taps from your Apple Watch — timestamped the moment they happen. Fill in the details later, when you actually have a minute.</p>
+    <div class="hero-cta">
+      <!-- TODO: replace with the real App Store link when the app is live -->
+      <a href="https://apps.apple.com/app/id0000000000" class="btn-primary" target="_blank">↗ Download on the App Store</a>
+      <a href="#features" class="btn-ghost">See how it works ↓</a>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- WHY IT'S DIFFERENT -->
+  <section>
+    <div class="section-label reveal">Why It's Different</div>
+    <h2 class="section-title reveal">Documentation happens at the<br><span>worst possible time.</span></h2>
+
+    <div class="narrative reveal">
+      <p>The moment worth documenting never waits for a convenient one. A student blows up mid-lesson. The same kid asks for a third bathroom pass before lunch. Something happens that you know you'll need a record of — and you're standing in front of thirty students with zero time to write it down.</p>
+      <p>So it goes on a sticky note. Or into your phone, which looks terrible in front of a class. Or — most often — it gets reconstructed from memory at four o'clock: vague, undated, and hard to stand behind when it matters.</p>
+      <p>PrepPeriod splits the job in two. <strong>Capture</strong> takes two taps on your Apple Watch, without interrupting class or pulling out your phone — and every entry is timestamped the moment it happens. <strong>Complete</strong> happens later: during your prep period, the app reminds you to add the details while they're still fresh.</p>
+      <p>The result is a clear, credible, timestamped record — the kind that holds up in parent conferences, IEP meetings, and conversations with administrators.</p>
+      <p class="muted">Free to download and use. Professional PDF reports are a one-time unlock — no subscription.</p>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- HOW IT WORKS -->
+  <section>
+    <div class="section-label reveal">How It Works</div>
+    <h2 class="section-title reveal">Two taps now.<br><span>Details at prep.</span></h2>
+
+    <div class="steps-strip reveal">
+      <div class="step-cell">
+        <div class="step-num">Step 01</div>
+        <div class="step-icon">⌚</div>
+        <div class="step-name">Capture in class</div>
+        <p class="step-desc">Raise your wrist, tap twice, done. Pick the student and the event type — behavior, hall pass, positive note, parent-contact reminder — and get back to teaching.</p>
+      </div>
+      <div class="step-cell">
+        <div class="step-num">Step 02</div>
+        <div class="step-icon">🕐</div>
+        <div class="step-name">Timestamped instantly</div>
+        <p class="step-desc">Every entry is stamped the moment you capture it — not when you finally got around to writing it up. That's what makes the record credible.</p>
+      </div>
+      <div class="step-cell">
+        <div class="step-num">Step 03</div>
+        <div class="step-icon">✍️</div>
+        <div class="step-name">Complete at prep</div>
+        <p class="step-desc">When your prep period comes around, PrepPeriod reminds you to fill in the details while the day is still fresh. A minute of typing, and the record is done.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- FEATURES -->
+  <section id="features">
+    <div class="section-label reveal">Features</div>
+    <h2 class="section-title reveal">Everything you're already tracking.<br><span>Finally in one place.</span></h2>
+
+    <div class="features-grid reveal">
+      <div class="feature-card">
+        <div class="feature-icon">⌚</div>
+        <div class="feature-name">Two-tap capture on Apple Watch</div>
+        <p class="feature-desc">The whole app is built around one idea: documentation shouldn't interrupt teaching. Log any event in two taps from your wrist — no phone out, no laptop open, no losing the room.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">📥</div>
+        <div class="feature-name">Capture now, complete at prep</div>
+        <p class="feature-desc">Quick capture in class, details later. During your prep period, the app surfaces everything you logged and prompts you to complete each entry while it's still fresh in your mind.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🚪</div>
+        <div class="feature-name">Hall pass tracking</div>
+        <p class="feature-desc">Bathroom, water, nurse — every pass logged with a tap and timed automatically. Patterns surface on their own, like a student who leaves your class more than any other.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">📝</div>
+        <div class="feature-name">Behavior incidents &amp; positive notes</div>
+        <p class="feature-desc">Document the tough moments and the great ones. A balanced record of incidents and positive notes tells the real story of a student — and makes every conference more constructive.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">📞</div>
+        <div class="feature-name">Parent-contact log</div>
+        <p class="feature-desc">Record every call, email, and conversation — and its outcome. When someone asks "have you contacted the parents?", you'll have dates, times, and what was said.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🗓️</div>
+        <div class="feature-name">Attendance for real schedules</div>
+        <p class="feature-desc">Take attendance in seconds — including rotating schedules and A/B days. PrepPeriod knows which classes meet today, so you don't have to think about it.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">📄</div>
+        <div class="feature-name">Professional PDF reports <span class="feature-tag">One-time unlock</span></div>
+        <p class="feature-desc">Turn any student's history into a clean, printable, timestamped report — ready for parent conferences, IEP meetings, and administrator discussions. One in-app purchase, yours forever.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🔒</div>
+        <div class="feature-name">Private by design</div>
+        <p class="feature-desc">No accounts, no servers, no tracking. Everything stays on your own devices and syncs privately through your personal iCloud — student data never leaves your hands.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- PRIVACY -->
+  <section>
+    <div class="section-label reveal">Privacy</div>
+    <h2 class="section-title reveal">Student data that<br><span>never leaves your devices.</span></h2>
+
+    <div class="privacy-callout reveal">
+      <div class="privacy-icon">🔒</div>
+      <div class="privacy-content">
+        <h3>No accounts. No servers. No exceptions.</h3>
+        <p>Everything PrepPeriod records lives on your own devices and syncs between your Apple Watch, iPhone, and iPad through your personal iCloud account. <strong>Fogarty Holdings never sees, stores, or transmits your students' data.</strong></p>
+        <p>There's no sign-up, no cloud dashboard, and no third-party analytics on your classroom records. Your documentation belongs to you — the same as a paper notebook, just faster and timestamped. Payment for the report unlock is handled entirely by Apple; we never see your card details.</p>
+        <p><a href="/prepperiod-privacy.html">Read the full Privacy Policy →</a></p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- PRICING -->
+  <section>
+    <div class="section-label reveal">Pricing</div>
+    <h2 class="section-title reveal">Free to use. Pay once<br>for <span>reports.</span></h2>
+
+    <div class="pricing-grid reveal" style="grid-template-columns: repeat(2, 1fr); max-width: 760px; margin-left: auto; margin-right: auto;">
+      <div class="pricing-card">
+        <div class="pricing-tier">Free</div>
+        <div class="pricing-amount">$0</div>
+        <div class="pricing-period">No account required</div>
+        <ul class="pricing-features">
+          <li>Two-tap capture on Apple Watch</li>
+          <li>Behavior incidents &amp; positive notes</li>
+          <li>Hall pass tracking with timers</li>
+          <li>Parent-contact log</li>
+          <li>Attendance, including rotating &amp; A/B schedules</li>
+          <li>Prep-period completion reminders</li>
+          <li>Private iCloud sync across your devices</li>
+        </ul>
+        <!-- TODO: replace with the real App Store link when the app is live -->
+        <a href="https://apps.apple.com/app/id0000000000" class="btn-ghost" target="_blank">↗ Get Started Free</a>
+      </div>
+
+      <div class="pricing-card featured">
+        <div class="pricing-badge">One-time</div>
+        <div class="pricing-tier">Report Unlock</div>
+        <div class="pricing-amount">Once</div>
+        <div class="pricing-period">Single purchase — price shown in the app</div>
+        <ul class="pricing-features">
+          <li>Unlimited professional PDF reports</li>
+          <li>Printable, timestamped student histories</li>
+          <li>Ready for conferences, IEPs &amp; admin meetings</li>
+          <li>Everything in Free</li>
+          <li>No subscription, ever</li>
+        </ul>
+        <!-- TODO: replace with the real App Store link when the app is live -->
+        <a href="https://apps.apple.com/app/id0000000000" class="btn-primary" target="_blank">↗ Download on the App Store</a>
+      </div>
+    </div>
+
+    <p style="font-family: var(--mono); font-size: 0.78rem; color: var(--muted); text-align: center; margin-top: 1.5rem; line-height: 1.7;">
+      Restore Purchase brings your report unlock to any device signed into your Apple ID.
+    </p>
+  </section>
+
+  <hr class="divider">
+
+  <!-- FAQ -->
+  <section>
+    <div class="section-label reveal">FAQ</div>
+    <h2 class="section-title reveal">Common questions.</h2>
+
+    <div class="features-grid reveal">
+      <div class="feature-card">
+        <div class="feature-name">Do I need my phone in class?</div>
+        <p class="feature-desc">No — that's the point. Capture happens entirely on your Apple Watch, in two taps, without pulling out your phone or turning away from your class. Your phone can stay in the drawer where your school probably wants it anyway.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-name">What can I log from the watch?</div>
+        <p class="feature-desc">Behavior incidents, positive notes, hall passes (bathroom, water, nurse), parent-contact reminders, and attendance. Each capture takes two taps and is timestamped the moment you make it.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-name">What happens during my prep period?</div>
+        <p class="feature-desc">PrepPeriod reminds you to complete the entries you captured during class. Each one already has the who, what, and exactly when — you just add the details while they're still fresh.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-name">Can I use it without an Apple Watch?</div>
+        <p class="feature-desc">Yes. Everything works on iPhone too — capture, completion, attendance, and reports. The watch is what makes in-the-moment capture effortless, but it isn't required.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-name">Where is student data stored?</div>
+        <p class="feature-desc">On your own devices, synced privately through your personal iCloud account. There are no accounts to create and no servers involved — Fogarty Holdings never sees or stores your classroom records.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-name">Does it handle rotating or A/B schedules?</div>
+        <p class="feature-desc">Yes. Set up your rotation once and PrepPeriod knows which classes meet on which day — attendance and capture always show the right roster for today.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-name">What are the PDF reports for?</div>
+        <p class="feature-desc">Parent conferences, IEP meetings, and administrator discussions. A report pulls a student's full timestamped history — incidents, positives, passes, parent contacts — into a clean, printable document you can stand behind.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-name">Is there a subscription?</div>
+        <p class="feature-desc">No. PrepPeriod is free to download and use every day. Professional PDF reports are a single one-time unlock, handled entirely by Apple — pay once and it's yours on every device signed into your Apple ID.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- FINAL CTA -->
+  <section>
+    <div class="final-cta reveal">
+      <h3>Made by a teacher, for teachers.</h3>
+      <p>Free to download and use every day. Two taps in class, details at prep, and a record you can stand behind. PDF reports are a one-time unlock — no subscription.</p>
+      <div class="hero-cta">
+        <!-- TODO: replace with the real App Store link when the app is live -->
+        <a href="https://apps.apple.com/app/id0000000000" class="btn-primary" target="_blank">↗ Download on the App Store</a>
+        <a href="/" class="btn-ghost">← Back to Fogarty Holdings</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-left">© 2026 Fogarty Holdings LLC. All rights reserved.</div>
+    <div class="footer-right">
+      <a href="/">fogartyholdings.com</a> · <a href="/prepperiod-privacy.html">Privacy</a> · <a href="mailto:contact@fogartyholdings.com">Contact</a> · <a href="https://instagram.com/fogartyholdings" target="_blank" rel="noopener" aria-label="Fogarty Holdings on Instagram" style="white-space:nowrap"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>@fogartyholdings</a>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach((el, i) => {
+      el.style.transitionDelay = `${i * 0.07}s`;
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
