@@ -43,7 +43,7 @@
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     "name": "NetScanPro",
-    "description": "Privacy-first Wi-Fi network scanner for iOS. Discover devices, services, and open ports on your local network using four discovery methods in parallel: TCP probing, Bonjour/mDNS, SSDP/UPnP, and ICMP ping. No accounts, no servers, no subscriptions.",
+    "description": "Privacy-first Wi-Fi network scanner for iOS. Discover devices, services, and open ports on your local network using four discovery methods in parallel: TCP probing, Bonjour/mDNS, SSDP/UPnP, and ICMP ping. Identifies device names, types, and manufacturers on a best-effort basis from what each device broadcasts (Bonjour, UPnP, and MAC vendor prefixes), with a confidence level on every result. No accounts, no servers, no subscriptions.",
     "applicationCategory": "UtilitiesApplication",
     "operatingSystem": "iOS",
     "url": "https://fogartyholdings.com/netscanpro.html",
@@ -662,7 +662,7 @@
     <div class="hero-eyebrow">iOS App · Now Available</div>
     <h1 class="hero-title"><span>NetScanPro</span></h1>
     <p class="hero-tagline">Discover everything on your Wi-Fi — and what's actually risky.</p>
-    <p class="hero-desc">Privacy-first network scanner for iOS. No accounts, no servers, no subscriptions. Find every device on your network — Macs, PCs, phones, printers, smart TVs, routers, Matter and smart-home gear — and see every security finding in one place, ranked by severity.</p>
+    <p class="hero-desc">Privacy-first network scanner for iOS. No accounts, no servers, no subscriptions. Find every device on your network — Macs, PCs, phones, printers, smart TVs, routers, Matter and smart-home gear — identify what each one is, and see every security finding in one place, ranked by severity.</p>
     <div class="hero-cta">
       <a href="https://apps.apple.com/us/app/netscanpro/id6762677151" class="btn-primary" target="_blank">↗ Download on App Store</a>
       <a href="#features" class="btn-ghost">Learn how it works ↓</a>
@@ -701,7 +701,13 @@
       <div class="feature-card">
         <div class="feature-icon">📡</div>
         <div class="feature-name">Discover every device</div>
-        <p class="feature-desc">Scans your Wi-Fi using four discovery methods in parallel — TCP probing, Bonjour/mDNS, SSDP/UPnP, and ICMP ping. Finds Macs, PCs, phones, printers, smart TVs, routers, smart speakers, and Matter/smart-home devices — with hostname, IP, MAC, and vendor info.</p>
+        <p class="feature-desc">Scans your Wi-Fi using four discovery methods in parallel — TCP probing, Bonjour/mDNS, SSDP/UPnP, and ICMP ping. Finds Macs, PCs, phones, printers, smart TVs, routers, smart speakers, and Matter/smart-home devices — with hostname, IP, and vendor and device details where available.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🏷️</div>
+        <div class="feature-name">Identifies what it finds</div>
+        <p class="feature-desc">NetScanPro doesn't just list IP addresses. It resolves device names, types, and manufacturers from what each device broadcasts (Bonjour, UPnP, and MAC vendor prefixes), and labels every result with a confidence level, so you can tell a confirmed identification from a best guess. The device you're scanning from identifies itself, and devices that share nothing stay honestly unlabeled rather than mislabeled. All of it happens on your phone, with no cloud lookup.</p>
       </div>
 
       <div class="feature-card">
@@ -763,7 +769,7 @@
         <ul class="pricing-features">
           <li>Unlimited device discovery</li>
           <li>3 network scans per day</li>
-          <li>Hostname, IP, MAC, vendor info</li>
+          <li>Hostname, IP, and vendor info where available</li>
           <li>Bonjour/mDNS service detection</li>
           <li>Face ID protection</li>
         </ul>
@@ -825,6 +831,11 @@
       <div class="feature-card">
         <div class="feature-name">Does it detect smart-home devices?</div>
         <p class="feature-desc">Yes — the latest release improves detection of smart-home and Matter devices. Some legacy proprietary devices (like older Amazon Echoes) still don't broadcast on standard mDNS, but coverage keeps expanding.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-name">How does it identify a mystery device?</div>
+        <p class="feature-desc">During a scan, NetScanPro reads the clues a device gives off: the name and services it broadcasts (over Bonjour and UPnP) and its MAC vendor prefix where that's available, and matches them to a device type and manufacturer on the phone, with no cloud lookup. Each result gets a confidence level so a confirmed match reads differently from a best guess. A device that broadcasts nothing identifiable, common with privacy-focused phones and some smart-home gear, may stay unlabeled, which is honest rather than a wrong guess.</p>
       </div>
 
       <div class="feature-card">
