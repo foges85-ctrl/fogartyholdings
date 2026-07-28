@@ -81,6 +81,14 @@
     <priority>0.9</priority>
   </url>
 
+  <!-- TagSweep — Marketing Page -->
+  <url>
+    <loc>https://fogartyholdings.com/tagsweep.html</loc>
+    <lastmod>2026-07-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
   <!-- NetScanPro for Field Techs — Landing Page -->
   <url>
     <loc>https://fogartyholdings.com/netscanpro-field-techs.html</loc>
@@ -157,6 +165,14 @@
   <url>
     <loc>https://fogartyholdings.com/prepperiod-privacy.html</loc>
     <lastmod>2026-07-10</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+
+  <!-- TagSweep — Privacy Policy -->
+  <url>
+    <loc>https://fogartyholdings.com/tagsweep-privacy.html</loc>
+    <lastmod>2026-07-28</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
