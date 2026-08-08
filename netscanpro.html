@@ -700,9 +700,15 @@
       </div>
 
       <div class="feature-card">
+        <div class="feature-icon">🌐</div>
+        <div class="feature-name">Open a device's web interface</div>
+        <p class="feature-desc">After a port scan, the Security Summary lists every device with an open web port, and each row opens that device in Safari with a tap. The same button appears on the device's own screen. What loads varies — some devices open straight to a router or camera login, others return an error page or a blank one. An open port proves the device answered, not that there's a page behind it. Port scanning is part of Pro.</p>
+      </div>
+
+      <div class="feature-card">
         <div class="feature-icon">📡</div>
         <div class="feature-name">Discover every device</div>
-        <p class="feature-desc">Scans your Wi-Fi using four discovery methods in parallel — TCP probing, Bonjour/mDNS, SSDP/UPnP, and ICMP ping. Finds Macs, PCs, phones, printers, smart TVs, routers, smart speakers, and smart-home devices — with hostname, IP, and vendor and device details where available. Devices found over UPnP now report clearer, better-quality names.</p>
+        <p class="feature-desc">Scans your Wi-Fi using four discovery methods in parallel — TCP probing, Bonjour/mDNS, SSDP/UPnP, and ICMP ping. Finds Macs, PCs, phones, printers, smart TVs, routers, smart speakers, and smart-home devices — with hostname, IP, and vendor and device details where available. Devices report clearer, better-quality names, over UPnP and over Bonjour — a friendly name now wins over a machine-generated one wherever both are broadcast.</p>
       </div>
 
       <div class="feature-card">
@@ -792,6 +798,7 @@
           <li>Unlimited scans</li>
           <li>Network Security Summary</li>
           <li>Port scanning on every device (27 TCP ports)</li>
+          <li>Web interface links for devices with an open web port</li>
           <li>PDF report export</li>
           <li>Device renaming, including names that survive an address change</li>
           <li>No subscriptions, ever</li>
@@ -841,6 +848,11 @@
       <div class="feature-card">
         <div class="feature-name">How does it identify a mystery device?</div>
         <p class="feature-desc">During a scan, NetScanPro reads the clues a device gives off: the name and services it broadcasts over Bonjour and UPnP, matched to a device type and manufacturer on the phone, with no cloud lookup. A few devices — AirPlay speakers, Chromecasts and the like — also publish a hardware address over Bonjour, and those get matched against the complete IEEE manufacturer registry bundled offline in the app; most devices don't publish one, because iOS gives apps no access to the ARP table a desktop scanner would use. Each result gets a confidence level so a confirmed match reads differently from a best guess. A device that broadcasts nothing identifiable, common with privacy-focused phones and some smart-home gear, may stay unlabeled, which is honest rather than a wrong guess.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-name">Can I open a device's admin page from the app?</div>
+        <p class="feature-desc">Where the device has a web port open, yes. After a port scan, the Security Summary shows a Web Interfaces list covering every device answering on 443, 8443, 80 or 8080, and tapping one opens it in Safari. The same button appears on that device's detail screen, with the full URL shown before you tap it. What loads is up to the device: a router login, a control panel, an error, or nothing useful.</p>
       </div>
 
       <div class="feature-card">
