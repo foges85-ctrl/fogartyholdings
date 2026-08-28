@@ -43,7 +43,7 @@
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     "name": "NetScanPro",
-    "description": "Privacy-first Wi-Fi network scanner for iOS. Discover devices, services, and open ports on your local network using four discovery methods in parallel: TCP probing, Bonjour/mDNS, SSDP/UPnP, and ICMP ping. Identifies device names, types, and manufacturers on a best-effort basis from what each device broadcasts over Bonjour and UPnP, with a confidence level on every result and no cloud lookup. Names you assign stay with the device even when your router hands its address to different hardware. No accounts, no servers, no subscriptions.",
+    "description": "Privacy-first Wi-Fi network scanner for iOS. Discover devices, services, and open ports on your local network using four discovery methods in parallel: TCP probing, Bonjour/mDNS, SSDP/UPnP, and ICMP ping. Identifies device names, types, and manufacturers on a best-effort basis from what each device broadcasts over Bonjour and UPnP, with a confidence level on every result and no cloud lookup. Shows a hardware (MAC) address with its manufacturer where one can be determined — derived from the device's IPv6 link-local address or read from what the device advertises, stated per row — which is not possible for every device and identifies the maker only. Names you assign stay with the device even when your router hands its address to different hardware. No accounts, no servers, no subscriptions.",
     "applicationCategory": "UtilitiesApplication",
     "operatingSystem": "iOS",
     "url": "https://fogartyholdings.com/netscanpro.html",
@@ -715,7 +715,7 @@
       <div class="feature-card">
         <div class="feature-icon">🏷️</div>
         <div class="feature-name">Identifies what it finds</div>
-        <p class="feature-desc">NetScanPro doesn't just list IP addresses. It resolves device names, types, and manufacturers from what each device broadcasts over Bonjour and UPnP, and labels every result with a confidence level, so you can tell a confirmed identification from a best guess. A hardware address is a bonus rather than the method — iOS doesn't expose the ARP table, so the only devices that hand one over are the AirPlay, AirPlay speaker and Chromecast devices that publish it over Bonjour, usually a handful on a typical network. When one does turn up, it's matched against the complete IEEE manufacturer registry bundled inside the app, offline. The device you're scanning from reports its own hardware model. Devices that share nothing stay honestly unlabeled rather than mislabeled. All of it happens on your phone, with no cloud lookup.</p>
+        <p class="feature-desc">NetScanPro doesn't just list IP addresses. It resolves device names, types, and manufacturers from what each device broadcasts over Bonjour and UPnP, and labels every result with a confidence level, so you can tell a confirmed identification from a best guess. Where a hardware address can be determined, it's shown with the manufacturer it belongs to, and each row says where the address came from — derived from the device's IPv6 link-local address, or read from what the device advertises. Neither route works for every device, so many rows carry no address at all, and a manufacturer is as far as it goes: the maker of the hardware, never an identification of the device itself. When one does turn up, it's matched against the complete IEEE manufacturer registry bundled inside the app, offline. The device you're scanning from reports its own hardware model. Devices that share nothing stay honestly unlabeled rather than mislabeled. All of it happens on your phone, with no cloud lookup.</p>
       </div>
 
       <div class="feature-card">
@@ -783,7 +783,7 @@
         <ul class="pricing-features">
           <li>Unlimited device discovery</li>
           <li>3 network scans per day</li>
-          <li>Hostname, IP, and vendor info where available</li>
+          <li>Hostname, IP, vendor and MAC address where available</li>
           <li>Bonjour/mDNS service detection</li>
           <li>Face ID lock</li>
         </ul>
@@ -848,7 +848,7 @@
 
       <div class="feature-card">
         <div class="feature-name">How does it identify a mystery device?</div>
-        <p class="feature-desc">During a scan, NetScanPro reads the clues a device gives off: the name and services it broadcasts over Bonjour and UPnP, matched to a device type and manufacturer on the phone, with no cloud lookup. A few devices — AirPlay speakers, Chromecasts and the like — also publish a hardware address over Bonjour, and those get matched against the complete IEEE manufacturer registry bundled offline in the app; most devices don't publish one, because iOS gives apps no access to the ARP table a desktop scanner would use. Each result gets a confidence level so a confirmed match reads differently from a best guess. A device that broadcasts nothing identifiable, common with privacy-focused phones and some smart-home gear, may stay unlabeled, which is honest rather than a wrong guess.</p>
+        <p class="feature-desc">During a scan, NetScanPro reads the clues a device gives off: the name and services it broadcasts over Bonjour and UPnP, matched to a device type and manufacturer on the phone, with no cloud lookup. A hardware address can be determined for some devices too — either derived from the device's IPv6 link-local address or read from what the device advertises, and each row says which — then matched against the complete IEEE manufacturer registry bundled offline in the app. Some entries in that registry are administrative placeholders rather than manufacturers — blocks held by the IEEE Registration Authority itself, or marked private — and those are left unnamed instead of being shown as the maker. Neither route covers every device, and what it yields is the manufacturer, not the device. Each result gets a confidence level so a confirmed match reads differently from a best guess. A device that broadcasts nothing identifiable, common with privacy-focused phones and some smart-home gear, may stay unlabeled, which is honest rather than a wrong guess.</p>
       </div>
 
       <div class="feature-card">
