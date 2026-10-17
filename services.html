@@ -469,7 +469,7 @@
     /* ── PORTFOLIO STRIP ── */
     .portfolio-strip {
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
       gap: 1px;
       background: var(--border);
       border: 1px solid var(--border);
@@ -645,6 +645,7 @@
       .services-grid { grid-template-columns: 1fr; }
       .process-grid { grid-template-columns: 1fr 1fr; }
       .portfolio-strip { grid-template-columns: 1fr 1fr; }
+      .portfolio-strip .portfolio-cell:last-child:nth-child(odd) { grid-column: 1 / -1; }
       .pricing-block { grid-template-columns: 1fr; gap: 2rem; padding: 2.5rem; }
     }
     @media (max-width: 700px) {
@@ -821,13 +822,13 @@
   <section>
     <div class="section-label reveal">Proof</div>
     <h2 class="section-title reveal">Already Shipped to the App Store</h2>
-    <p class="section-subtitle reveal">Eight production iOS apps and a 100+ page web platform — all built, designed, and shipped solo. The same skill stack that built these is what builds your project.</p>
+    <p class="section-subtitle reveal">Nine production iOS apps and a 100+ page web platform — all built, designed, and shipped solo. The same skill stack that built these is what builds your project.</p>
 
     <div class="portfolio-strip reveal">
       <a href="/referra.html" class="portfolio-cell">
         <span class="portfolio-icon">🤝</span>
         <span class="portfolio-name">Referra</span>
-        <span class="portfolio-meta">REFERRAL CRM · iPHONE + iPAD</span>
+        <span class="portfolio-meta">REFERRAL CRM · iPHONE, iPAD + MAC</span>
       </a>
       <a href="/certflash.html" class="portfolio-cell">
         <span class="portfolio-icon">📱</span>
@@ -842,7 +843,7 @@
       <a href="/netscanpro.html" class="portfolio-cell">
         <span class="portfolio-icon">📡</span>
         <span class="portfolio-name">NetScanPro</span>
-        <span class="portfolio-meta">NETWORK TOOL · iOS</span>
+        <span class="portfolio-meta">NETWORK TOOL · iOS + MAC</span>
       </a>
       <a href="/prepperiod.html" class="portfolio-cell">
         <span class="portfolio-icon">⌚</span>
@@ -863,6 +864,11 @@
         <span class="portfolio-icon">👑</span>
         <span class="portfolio-name">Bar Barons</span>
         <span class="portfolio-meta">SOCIAL · iOS</span>
+      </a>
+      <a href="/tagsweep.html" class="portfolio-cell">
+        <span class="portfolio-icon">🏷️</span>
+        <span class="portfolio-name">TagSweep</span>
+        <span class="portfolio-meta">DEVICE INVENTORY · iOS</span>
       </a>
     </div>
   </section>
