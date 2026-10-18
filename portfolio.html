@@ -13,13 +13,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sean Fogarty | Instructional Design Portfolio</title>
-  <meta name="description" content="Instructional design portfolio of Sean Fogarty: blended staff training, a nearly 150-page technical study site, a spaced-repetition study app, and a teacher app designed with users.">
+  <meta name="description" content="Instructional design portfolio of Sean Fogarty: a Canvas course, blended staff training, a nearly 150-page technical study site, a spaced-repetition study app, and a teacher app designed with users.">
 
   <!-- Open Graph / Link Preview Tags -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://fogartyholdings.com/portfolio.html">
   <meta property="og:title" content="Sean Fogarty | Instructional Design Portfolio">
-  <meta property="og:description" content="Instructional design portfolio of Sean Fogarty: blended staff training, a nearly 150-page technical study site, a spaced-repetition study app, and a teacher app designed with users.">
+  <meta property="og:description" content="Instructional design portfolio of Sean Fogarty: a Canvas course, blended staff training, a nearly 150-page technical study site, a spaced-repetition study app, and a teacher app designed with users.">
   <meta property="og:image" content="https://fogartyholdings.com/textpreview.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="1200">
@@ -27,7 +27,7 @@
   <!-- Twitter / iMessage Card Tags -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Sean Fogarty | Instructional Design Portfolio">
-  <meta name="twitter:description" content="Instructional design portfolio of Sean Fogarty: blended staff training, a nearly 150-page technical study site, a spaced-repetition study app, and a teacher app designed with users.">
+  <meta name="twitter:description" content="Instructional design portfolio of Sean Fogarty: a Canvas course, blended staff training, a nearly 150-page technical study site, a spaced-repetition study app, and a teacher app designed with users.">
   <meta name="twitter:image" content="https://fogartyholdings.com/textpreview.jpg">
 
   <link rel="canonical" href="https://fogartyholdings.com/portfolio.html">
@@ -706,6 +706,8 @@
     .case-video { width: 240px; max-width: 100%; aspect-ratio: 720 / 1566; border-radius: 28px; border: 1px solid var(--border); background: #000; flex-shrink: 0; }
     .case-media-text h3 { font-family: var(--mono); font-size: 0.68rem; font-weight: 500; color: var(--accent); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 0.75rem; }
     .case-media-text p { font-family: var(--mono); font-size: 0.8rem; color: var(--muted); line-height: 1.8; max-width: 460px; }
+    .case-embed { position: relative; margin: 0 2.5rem 1.5rem; aspect-ratio: 16 / 9; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); background: #000; }
+    .case-embed iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
     .case-links { display: flex; flex-wrap: wrap; gap: 0.75rem; padding: 0 2.5rem 2.25rem; }
 
     @media (max-width: 900px) {
@@ -718,6 +720,7 @@
       .stat { padding: 1.1rem 1.5rem; }
       .case-body { padding: 1.75rem 1.5rem; }
       .case-links { padding: 0 1.5rem 1.75rem; }
+      .case-embed { margin: 0 1.5rem 1.25rem; }
       .case-media { flex-direction: column; align-items: flex-start; padding: 0 1.5rem 1.75rem; gap: 1.5rem; }
       .case-video { width: 220px; align-self: center; }
       .glance-cell { padding: 1.5rem; }
@@ -950,6 +953,56 @@
       <div class="case-links">
         <a href="https://apps.apple.com/us/app/prepperiod-classroom-log/id6788439492?pt=128750067&ct=fhsite&mt=8" class="btn-ghost" target="_blank" rel="noopener">↗ View on the App Store</a>
         <a href="prepperiod.html" class="btn-ghost">↗ PrepPeriod Overview</a>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- CASE 5 -->
+  <section>
+    <div class="section-label reveal">Case Study 05</div>
+    <div class="case reveal">
+      <div class="case-head">
+        <div class="case-mark">LMS</div>
+        <div>
+          <h2 class="case-title">Troubleshooting Like a Pro</h2>
+          <p class="case-sub">A short Canvas course for new help desk technicians</p>
+        </div>
+      </div>
+      <div class="case-stats">
+        <div class="stat"><div class="stat-num">3</div><div class="stat-label">modules built around one realistic support ticket</div></div>
+        <div class="stat"><div class="stat-num">15</div><div class="stat-label">practice questions with feedback on every answer</div></div>
+        <div class="stat"><div class="stat-num">AA</div><div class="stat-label">built to WCAG 2.1 AA</div></div>
+      </div>
+      <div class="case-body">
+        <div class="case-block">
+          <h3>The challenge</h3>
+          <p>New technicians tend to jump straight to a fix. The six-step troubleshooting methodology CompTIA publishes for A+ gives them a process, but as a bare list of steps it's easy to memorize and hard to apply.</p>
+        </div>
+        <div class="case-block">
+          <h3>What I designed</h3>
+          <ul>
+            <li>One realistic ticket, a user who lost her connection after a desk move, carried through all three modules so every step is applied to the same problem.</li>
+            <li>A consistent structure in every module: an overview with measurable objectives, a lesson, and a practice knowledge check.</li>
+            <li>An alignment table connecting each objective to where it's taught and how it's assessed.</li>
+            <li>A final assignment where learners document a new ticket, submitted in writing or as an audio or video recording.</li>
+          </ul>
+        </div>
+        <div class="case-block">
+          <h3>Accessibility</h3>
+          <p>Headings in order, alt text on every image, tables with header cells and captions, the process diagram also written out as text, and contrast-checked colors. Every page passes the Canvas accessibility checker.</p>
+        </div>
+        <div class="case-block">
+          <h3>How it was made</h3>
+          <p>I used AI tools to draft the content and create the banner, buttons, and diagram, then reviewed it and built and configured everything in Canvas, including the modules, quizzes, and assignment.</p>
+        </div>
+      </div>
+      <div class="case-embed">
+        <iframe src="https://www.loom.com/embed/b90f5c35d73045758d9e19c9deb3531c" title="Walkthrough of the Troubleshooting Like a Pro Canvas course" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="case-links">
+        <a href="https://www.loom.com/share/b90f5c35d73045758d9e19c9deb3531c" class="btn-ghost" target="_blank" rel="noopener">↗ Watch the Course Walkthrough</a>
       </div>
     </div>
   </section>
