@@ -43,7 +43,7 @@
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     "name": "NetScanPro",
-    "description": "Privacy-first Wi-Fi network scanner for iPhone, iPad and Mac. Discover devices, services, and open ports on your local network using four discovery methods in parallel: TCP probing, Bonjour/mDNS, SSDP/UPnP, and ICMP ping. Identifies device names, types, and manufacturers on a best-effort basis from what each device broadcasts over Bonjour and UPnP, with a confidence level on every result and no cloud lookup. Shows a hardware (MAC) address with its manufacturer where one can be determined — derived from the device's IPv6 address or read from what the device advertises, stated per row — which is not possible for every device and identifies the maker only. Names you assign stay with the device even when your router hands its address to different hardware. No accounts, no servers, no subscriptions.",
+    "description": "Privacy-first Wi-Fi network scanner for iPhone, iPad and Mac. Discover devices, services, and open ports on your local network using four discovery methods in parallel: TCP probing, Bonjour/mDNS, SSDP/UPnP, and ICMP ping. Identifies device names, types, and manufacturers on a best-effort basis from what each device broadcasts over Bonjour and UPnP, with a confidence level on every result and no cloud lookup. Shows a hardware (MAC) address with its manufacturer where one can be determined — derived from the device's IPv6 address or read from what the device advertises, stated per row — which is not possible for every device and identifies the maker only. A device that shares nothing identifiable can be confirmed by the user with Find This Device, an on/off test in the app. NetScanPro checks before a name you assign moves to different hardware at the same address; a device that shares nothing identifiable can only be matched by its address. No accounts, no servers, no subscriptions.",
     "applicationCategory": "UtilitiesApplication",
     "operatingSystem": "iOS, iPadOS, macOS",
     "url": "https://fogartyholdings.com/netscanpro.html",
@@ -715,7 +715,7 @@
       <div class="feature-card">
         <div class="feature-icon">🏷️</div>
         <div class="feature-name">Identifies what it finds</div>
-        <p class="feature-desc">NetScanPro doesn't just list IP addresses. It resolves device names, types, and manufacturers from what each device broadcasts over Bonjour and UPnP, and labels every result with a confidence level, so you can tell a confirmed identification from a best guess. Where a hardware address can be determined, it's shown with the manufacturer it belongs to, and each row says where the address came from — derived from the device's IPv6 address, or read from what the device advertises. Neither route works for every device, so many rows carry no address at all, and a manufacturer is as far as it goes: the maker of the hardware, never an identification of the device itself. When one does turn up, it's matched against the complete IEEE manufacturer registry bundled inside the app, offline. The device you're scanning from reports its own hardware model. Devices that share nothing stay honestly unlabeled rather than mislabeled. All of it happens on your device, with no cloud lookup.</p>
+        <p class="feature-desc">NetScanPro doesn't just list IP addresses. It resolves device names, types, and manufacturers from what each device broadcasts over Bonjour and UPnP, and labels every result with a confidence level, so you can tell a confirmed identification from a best guess. Where a hardware address can be determined, it's shown with the manufacturer it belongs to, and each row says where the address came from — derived from the device's IPv6 address, or read from what the device advertises. Neither route works for every device, so many rows carry no address at all, and a manufacturer is as far as it goes: the maker of the hardware, never an identification of the device itself. When one does turn up, it's matched against the complete IEEE manufacturer registry bundled inside the app, offline. The device you're scanning from reports its own hardware model. Devices that share nothing stay honestly unlabeled rather than mislabeled — and for one of those, Find This Device lets you confirm which device it is yourself, by switching off the one you suspect while NetScanPro watches that address. All of it happens on your device, with no cloud lookup.</p>
       </div>
 
       <div class="feature-card">
@@ -726,8 +726,8 @@
 
       <div class="feature-card">
         <div class="feature-icon">🏷️</div>
-        <div class="feature-name">Names that stay put · New</div>
-        <p class="feature-desc">Rename a device and the name stays with that device, even after your router hands its address to different hardware. When NetScanPro can't tell whether a device moved or was replaced, it asks you instead of guessing — and you have two weeks to undo an answer.</p>
+        <div class="feature-name">Device names, checked before they move</div>
+        <p class="feature-desc">Rename a device and NetScanPro checks before letting the name move to different hardware that took over its address. When NetScanPro can't tell whether a device moved or was replaced, it asks you instead of guessing — and you have two weeks to undo an answer. A device that shares nothing identifiable can only be matched by its address, so its name can follow that address to new hardware.</p>
       </div>
 
       <div class="feature-card">
@@ -785,6 +785,7 @@
           <li>3 network scans per day</li>
           <li>Hostname, IP, vendor and MAC address where available</li>
           <li>Bonjour/mDNS service detection</li>
+          <li>Find This Device for unidentified devices</li>
           <li>App Lock</li>
         </ul>
         <a href="https://apps.apple.com/us/app/netscanpro/id6762677151?pt=128750067&ct=fhsite&mt=8" class="btn-ghost" target="_blank">↗ Get Started Free</a>
@@ -801,7 +802,7 @@
           <li>Port scanning on every device (27 TCP ports)</li>
           <li>Web interface links for devices with an open web port</li>
           <li>PDF report export</li>
-          <li>Device renaming, including names that survive an address change</li>
+          <li>Device renaming</li>
           <li>No subscriptions, ever</li>
         </ul>
         <a href="https://apps.apple.com/us/app/netscanpro/id6762677151?pt=128750067&ct=fhsite&mt=8" class="btn-primary" target="_blank">↗ Unlock Pro on App Store</a>
@@ -848,7 +849,7 @@
 
       <div class="feature-card">
         <div class="feature-name">How does it identify a mystery device?</div>
-        <p class="feature-desc">During a scan, NetScanPro reads the clues a device gives off: the name and services it broadcasts over Bonjour and UPnP, matched to a device type and manufacturer on the device, with no cloud lookup. A hardware address can be determined for some devices too — either derived from the device's IPv6 address or read from what the device advertises, and each row says which — then matched against the complete IEEE manufacturer registry bundled offline in the app. Some entries in that registry are administrative placeholders rather than manufacturers — blocks held by the IEEE Registration Authority itself, or marked private — and those are left unnamed instead of being shown as the maker. Neither route covers every device, and what it yields is the manufacturer, not the device. Each result gets a confidence level so a confirmed match reads differently from a best guess. A device that broadcasts nothing identifiable, common with privacy-focused phones and some smart-home gear, may stay unlabeled, which is honest rather than a wrong guess.</p>
+        <p class="feature-desc">During a scan, NetScanPro reads the clues a device gives off: the name and services it broadcasts over Bonjour and UPnP, matched to a device type and manufacturer on the device, with no cloud lookup. A hardware address can be determined for some devices too — either derived from the device's IPv6 address or read from what the device advertises, and each row says which — then matched against the complete IEEE manufacturer registry bundled offline in the app. Some entries in that registry are administrative placeholders rather than manufacturers — blocks held by the IEEE Registration Authority itself, or marked private — and those are left unnamed instead of being shown as the maker. Neither route covers every device, and what it yields is the manufacturer, not the device. Each result gets a confidence level so a confirmed match reads differently from a best guess. A device that broadcasts nothing identifiable, common with privacy-focused phones and some smart-home gear, may stay unlabeled, which is honest rather than a wrong guess. For those, Find This Device walks you through an off/on test: switch off the device you think it is, and NetScanPro checks whether that row's address stops answering, then answers again when you switch it back on. Only that sequence marks the row as confirmed by you. It tells you which row in your list is which device on your own network — it doesn't locate anything, and the checks run only while that screen is open. Confirming is free and doesn't use one of your daily scans; adding a name is part of Pro renaming, and Not This Device takes the answer back.</p>
       </div>
 
       <div class="feature-card">
@@ -868,7 +869,7 @@
 
       <div class="feature-card">
         <div class="feature-name">What happens when my router reassigns an address?</div>
-        <p class="feature-desc">The name you gave a device stays with that device, not with the address. If NetScanPro can't tell whether a device moved to a new address or a different device took the old one, it asks you rather than guessing — and a confirmed answer can be undone for two weeks if you got it wrong.</p>
+        <p class="feature-desc">The name you gave a device stays with that device, not with the address, wherever NetScanPro can tell the two apart. If NetScanPro can't tell whether a device moved to a new address or a different device took the old one, it asks you rather than guessing — and a confirmed answer can be undone for two weeks if you got it wrong. A device that shares nothing identifiable is the exception: it can only be matched by its address, so its name, and a type you confirmed with Find This Device, can follow that address to new hardware. Not This Device clears a confirmation that no longer fits.</p>
       </div>
     </div>
   </section>
