@@ -43,7 +43,7 @@
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     "name": "NetScanPro",
-    "description": "Privacy-first Wi-Fi network scanner for iPhone, iPad and Mac. Discover devices, services, and open ports on your local network using four discovery methods in parallel: TCP probing, Bonjour/mDNS, SSDP/UPnP, and ICMP ping. Identifies device names, types, and manufacturers on a best-effort basis from what each device broadcasts over Bonjour and UPnP, with a confidence level on every result and no cloud lookup. Shows a hardware (MAC) address with its manufacturer where one can be determined — derived from the device's IPv6 address or read from what the device advertises, stated per row — which is not possible for every device and identifies the maker only. A device that shares nothing identifiable can be confirmed by the user with Find This Device, an on/off test in the app. NetScanPro checks before a name you assign moves to different hardware at the same address; a device that shares nothing identifiable can only be matched by its address. No accounts, no servers, no subscriptions.",
+    "description": "Privacy-first Wi-Fi network scanner for iPhone, iPad and Mac. Discover devices, services, and open ports on your local network using four discovery methods in parallel: TCP probing, Bonjour/mDNS, SSDP/UPnP, and ICMP ping. Identifies device names, types, and manufacturers on a best-effort basis from what each device broadcasts over Bonjour and UPnP, with a confidence level on every result and no cloud lookup. Shows a hardware (MAC) address with its manufacturer where one can be determined — derived from the device's IPv6 address or read from what the device advertises, stated per row — which is not possible for every device and identifies the maker only. A device that shares nothing identifiable can be confirmed by the user with Find This Device, an on/off test in the app. Check Now tests once, on demand, whether a single device answers on the local network, without using a scan. NetScanPro checks before a name you assign moves to different hardware at the same address; a device that shares nothing identifiable can only be matched by its address. No accounts, no servers, no subscriptions.",
     "applicationCategory": "UtilitiesApplication",
     "operatingSystem": "iOS, iPadOS, macOS",
     "url": "https://fogartyholdings.com/netscanpro.html",
@@ -719,6 +719,12 @@
       </div>
 
       <div class="feature-card">
+        <div class="feature-icon">📶</div>
+        <div class="feature-name">Check one device, right now</div>
+        <p class="feature-desc">Tap Check Now on a device's screen and NetScanPro asks whether that one device answers right now — a ping, plus a connection attempt on port 80 and on any ports a port scan found open. It's free and doesn't use one of your daily scans. It checks once, when you tap it, and only while you're on that device's network; it doesn't watch the device or send alerts. A device that doesn't answer isn't necessarily off — some sleep or ignore these checks — and the result says so. If a device doesn't answer and your latest scan didn't find it either, you can remove it from your list, which can't be undone.</p>
+      </div>
+
+      <div class="feature-card">
         <div class="feature-icon">🗂️</div>
         <div class="feature-name">Every network, kept separate</div>
         <p class="feature-desc">Each Wi-Fi network keeps its own device list and scan history. Create networks manually and pin scans to a specific one, so two sites that look identical (same subnet, same gateway) never merge into one record. Move devices between networks to reorganize your catalog. <a href="netscanpro-field-techs.html" style="color: var(--accent); text-decoration: none;">Field tech or MSP? See how NetScanPro handles multi-site work →</a></p>
@@ -786,6 +792,7 @@
           <li>Hostname, IP, vendor and MAC address where available</li>
           <li>Bonjour/mDNS service detection</li>
           <li>Find This Device for unidentified devices</li>
+          <li>Check Now for a single device</li>
           <li>App Lock</li>
         </ul>
         <a href="https://apps.apple.com/us/app/netscanpro/id6762677151?pt=128750067&ct=fhsite&mt=8" class="btn-ghost" target="_blank">↗ Get Started Free</a>
