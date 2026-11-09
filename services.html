@@ -12,22 +12,22 @@
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Services | Custom iOS App & Website Development | Fogarty Holdings LLC</title>
-  <meta name="description" content="Test your app idea without a five-figure commitment. Custom iOS apps and websites at $100/hour — transparent pricing, full ownership, App Store ready.">
+  <title>Small Business Websites & Custom iOS Apps | Fogarty Holdings LLC</title>
+  <meta name="description" content="A professional 5–6 page website for your business for $1,500 flat, plus a $100/month care plan to keep it current. Custom iOS apps at $100/hour.">
 
   <!-- Open Graph / Link Preview Tags -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://fogartyholdings.com/services.html">
-  <meta property="og:title" content="Custom iOS App & Website Development | Fogarty Holdings LLC">
-  <meta property="og:description" content="Test your app idea without a five-figure commitment. Custom iOS apps and websites at $100/hour — you own everything from day one.">
+  <meta property="og:title" content="Small Business Websites & Custom iOS Apps | Fogarty Holdings LLC">
+  <meta property="og:description" content="A professional 5–6 page website for your business for $1,500 flat, plus a $100/month care plan. Custom iOS apps at $100/hour.">
   <meta property="og:image" content="https://fogartyholdings.com/textpreview.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="1200">
 
   <!-- Twitter / iMessage Card Tags -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Custom iOS App & Website Development | Fogarty Holdings LLC">
-  <meta name="twitter:description" content="Test your app idea without a five-figure commitment. Custom iOS apps and websites at $100/hour.">
+  <meta name="twitter:title" content="Small Business Websites & Custom iOS Apps | Fogarty Holdings LLC">
+  <meta name="twitter:description" content="A professional 5–6 page website for your business for $1,500 flat. Custom iOS apps at $100/hour.">
   <meta name="twitter:image" content="https://fogartyholdings.com/textpreview.jpg">
 
   <!-- Favicon -->
@@ -490,6 +490,57 @@
     }
     .portfolio-cell:hover { background: var(--surface2); }
 
+    .portfolio-strip.two-up { grid-template-columns: 1fr 1fr; margin-top: 0; }
+    .portfolio-strip.two-up .portfolio-cell { padding: 2.25rem; gap: 0.6rem; }
+    .portfolio-desc {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-top: 0.35rem;
+    }
+    .portfolio-visit {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--accent);
+      letter-spacing: 0.06em;
+      margin-top: 0.5rem;
+    }
+
+    .portfolio-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 0.75rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+    }
+    .portfolio-stat-value {
+      display: block;
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #93ccff, #c8e8ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .portfolio-stat-label {
+      display: block;
+      font-family: var(--mono);
+      font-size: 0.66rem;
+      color: var(--muted);
+      line-height: 1.5;
+      margin-top: 0.2rem;
+    }
+    .portfolio-source {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      color: var(--muted);
+      opacity: 0.8;
+      letter-spacing: 0.04em;
+    }
+
     .portfolio-icon { font-size: 1.4rem; }
     .portfolio-name {
       font-size: 0.95rem;
@@ -653,7 +704,7 @@
       .hero { padding: 7rem 1.5rem 3rem; }
       section { padding: 3.5rem 1.5rem; }
       .process-grid { grid-template-columns: 1fr; }
-      .portfolio-strip { grid-template-columns: 1fr; }
+      .portfolio-strip, .portfolio-strip.two-up { grid-template-columns: 1fr; }
       .contact-block { flex-direction: column; align-items: flex-start; padding: 2rem; }
       .pricing-block { padding: 2rem; }
       footer { flex-direction: column; padding: 1.5rem; }
@@ -673,9 +724,9 @@
 
   <!-- HERO -->
   <div class="hero">
-    <div class="hero-eyebrow">Custom Development Services</div>
-    <h1 class="hero-title">Test your app idea<br>without a <span>five-figure</span> commitment.</h1>
-    <p class="hero-desc">Custom iOS apps and websites built to spec at $100/hour — transparent pricing, full ownership from day one, App Store ready. For founders, small businesses, and anyone with an idea worth shipping.</p>
+    <div class="hero-eyebrow">Websites & App Development</div>
+    <h1 class="hero-title">A better website for your business, for <span>$1,500</span> flat.</h1>
+    <p class="hero-desc">A 5–6 page site built around how your business already runs — on the platform you already pay for or a new one, with your domain and booking setup kept. After launch, a $100/month care plan keeps it current. Custom iOS apps are available too, at $100/hour.</p>
     <div class="hero-cta">
       <a href="mailto:contact@fogartyholdings.com?subject=Project%20Inquiry" class="btn-primary">↗ Start a Project</a>
       <a href="#services" class="btn-ghost">↗ See Services</a>
@@ -687,8 +738,8 @@
   <!-- WHY THIS EXISTS -->
   <section>
     <div class="section-label reveal">Why This Exists</div>
-    <h2 class="section-title reveal">Most quotes start at $5,000.<br>Mine doesn't.</h2>
-    <p class="section-subtitle reveal">Agencies and freelancers typically quote $5,000–$25,000+ for a custom iOS app, pricing out the people who could benefit most: founders testing a new idea, small business owners, and solo creators with a real concept but a real budget. By billing transparently at $100/hour with upfront estimates, you only pay for the time the work actually takes. You validate your idea on the App Store for a fraction of agency cost — and you own everything from day one.</p>
+    <h2 class="section-title reveal">You run the business.<br>I'll handle the website.</h2>
+    <p class="section-subtitle reveal">If you run a business, you probably don't have the hours to rebuild your website yourself. A flat price means you know the total before any work starts, and you keep your domain, your platform, and your booking setup. For iOS apps, agencies and freelancers typically quote $5,000–$25,000+; I bill transparently at $100/hour with upfront estimates, so you only pay for the time the work actually takes — and you own everything from day one.</p>
   </section>
 
   <hr class="divider">
@@ -699,6 +750,20 @@
     <h2 class="section-title reveal">What I Build</h2>
 
     <div class="services-grid reveal">
+      <div class="service-card">
+        <span class="service-tag tag-web">Website</span>
+        <div class="service-icon">🌐</div>
+        <div class="service-name">Small Business Websites</div>
+        <p class="service-desc">Built on whatever fits your business: a redesign on the platform you already use, such as Wix, a fast standalone site, or something more custom. You keep your domain and own the result.</p>
+        <ul class="service-features">
+          <li>5–6 page site · $1,500 flat</li>
+          <li>Redesigns on your current platform</li>
+          <li>Mobile-friendly layout</li>
+          <li>Existing online booking kept connected</li>
+          <li>Contact forms, SEO basics & analytics</li>
+        </ul>
+      </div>
+
       <div class="service-card">
         <span class="service-tag tag-app">iOS App</span>
         <div class="service-icon">📱</div>
@@ -714,24 +779,10 @@
       </div>
 
       <div class="service-card">
-        <span class="service-tag tag-web">Website</span>
-        <div class="service-icon">🌐</div>
-        <div class="service-name">Website Development</div>
-        <p class="service-desc">Fast, modern static websites deployed to your hosting account on your domain. Source code transferred to you via private GitHub repo.</p>
-        <ul class="service-features">
-          <li>HTML / CSS / JavaScript</li>
-          <li>GitHub Pages or Netlify</li>
-          <li>Custom domain setup</li>
-          <li>Contact forms & SEO basics</li>
-          <li>Analytics integration</li>
-        </ul>
-      </div>
-
-      <div class="service-card">
         <span class="service-tag tag-maint">Retainer</span>
         <div class="service-icon">🛠</div>
-        <div class="service-name">Ongoing Maintenance</div>
-        <p class="service-desc">Monthly retainer for keeping your app or site running smoothly long after launch. Same $100/hour rate, paid in advance.</p>
+        <div class="service-name">Care Plans & Maintenance</div>
+        <p class="service-desc">Website care plan: $100/month, including up to 1 hour of updates. Apps and larger sites use monthly hour blocks at the same $100/hour rate, paid in advance.</p>
         <ul class="service-features">
           <li>Bug fixes & updates</li>
           <li>iOS compatibility patches</li>
@@ -745,18 +796,50 @@
 
   <hr class="divider">
 
+  <!-- WEBSITES BUILT -->
+  <section id="websites">
+    <div class="section-label reveal">Proof</div>
+    <h2 class="section-title reveal">Websites I've Built</h2>
+    <p class="section-subtitle reveal">Live sites, designed and built solo. Click through and see the work for yourself.</p>
+
+    <div class="portfolio-strip two-up reveal">
+      <a href="https://itstudyhub.org" class="portfolio-cell" target="_blank" rel="noopener">
+        <span class="portfolio-icon">🖥️</span>
+        <span class="portfolio-name">IT Study Hub</span>
+        <span class="portfolio-meta">ITSTUDYHUB.ORG · 140+ PAGES</span>
+        <span class="portfolio-desc">Free CompTIA A+, Network+, and Security+ prep: study guides, cheat sheets, certification roadmaps, cert comparisons, and networking and security explainers.</span>
+        <span class="portfolio-stats">
+          <span><span class="portfolio-stat-value">150.6K</span><span class="portfolio-stat-label">AI citations in Microsoft Copilot &amp; partners</span></span>
+          <span><span class="portfolio-stat-value">69.4K</span><span class="portfolio-stat-label">Bing search impressions</span></span>
+          <span><span class="portfolio-stat-value">1.4K</span><span class="portfolio-stat-label">Bing search clicks</span></span>
+        </span>
+        <span class="portfolio-source">Last 3 months, Aug–Nov 2026 · Bing Webmaster Tools</span>
+        <span class="portfolio-visit">Visit itstudyhub.org →</span>
+      </a>
+      <a href="https://appmatchup.com" class="portfolio-cell" target="_blank" rel="noopener">
+        <span class="portfolio-icon">⚖️</span>
+        <span class="portfolio-name">AppMatchup</span>
+        <span class="portfolio-meta">APPMATCHUP.COM · APP COMPARISONS</span>
+        <span class="portfolio-desc">Head-to-head app comparisons, two apps at a time, with every claim sourced and dated.</span>
+        <span class="portfolio-visit">Visit appmatchup.com →</span>
+      </a>
+    </div>
+  </section>
+
+  <hr class="divider">
+
   <!-- PRICING -->
   <section>
     <div class="section-label reveal">Pricing</div>
     <h2 class="section-title reveal">Simple, Transparent.</h2>
-    <p class="section-subtitle reveal">One flat hourly rate for everything — apps, websites, and maintenance. You get an estimated hour range upfront after a free discovery call, and I check in before exceeding it. No surprises, no markups, no padded invoices.</p>
+    <p class="section-subtitle reveal">Websites are flat-priced, so you know the total before work starts. Apps and larger projects bill at one hourly rate, with an estimated hour range upfront after a free discovery call — and I check in before exceeding it. No surprises, no markups, no padded invoices.</p>
 
     <div class="pricing-block reveal">
       <div class="pricing-rate">
-        <span class="pricing-label">Build Rate</span>
-        <div class="pricing-amount">$100</div>
-        <span class="pricing-unit">per hour · all services</span>
-        <p class="pricing-note">Itemized weekly invoices. You see exactly what was worked on and how long it took.</p>
+        <span class="pricing-label">Website Package</span>
+        <div class="pricing-amount">$1,500</div>
+        <span class="pricing-unit">flat · 5–6 page site</span>
+        <p class="pricing-note">Plus an optional $100/month care plan after launch to keep your site current.</p>
       </div>
 
       <div class="pricing-details">
@@ -765,20 +848,20 @@
           <span class="pricing-row-value">Free · 30 minutes</span>
         </div>
         <div class="pricing-row">
-          <span class="pricing-row-label">Estimate</span>
-          <span class="pricing-row-value">Hour range provided<br>after discovery</span>
+          <span class="pricing-row-label">Website Care Plan</span>
+          <span class="pricing-row-value">$100/month · up to 1 hour<br>of updates, extra at $100/hour</span>
+        </div>
+        <div class="pricing-row">
+          <span class="pricing-row-label">Larger Sites & iOS Apps</span>
+          <span class="pricing-row-value">$100/hour · hour range<br>provided after discovery,<br>itemized weekly invoices</span>
         </div>
         <div class="pricing-row">
           <span class="pricing-row-label">Deposit</span>
           <span class="pricing-row-value">25% upfront<br>applied to final invoice</span>
         </div>
         <div class="pricing-row">
-          <span class="pricing-row-label">Maintenance</span>
-          <span class="pricing-row-value">Monthly hour blocks<br>paid in advance</span>
-        </div>
-        <div class="pricing-row">
           <span class="pricing-row-label">Pass-through Costs</span>
-          <span class="pricing-row-value">Apple Developer, domain,<br>hosting — paid by you direct,<br>never marked up</span>
+          <span class="pricing-row-value">Apple Developer, domain,<br>hosting or platform plan — paid<br>by you direct, never marked up</span>
         </div>
       </div>
     </div>
@@ -790,7 +873,7 @@
   <section>
     <div class="section-label reveal">Process</div>
     <h2 class="section-title reveal">How It Works</h2>
-    <p class="section-subtitle reveal">From first email to App Store launch, the path is the same every time.</p>
+    <p class="section-subtitle reveal">From first email to launch day, the path is the same every time.</p>
 
     <div class="process-grid reveal">
       <div class="process-card">
@@ -801,17 +884,17 @@
       <div class="process-card">
         <span class="process-num">02 / SCOPE</span>
         <div class="process-name">Written Spec</div>
-        <p class="process-desc">A clear written document outlining features, deliverables, and an estimated hour range. We sign off before any work starts.</p>
+        <p class="process-desc">A clear written document outlining pages or features, deliverables, and either the flat price or an estimated hour range. We sign off before any work starts.</p>
       </div>
       <div class="process-card">
         <span class="process-num">03 / BUILD</span>
         <div class="process-name">Weekly Updates</div>
-        <p class="process-desc">I build with weekly check-ins and itemized billing. You see progress and hours spent in real time.</p>
+        <p class="process-desc">I build with weekly check-ins so you see progress as it happens. Hourly projects also get itemized billing.</p>
       </div>
       <div class="process-card">
         <span class="process-num">04 / LAUNCH</span>
         <div class="process-name">Full Handoff</div>
-        <p class="process-desc">App submitted to your account or site deployed to your domain. Source code transferred. You own everything.</p>
+        <p class="process-desc">Site live on your domain or app submitted to your account. Source code transferred. You own everything.</p>
       </div>
     </div>
   </section>
@@ -820,9 +903,9 @@
 
   <!-- PORTFOLIO -->
   <section>
-    <div class="section-label reveal">Proof</div>
-    <h2 class="section-title reveal">Already Shipped to the App Store</h2>
-    <p class="section-subtitle reveal">Nine production iOS apps and a 100+ page web platform — all built, designed, and shipped solo. The same skill stack that built these is what builds your project.</p>
+    <div class="section-label reveal">iOS Apps</div>
+    <h2 class="section-title reveal">Also Shipped to the App Store</h2>
+    <p class="section-subtitle reveal">Nine production iOS apps — all built, designed, and shipped solo. If your project is an app rather than a website, this is the work behind it.</p>
 
     <div class="portfolio-strip reveal">
       <a href="/referra.html" class="portfolio-cell">
@@ -886,7 +969,7 @@
           <span>Will I actually own the app?</span>
           <span class="faq-toggle">+</span>
         </summary>
-        <p class="faq-answer">Yes — completely. For iOS apps, you sign up for your own Apple Developer account ($99/year) before development begins, and the app is published under your name from day one. App Store revenue flows directly to your bank account. For websites, the source code is transferred to your private GitHub repo, deployed to hosting under your account. All custom code becomes your property upon final payment.</p>
+        <p class="faq-answer">Yes — completely. For iOS apps, you sign up for your own Apple Developer account ($99/year) before development begins, and the app is published under your name from day one. App Store revenue flows directly to your bank account. For websites, the site runs on your domain and your own hosting or platform account, and any custom code is transferred to you. All custom code becomes your property upon final payment.</p>
       </details>
 
       <details class="faq-item">
@@ -902,7 +985,7 @@
           <span>What happens if my project goes over the estimate?</span>
           <span class="faq-toggle">+</span>
         </summary>
-        <p class="faq-answer">I check in with you before approaching the upper end of the estimate. If new requirements emerge mid-build, we go through a written change order before any extra hours are billed. You will never get a surprise invoice.</p>
+        <p class="faq-answer">Website packages are flat-priced, so the price only changes if you ask for more than the agreed pages and features — and that goes through a written change order first. For hourly projects, I check in with you before approaching the upper end of the estimate, and new requirements go through a written change order before any extra hours are billed. You will never get a surprise invoice.</p>
       </details>
 
       <details class="faq-item">
@@ -910,7 +993,7 @@
           <span>What kinds of projects don't you take on?</span>
           <span class="faq-toggle">+</span>
         </summary>
-        <p class="faq-answer">I focus on what I can deliver well: single-purpose utility apps and small-to-medium static websites. I don't take on enterprise projects, anything requiring custom backend infrastructure I'd need to maintain long-term, or projects with regulatory complexity (HIPAA, financial services, etc.).</p>
+        <p class="faq-answer">I focus on what I can deliver well: single-purpose utility apps and small business websites. I don't take on enterprise projects, anything requiring custom backend infrastructure I'd need to maintain long-term, or projects with regulatory complexity (HIPAA, financial services, etc.).</p>
       </details>
 
       <details class="faq-item">
@@ -918,7 +1001,7 @@
           <span>Do you offer support after launch?</span>
           <span class="faq-toggle">+</span>
         </summary>
-        <p class="faq-answer">Yes — through monthly maintenance retainers at the same $100/hour rate. Choose a block of hours per month (typically 2 or 5) for bug fixes, content updates, iOS compatibility patches, and App Store resubmissions. Hours don't roll over, so you only pay for what you actually need.</p>
+        <p class="faq-answer">Yes. For websites, the care plan is $100/month and covers up to 1 hour of updates — new hours, services, photos, and other small changes — with extra time at $100/hour. Apps and larger sites use monthly blocks at the same $100/hour rate (typically 2 or 5 hours) for bug fixes, content updates, iOS compatibility patches, and App Store resubmissions. Hours don't roll over, so you only pay for what you actually need. The care plan is optional: if you skip it, any changes you ask for later are billed at $100/hour, only when you need them.</p>
       </details>
 
       <details class="faq-item">
@@ -926,7 +1009,7 @@
           <span>How do payments work?</span>
           <span class="faq-toggle">+</span>
         </summary>
-        <p class="faq-answer">25% deposit upfront against the estimated hours, applied to your final invoice. After that, I bill weekly with itemized hour logs so you can see exactly what was worked on. Payment via Stripe or direct invoice. All work is governed by a written client agreement covering scope, IP transfer, and payment terms.</p>
+        <p class="faq-answer">25% deposit upfront against the flat price or the estimated hours, applied to your final invoice. Hourly projects are then billed weekly with itemized hour logs so you can see exactly what was worked on. Payment via Stripe or direct invoice. All work is governed by a written client agreement covering scope, IP transfer, and payment terms.</p>
       </details>
     </div>
   </section>
@@ -940,7 +1023,7 @@
     <div class="contact-block reveal">
       <div class="contact-left">
         <h3>Free 30-Minute Discovery Call</h3>
-        <p>Send a quick note about your idea. I'll reply within 24 hours with a few questions and we'll set up a time to talk. No commitment, no pressure.</p>
+        <p>Send a quick note about your business or idea. I'll reply within 24 hours with a few questions and we'll set up a time to talk. No commitment, no pressure.</p>
       </div>
       <a href="mailto:contact@fogartyholdings.com?subject=Project%20Inquiry" class="contact-email">contact@fogartyholdings.com</a>
     </div>
